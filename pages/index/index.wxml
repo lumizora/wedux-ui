@@ -236,6 +236,14 @@
             <view class="catalog-item__name">Back Top 返回顶部</view>
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
+          <navigator
+            url="/packages/docs/empty/empty"
+            hover-class="catalog-item--active"
+            class="catalog-item"
+          >
+            <view class="catalog-item__name">Empty 空状态</view>
+            <view class="iconfont icon-right catalog-item__arrow"></view>
+          </navigator>
         </view>
       </view>
 

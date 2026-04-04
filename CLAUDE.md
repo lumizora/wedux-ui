@@ -30,7 +30,7 @@ wedux-ui/
 ├── app.js / app.json / app.scss     # 全局入口
 ├── src/
 │   ├── behaviors/                   # 公共 Behavior（formField 等）
-│   ├── components/                  # 组件源码（w-* 前缀，含 layout/layout-header/layout-content/layout-footer/layout-sider 等布局组件，tree/tree-select 树形组件，list/list-item 列表组件，badge 徽标组件，stepper 步进器组件，marquee 走马灯组件）
+│   ├── components/                  # 组件源码（w-* 前缀，含 layout/layout-header/layout-content/layout-footer/layout-sider 等布局组件，tree/tree-select 树形组件，list/list-item 列表组件，badge 徽标组件，empty 空状态组件，stepper 步进器组件，marquee 走马灯组件）
 │   ├── libs/                        # 工具库（tempo 日期库等）
 │   ├── utils/                       # 工具函数（relations 工厂等）
 │   └── styles/
