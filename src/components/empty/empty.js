@@ -29,7 +29,7 @@ Component({
   },
 
   observers: {
-    size(size) {
+    size: function (size) {
       const varVal = SIZE_VAR_MAP[size] || SIZE_VAR_MAP.medium;
       this.setData({ _imageStyle: `--w-empty-image-size: ${varVal}` });
     },

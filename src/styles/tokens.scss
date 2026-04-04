@@ -299,4 +299,5 @@ page {
   --w-empty-image-size-sm: 160rpx;
   --w-empty-image-size-md: 240rpx;
   --w-empty-image-size-lg: 320rpx;
+  --w-empty-image-size: var(--w-empty-image-size-md);
 }
