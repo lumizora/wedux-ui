@@ -1,0 +1,46 @@
+<div class="demo-page">
+  <scroll-view scroll-y enhanced="{{true}}" show-scrollbar="{{false}}" class="demo-scroll">
+    <view class="demo-content">
+      <view class="comp-header">
+        <view class="comp-header__tag">empty</view>
+        <view class="comp-header__desc">空状态，用于无数据时的占位展示。</view>
+      </view>
+
+      <view class="section">
+        <view class="section__title">Props</view>
+        <view class="prop-row" wx:for="{{props}}" wx:key="name">
+          <view class="prop-row__meta">
+            <text class="prop-row__name">{{item.name}}</text>
+            <text class="prop-row__type">{{item.type}}</text>
+            <text class="prop-row__default">{{item.default}}</text>
+          </view>
+          <view class="prop-row__desc">{{item.desc}}</view>
+        </view>
+      </view>
+
+      <view class="section">
+        <view class="section__title">基础用法</view>
+        <w-empty></w-empty>
+      </view>
+
+      <view class="section">
+        <view class="section__title">自定义描述</view>
+        <w-empty title="暂无订单" description="您还没有下过订单，快去逛逛吧"></w-empty>
+      </view>
+
+      <view class="section">
+        <view class="section__title">带操作区</view>
+        <w-empty title="暂无网络" description="请检查网络连接后重试">
+          <w-button slot="extra" size="small" bindtap="handleRetry">重新加载</w-button>
+        </w-empty>
+      </view>
+
+      <view class="section">
+        <view class="section__title">尺寸</view>
+        <w-empty size="small" title="小尺寸"></w-empty>
+        <w-empty size="medium" title="中尺寸（默认）"></w-empty>
+        <w-empty size="large" title="大尺寸"></w-empty>
+      </view>
+    </view>
+  </scroll-view>
+</div>
