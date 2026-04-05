@@ -20,15 +20,23 @@ Component({
       type: String,
       value: 'md',
     },
+    color: {
+      type: String,
+      value: '',
+    },
   },
 
   data: {
     _formattedPrice: '0.00',
     _formattedOriginal: '',
     _hasOriginal: false,
+    _style: '',
   },
 
   observers: {
+    color(color) {
+      this.setData({ _style: color ? `--w-price-color: ${color}` : '' });
+    },
     'price, originalPrice, decimal': function (price, originalPrice, decimal) {
       const decimals = Math.max(0, Math.floor(decimal));
       const numPrice = Number(price);

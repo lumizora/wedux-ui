@@ -1,4 +1,4 @@
-<view class="w-price w-price--{{size}}">
+<view class="w-price w-price--{{size}}" style="{{_style}}">
   <text class="w-price__currency">{{currency}}</text
   ><text class="w-price__value">{{_formattedPrice}}</text
   ><text wx:if="{{_hasOriginal}}" class="w-price__original"

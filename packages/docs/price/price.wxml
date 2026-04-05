@@ -46,6 +46,11 @@
         <view class="section__title">自定义货币符号</view>
         <w-price price="18.00" currency="$"></w-price>
       </view>
+
+      <view class="section">
+        <view class="section__title">自定义颜色</view>
+        <w-price price="18" original-price="99" color="#ff4d4f"></w-price>
+      </view>
     </view>
   </scroll-view>
 </div>

@@ -11,6 +11,12 @@ Page({
       { name: 'currency', type: 'String', default: "'¥'", desc: '货币符号' },
       { name: 'decimal', type: 'Number', default: '2', desc: '小数位数，0 表示不显示小数' },
       { name: 'size', type: 'String', default: "'md'", desc: '整体尺寸：sm / md / lg' },
+      {
+        name: 'color',
+        type: 'String',
+        default: "''",
+        desc: '自定义主价格颜色，覆盖 --w-price-color',
+      },
     ],
   },
 });
