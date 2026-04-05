@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "w-price": "/src/components/price/price"
+  },
+  "navigationBarTitleText": "Price",
+  "disableScroll": true
+}
