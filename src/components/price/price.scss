@@ -1,0 +1,51 @@
+.w-price {
+  display: inline-flex;
+  align-items: baseline;
+  line-height: 1;
+}
+
+/* Size variants — 主价格字号 */
+.w-price--sm .w-price__value {
+  font-size: var(--font-size-lg);
+}
+
+.w-price--sm .w-price__currency {
+  font-size: var(--font-size-sm);
+}
+
+.w-price--md .w-price__value {
+  font-size: var(--font-size-xl);
+}
+
+.w-price--md .w-price__currency {
+  font-size: var(--font-size-md);
+}
+
+.w-price--lg .w-price__value {
+  font-size: var(--font-size-h3);
+}
+
+.w-price--lg .w-price__currency {
+  font-size: var(--font-size-xl);
+}
+
+.w-price__currency {
+  font-weight: 700;
+  color: var(--w-price-color);
+  vertical-align: super;
+  line-height: 1;
+}
+
+.w-price__value {
+  font-weight: 700;
+  color: var(--w-price-color);
+  font-variant-numeric: tabular-nums;
+}
+
+.w-price__original {
+  font-size: var(--font-size-sm);
+  color: var(--w-price-original-color);
+  text-decoration: line-through;
+  margin-left: 8rpx;
+  font-weight: 400;
+}
