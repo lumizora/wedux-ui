@@ -304,4 +304,11 @@ page {
   /* Price */
   --w-price-color: var(--color-brand);
   --w-price-original-color: var(--color-text-secondary);
+
+  /* Carousel */
+  --w-carousel-dot-color: rgba(255, 255, 255, 0.5);
+  --w-carousel-dot-color-active: #ffffff;
+  --w-carousel-dot-size: 16rpx;
+  --w-carousel-dot-line-width: 16rpx;
+  --w-carousel-dot-line-width-active: 48rpx;
 }
