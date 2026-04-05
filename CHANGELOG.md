@@ -1,3 +1,9 @@
+## [0.3.1](https://github.com/BitterBar/wedux-ui/compare/v0.3.0...v0.3.1) (2026-04-05)
+
+
+### Features
+
+* **styles:** add index.scss entry for one-click style import ([ac3e3d3](https://github.com/BitterBar/wedux-ui/commit/ac3e3d313eeafc64fa82ffe9b5724c735f944c63))
 # [0.3.0](https://github.com/BitterBar/wedux-ui/compare/v0.2.7...v0.3.0) (2026-04-05)
 
 
