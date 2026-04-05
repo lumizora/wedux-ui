@@ -165,6 +165,14 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
+            url="/packages/docs/price/price"
+            hover-class="catalog-item--active"
+            class="catalog-item"
+          >
+            <view class="catalog-item__name">Price 价格</view>
+            <view class="iconfont icon-right catalog-item__arrow"></view>
+          </navigator>
+          <navigator
             url="/packages/docs/watermark/watermark"
             hover-class="catalog-item--active"
             class="catalog-item"
