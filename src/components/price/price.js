@@ -31,10 +31,13 @@ Component({
   observers: {
     'price, originalPrice, decimal': function (price, originalPrice, decimal) {
       const decimals = Math.max(0, Math.floor(decimal));
-      const formattedPrice = Number(price).toFixed(decimals);
+      const numPrice = Number(price);
+      const formattedPrice = isNaN(numPrice) ? '0' : numPrice.toFixed(decimals);
       const hasOriginal =
         originalPrice !== '' && originalPrice !== undefined && originalPrice !== null;
-      const formattedOriginal = hasOriginal ? Number(originalPrice).toFixed(decimals) : '';
+      const numOriginal = hasOriginal ? Number(originalPrice) : NaN;
+      const formattedOriginal =
+        hasOriginal && !isNaN(numOriginal) ? numOriginal.toFixed(decimals) : '';
 
       this.setData({
         _formattedPrice: formattedPrice,

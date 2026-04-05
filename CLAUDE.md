@@ -54,7 +54,7 @@ wedux-ui/
 
 ### 组件级 CSS 变量
 
-核心组件（button、input、switch、tag、card、badge、drawer、list、divider、avatar）定义了 `--w-{component}-*` 命名空间的变量，fallback 到全局 token。用户可通过 theme-provider 精准覆盖单个组件样式。
+核心组件（button、input、switch、tag、card、badge、drawer、list、divider、avatar、price）定义了 `--w-{component}-*` 命名空间的变量，fallback 到全局 token。用户可通过 theme-provider 精准覆盖单个组件样式。
 
 **命名规则**：`--w-{组件名}-{属性}`，如 `--w-btn-height`、`--w-input-radius`。
 
