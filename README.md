@@ -23,9 +23,13 @@ npm install wedux-ui
 在项目全局样式文件 `app.scss` 中引入：
 
 ```scss
+@import './miniprogram_npm/wedux-ui/styles/index.scss';
+```
+
+如需在页面中直接使用图标字体（`iconfont` 类名），额外引入：
+
+```scss
 @import './miniprogram_npm/wedux-ui/styles/iconfont.scss';
-@import './miniprogram_npm/wedux-ui/styles/tokens.scss';
-@import './miniprogram_npm/wedux-ui/styles/theme.scss';
 ```
 
 ## 快速上手
