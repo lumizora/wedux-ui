@@ -300,4 +300,8 @@ page {
   --w-empty-image-size-md: 160rpx;
   --w-empty-image-size-lg: 240rpx;
   --w-empty-image-size: var(--w-empty-image-size-md);
+
+  /* Price */
+  --w-price-color: var(--color-brand);
+  --w-price-original-color: var(--color-text-secondary);
 }
