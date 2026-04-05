@@ -47,7 +47,8 @@
         "tooltip/tooltip",
         "theme-provider/theme-provider",
         "tab-bar/tab-bar",
-        "marquee/marquee"
+        "marquee/marquee",
+        "price/price"
       ]
     }
   ],
