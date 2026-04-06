@@ -81,8 +81,11 @@ Component({
   },
 
   lifetimes: {
-    ready() {
+    created() {
       this._internalIndex = this.data.defaultCurrent;
+    },
+
+    ready() {
       this._containerWidth = 0;
       this._containerHeight = 0;
       this._slideSize = 0;
@@ -208,7 +211,7 @@ Component({
         const transform =
           direction === 'horizontal' ? `translateX(${-offset}px)` : `translateY(${-offset}px)`;
         this.setData({
-          _trackStyle: `transform: ${transform}; transition-duration: ${dur}ms;`,
+          _trackStyle: `transform: ${transform}; transition: transform ${dur}ms ease;`,
         });
         return;
       }
@@ -238,13 +241,13 @@ Component({
 
           if (diff === 0) {
             state = 'active';
-            style = `${base} transform: scale(1) translateX(0); opacity: 1; transition: all ${dur}ms; z-index: 1;`;
+            style = `${base} transform: scale(1) translateX(0); opacity: 1; transition: transform ${dur}ms ease, opacity ${dur}ms ease; z-index: 1;`;
           } else if (isPrev) {
             state = 'prev';
-            style = `${base} transform: scale(0.85) translateX(-70%); opacity: 0.7; transition: all ${dur}ms; z-index: 0;`;
+            style = `${base} transform: scale(0.85) translateX(-70%); opacity: 0.7; transition: transform ${dur}ms ease, opacity ${dur}ms ease; z-index: 0;`;
           } else if (isNext) {
             state = 'next';
-            style = `${base} transform: scale(0.85) translateX(70%); opacity: 0.7; transition: all ${dur}ms; z-index: 0;`;
+            style = `${base} transform: scale(0.85) translateX(70%); opacity: 0.7; transition: transform ${dur}ms ease, opacity ${dur}ms ease; z-index: 0;`;
           } else {
             state = 'hidden';
             style = `${base} opacity: 0; pointer-events: none; z-index: 0;`;
@@ -276,7 +279,7 @@ Component({
       const transform =
         direction === 'horizontal' ? `translateX(${-offset}px)` : `translateY(${-offset}px)`;
       this.setData({
-        _trackStyle: `transform: ${transform}; transition-duration: 0ms;`,
+        _trackStyle: `transform: ${transform}; transition: none;`,
       });
     },
 
