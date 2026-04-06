@@ -1,3 +1,9 @@
+# [0.6.0](https://github.com/BitterBar/wedux-ui/compare/v0.5.0...v0.6.0) (2026-04-06)
+
+
+### Features
+
+* **image:** add w-image component ([ac2153b](https://github.com/BitterBar/wedux-ui/commit/ac2153bc1636c448356636332d995ec710d6da63))
 # [0.5.0](https://github.com/BitterBar/wedux-ui/compare/v0.4.0...v0.5.0) (2026-04-06)
 
 ### Bug Fixes
