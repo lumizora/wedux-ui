@@ -70,6 +70,14 @@
             <view class="catalog-item__name">Tab Bar 底部导航</view>
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
+          <navigator
+            url="/packages/docs/carousel/carousel"
+            class="catalog-item"
+            hover-class="catalog-item--active"
+          >
+            <view class="catalog-item__name">Carousel 轮播</view>
+            <view class="iconfont icon-right catalog-item__arrow"></view>
+          </navigator>
         </view>
       </view>
 

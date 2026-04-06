@@ -1,0 +1,3 @@
+<view class="w-carousel-item w-carousel-item--{{_state}}" style="{{_style}}" bindtap="onTap"
+  ><slot
+/></view>

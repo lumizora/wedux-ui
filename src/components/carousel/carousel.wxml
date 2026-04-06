@@ -1,0 +1,27 @@
+<view
+  class="w-carousel w-carousel--{{effect}} w-carousel--{{direction}} w-carousel--dots-{{dotPlacement}}"
+>
+  <view
+    wx:if="{{effect === 'slide'}}"
+    class="w-carousel__track"
+    style="{{_trackStyle}}"
+    bindtouchstart="onTouchStart"
+    bindtouchmove="onTouchMove"
+    bindtouchend="onTouchEnd"
+  >
+    <slot />
+  </view>
+  <view wx:else class="w-carousel__slides">
+    <slot />
+  </view>
+  <view
+    wx:if="{{showDots && _total > 1}}"
+    class="w-carousel__dots w-carousel__dots--{{dotPlacement}}"
+  >
+    <view
+      wx:for="{{_dots}}"
+      wx:key="index"
+      class="w-carousel__dot {{item.active ? 'w-carousel__dot--active' : ''}} {{dotType === 'line' ? 'w-carousel__dot--line' : ''}}"
+    />
+  </view>
+</view>

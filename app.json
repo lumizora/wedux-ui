@@ -48,7 +48,8 @@
         "theme-provider/theme-provider",
         "tab-bar/tab-bar",
         "marquee/marquee",
-        "price/price"
+        "price/price",
+        "carousel/carousel"
       ]
     }
   ],

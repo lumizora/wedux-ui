@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "w-carousel": "/src/components/carousel/carousel",
+    "w-carousel-item": "/src/components/carousel-item/carousel-item",
+    "w-button": "/src/components/button/button"
+  },
+  "navigationBarTitleText": "Carousel",
+  "disableScroll": true
+}

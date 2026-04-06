@@ -1,0 +1,112 @@
+<div class="demo-page">
+  <scroll-view scroll-y enhanced="{{true}}" show-scrollbar="{{false}}" class="demo-scroll">
+    <view class="demo-content">
+      <view class="comp-header">
+        <view class="comp-header__tag">carousel</view>
+        <view class="comp-header__desc">轮播组件，支持 slide / fade / card 效果。</view>
+      </view>
+
+      <view class="section">
+        <view class="section__title">Props</view>
+        <view class="prop-row" wx:for="{{props}}" wx:key="name">
+          <view class="prop-row__meta">
+            <text class="prop-row__name">{{item.name}}</text>
+            <text class="prop-row__type">{{item.type}}</text>
+            <text class="prop-row__default">{{item.default}}</text>
+          </view>
+          <view class="prop-row__desc">{{item.desc}}</view>
+        </view>
+      </view>
+
+      <view class="section">
+        <view class="section__title">基础用法（slide）</view>
+        <w-carousel class="carousel-demo" loop default-current="{{0}}">
+          <w-carousel-item><view class="slide-item slide-item--1">1</view></w-carousel-item>
+          <w-carousel-item><view class="slide-item slide-item--2">2</view></w-carousel-item>
+          <w-carousel-item><view class="slide-item slide-item--3">3</view></w-carousel-item>
+        </w-carousel>
+      </view>
+
+      <view class="section">
+        <view class="section__title">Fade 淡入淡出</view>
+        <w-carousel class="carousel-demo" effect="fade" loop>
+          <w-carousel-item><view class="slide-item slide-item--1">1</view></w-carousel-item>
+          <w-carousel-item><view class="slide-item slide-item--2">2</view></w-carousel-item>
+          <w-carousel-item><view class="slide-item slide-item--3">3</view></w-carousel-item>
+        </w-carousel>
+      </view>
+
+      <view class="section">
+        <view class="section__title">Card 卡片</view>
+        <w-carousel class="carousel-demo" effect="card" loop>
+          <w-carousel-item><view class="slide-item slide-item--1">1</view></w-carousel-item>
+          <w-carousel-item><view class="slide-item slide-item--2">2</view></w-carousel-item>
+          <w-carousel-item><view class="slide-item slide-item--3">3</view></w-carousel-item>
+          <w-carousel-item><view class="slide-item slide-item--4">4</view></w-carousel-item>
+        </w-carousel>
+      </view>
+
+      <view class="section">
+        <view class="section__title">垂直方向</view>
+        <w-carousel
+          class="carousel-demo carousel-demo--tall"
+          direction="vertical"
+          loop
+          dot-placement="right"
+        >
+          <w-carousel-item><view class="slide-item slide-item--1">1</view></w-carousel-item>
+          <w-carousel-item><view class="slide-item slide-item--2">2</view></w-carousel-item>
+          <w-carousel-item><view class="slide-item slide-item--3">3</view></w-carousel-item>
+        </w-carousel>
+      </view>
+
+      <view class="section">
+        <view class="section__title">自动播放</view>
+        <w-carousel class="carousel-demo" autoplay interval="{{2000}}" loop>
+          <w-carousel-item><view class="slide-item slide-item--1">1</view></w-carousel-item>
+          <w-carousel-item><view class="slide-item slide-item--2">2</view></w-carousel-item>
+          <w-carousel-item><view class="slide-item slide-item--3">3</view></w-carousel-item>
+        </w-carousel>
+      </view>
+
+      <view class="section">
+        <view class="section__title">多 slide（slidesPerView=2, spaceBetween=16）</view>
+        <w-carousel
+          class="carousel-demo"
+          slides-per-view="{{2}}"
+          space-between="{{16}}"
+          loop
+          dot-type="line"
+        >
+          <w-carousel-item><view class="slide-item slide-item--1">1</view></w-carousel-item>
+          <w-carousel-item><view class="slide-item slide-item--2">2</view></w-carousel-item>
+          <w-carousel-item><view class="slide-item slide-item--3">3</view></w-carousel-item>
+          <w-carousel-item><view class="slide-item slide-item--4">4</view></w-carousel-item>
+        </w-carousel>
+      </view>
+
+      <view class="section">
+        <view class="section__title">Line 指示点</view>
+        <w-carousel class="carousel-demo" dot-type="line" loop>
+          <w-carousel-item><view class="slide-item slide-item--1">1</view></w-carousel-item>
+          <w-carousel-item><view class="slide-item slide-item--2">2</view></w-carousel-item>
+          <w-carousel-item><view class="slide-item slide-item--3">3</view></w-carousel-item>
+        </w-carousel>
+      </view>
+
+      <view class="section">
+        <view class="section__title">受控模式</view>
+        <w-carousel id="controlled" class="carousel-demo" loop>
+          <w-carousel-item><view class="slide-item slide-item--1">1</view></w-carousel-item>
+          <w-carousel-item><view class="slide-item slide-item--2">2</view></w-carousel-item>
+          <w-carousel-item><view class="slide-item slide-item--3">3</view></w-carousel-item>
+        </w-carousel>
+        <view class="demo-ctrl">
+          <w-button bindtap="goPrev">Prev</w-button>
+          <w-button bindtap="goNext">Next</w-button>
+          <w-button bindtap="goSecond">To 第 2 项</w-button>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</div>
