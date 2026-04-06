@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "w-image": "/src/components/image/image",
+    "w-flex": "/src/components/flex/flex"
+  },
+  "navigationBarTitleText": "Image",
+  "disableScroll": true
+}

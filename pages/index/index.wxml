@@ -117,6 +117,14 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
+            url="/packages/docs/image/image"
+            hover-class="catalog-item--active"
+            class="catalog-item"
+          >
+            <view class="catalog-item__name">Image 图片</view>
+            <view class="iconfont icon-right catalog-item__arrow"></view>
+          </navigator>
+          <navigator
             url="/packages/docs/card/card"
             hover-class="catalog-item--active"
             class="catalog-item"

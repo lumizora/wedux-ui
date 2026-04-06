@@ -1,0 +1,142 @@
+<div class="demo-page">
+  <scroll-view scroll-y enhanced="{{true}}" show-scrollbar="{{false}}" class="demo-scroll">
+    <view class="demo-content">
+      <view class="comp-header">
+        <view class="comp-header__tag">image</view>
+        <view class="comp-header__desc"
+          >增强图片组件，支持加载状态、失败占位、圆角、淡入等能力。</view
+        >
+      </view>
+
+      <view class="section">
+        <view class="section__title">Props</view>
+        <view class="prop-row" wx:for="{{props}}" wx:key="name">
+          <view class="prop-row__meta">
+            <text class="prop-row__name">{{item.name}}</text>
+            <text class="prop-row__type">{{item.type}}</text>
+            <text class="prop-row__default">{{item.default}}</text>
+          </view>
+          <view class="prop-row__desc">{{item.desc}}</view>
+        </view>
+      </view>
+
+      <view class="section">
+        <view class="section__title">基础用法</view>
+        <w-flex gap="16rpx">
+          <w-image
+            src="https://picsum.photos/seed/img1/200/200"
+            width="200rpx"
+            height="200rpx"
+          ></w-image>
+          <w-image
+            src="https://picsum.photos/seed/img2/200/200"
+            width="200rpx"
+            height="200rpx"
+            mode="aspectFit"
+          ></w-image>
+        </w-flex>
+      </view>
+
+      <view class="section">
+        <view class="section__title">圆角 radius</view>
+        <w-flex gap="16rpx">
+          <w-image
+            src="https://picsum.photos/seed/img3/200/200"
+            width="200rpx"
+            height="200rpx"
+            radius="16rpx"
+          ></w-image>
+          <w-image
+            src="https://picsum.photos/seed/img4/200/200"
+            width="200rpx"
+            height="200rpx"
+            radius="24rpx"
+          ></w-image>
+        </w-flex>
+      </view>
+
+      <view class="section">
+        <view class="section__title">圆形 round</view>
+        <w-flex gap="16rpx">
+          <w-image
+            src="https://picsum.photos/seed/img5/200/200"
+            width="200rpx"
+            height="200rpx"
+            round
+          ></w-image>
+        </w-flex>
+      </view>
+
+      <view class="section">
+        <view class="section__title">加载失败</view>
+        <w-flex gap="16rpx">
+          <w-image
+            src="https://invalid-url.example/broken.jpg"
+            width="200rpx"
+            height="200rpx"
+            radius="12rpx"
+          ></w-image>
+        </w-flex>
+      </view>
+
+      <view class="section">
+        <view class="section__title">降级图片 fallbackSrc</view>
+        <w-flex gap="16rpx">
+          <w-image
+            src="https://invalid-url.example/broken.jpg"
+            fallbackSrc="https://picsum.photos/seed/fallback/200/200"
+            width="200rpx"
+            height="200rpx"
+            radius="12rpx"
+          ></w-image>
+        </w-flex>
+      </view>
+
+      <view class="section">
+        <view class="section__title">填充模式 mode</view>
+        <w-flex gap="16rpx" wrap>
+          <view>
+            <w-image
+              src="https://picsum.photos/seed/img6/400/200"
+              width="200rpx"
+              height="200rpx"
+              mode="aspectFill"
+              radius="12rpx"
+            ></w-image>
+            <text class="demo-label">aspectFill</text>
+          </view>
+          <view>
+            <w-image
+              src="https://picsum.photos/seed/img6/400/200"
+              width="200rpx"
+              height="200rpx"
+              mode="aspectFit"
+              radius="12rpx"
+            ></w-image>
+            <text class="demo-label">aspectFit</text>
+          </view>
+          <view>
+            <w-image
+              src="https://picsum.photos/seed/img6/400/200"
+              width="200rpx"
+              height="200rpx"
+              mode="scaleToFill"
+              radius="12rpx"
+            ></w-image>
+            <text class="demo-label">scaleToFill</text>
+          </view>
+          <view>
+            <w-image
+              src="https://picsum.photos/seed/img6/400/200"
+              width="200rpx"
+              height="200rpx"
+              mode="widthFix"
+              radius="12rpx"
+            ></w-image>
+            <text class="demo-label">widthFix</text>
+          </view>
+        </w-flex>
+      </view>
+    </view>
+  </scroll-view>
+</div>

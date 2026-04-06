@@ -305,6 +305,13 @@ page {
   --w-price-color: var(--color-brand);
   --w-price-original-color: var(--color-text-secondary);
 
+  /* Image */
+  --w-image-radius: 0;
+  --w-image-bg: var(--color-bg-base);
+  --w-image-fade-duration: 300ms;
+  --w-image-loading-icon-size: 48rpx;
+  --w-image-error-icon-size: 48rpx;
+
   /* Carousel */
   --w-carousel-dot-color: rgba(255, 255, 255, 0.5);
   --w-carousel-dot-color-active: #ffffff;
