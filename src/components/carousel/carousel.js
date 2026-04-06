@@ -73,7 +73,7 @@ Component({
   },
 
   observers: {
-    current(val) {
+    current: function (val) {
       if (val >= 0) {
         this._goTo(val, true);
       }
