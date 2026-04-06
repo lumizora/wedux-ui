@@ -1,3 +1,20 @@
+# [0.5.0](https://github.com/BitterBar/wedux-ui/compare/v0.4.0...v0.5.0) (2026-04-06)
+
+
+### Bug Fixes
+
+* **carousel:** correct slide transition, init order, and card transition properties ([b421adf](https://github.com/BitterBar/wedux-ui/commit/b421adf479984a94de78b4a2889d80f6499e9126))
+* **carousel:** use function(){} syntax for observers callback ([1982304](https://github.com/BitterBar/wedux-ui/commit/1982304585315fdee772867f55e576ae5e41aad9))
+* **carousel:** use function(){} syntax for relations callbacks ([0d9ab42](https://github.com/BitterBar/wedux-ui/commit/0d9ab420e682e116b9cc9d57ad15131a55a06dcd))
+
+
+### Features
+
+* **carousel:** add carousel component ([a0c418f](https://github.com/BitterBar/wedux-ui/commit/a0c418ffd664c0e46aa60859f4341b297bb5a004))
+* **carousel:** add carousel demo page ([48f0dac](https://github.com/BitterBar/wedux-ui/commit/48f0dac2bfe23b60d6f14922dbc2963ef6fbdd9e))
+* **carousel:** add w-carousel component ([5f656f6](https://github.com/BitterBar/wedux-ui/commit/5f656f68aa624d5204dcf4988654fe6b987e852b))
+* **carousel:** add w-carousel-item component ([f5f8501](https://github.com/BitterBar/wedux-ui/commit/f5f8501bb11063b98fcc4f5a03ce2b71186529ec))
+* **carousel:** register routes, add nav entry, update CLAUDE.md ([d7b9679](https://github.com/BitterBar/wedux-ui/commit/d7b9679a33ec7d364afa8f524cee4389d0c58dde))
 # [0.4.0](https://github.com/BitterBar/wedux-ui/compare/v0.3.1...v0.4.0) (2026-04-05)
 
 ### Bug Fixes
