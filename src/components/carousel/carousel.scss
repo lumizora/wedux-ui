@@ -1,0 +1,97 @@
+.w-carousel {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.w-carousel__track {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  will-change: transform;
+}
+
+.w-carousel--vertical .w-carousel__track {
+  flex-direction: column;
+  width: 100%;
+}
+
+.w-carousel__slides {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Dots container */
+.w-carousel__dots {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8rpx;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.w-carousel__dots--bottom {
+  bottom: 24rpx;
+  left: 0;
+  right: 0;
+  flex-direction: row;
+}
+
+.w-carousel__dots--top {
+  top: 24rpx;
+  left: 0;
+  right: 0;
+  flex-direction: row;
+}
+
+.w-carousel__dots--left {
+  left: 24rpx;
+  top: 0;
+  bottom: 0;
+  flex-direction: column;
+}
+
+.w-carousel__dots--right {
+  right: 24rpx;
+  top: 0;
+  bottom: 0;
+  flex-direction: column;
+}
+
+/* Dot 圆点 */
+.w-carousel__dot {
+  width: var(--w-carousel-dot-size);
+  height: var(--w-carousel-dot-size);
+  border-radius: 9999rpx;
+  background: var(--w-carousel-dot-color);
+  transition:
+    transform 300ms,
+    background 300ms;
+  flex-shrink: 0;
+}
+
+.w-carousel__dot--active {
+  background: var(--w-carousel-dot-color-active);
+  transform: scale(1.25);
+}
+
+/* Line 线条 */
+.w-carousel__dot--line {
+  width: var(--w-carousel-dot-line-width);
+  height: 8rpx;
+  border-radius: 4rpx;
+  background: var(--w-carousel-dot-color);
+  transition:
+    width 300ms,
+    background 300ms;
+  transform: none;
+}
+
+.w-carousel__dot--line.w-carousel__dot--active {
+  width: var(--w-carousel-dot-line-width-active);
+  background: var(--w-carousel-dot-color-active);
+  transform: none;
+}
