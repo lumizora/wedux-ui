@@ -11,7 +11,6 @@ pnpm-lock.yaml
 
 # Superpowers
 .superpowers/
-docs/superpowers/
 
 # Git worktrees
 .worktrees/

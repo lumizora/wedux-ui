@@ -11,7 +11,13 @@
   >
     <slot />
   </view>
-  <view wx:else class="w-carousel__slides">
+  <view
+    wx:else
+    class="w-carousel__slides"
+    bindtouchstart="onTouchStart"
+    bindtouchmove="onTouchMove"
+    bindtouchend="onTouchEnd"
+  >
     <slot />
   </view>
   <view

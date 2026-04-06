@@ -1,3 +1,5 @@
+const { createDrag } = require('../../utils/drag');
+
 Component({
   relations: {
     '../carousel-item/carousel-item': {
@@ -83,17 +85,16 @@ Component({
   lifetimes: {
     created() {
       this._internalIndex = this.data.defaultCurrent;
+      this._drag = createDrag();
     },
 
     ready() {
       this._containerWidth = 0;
       this._containerHeight = 0;
       this._slideSize = 0;
-      this._isDragging = false;
-      this._touchStartX = 0;
-      this._touchStartY = 0;
-      this._touchStartTime = 0;
       this._autoplayTimer = null;
+      this._loopResetTimer = null;
+      this._boundaryItemIndex = -1;
 
       wx.nextTick(() => {
         this._measure();
@@ -102,6 +103,10 @@ Component({
 
     detached() {
       this._stopAutoplay();
+      if (this._loopResetTimer) {
+        clearTimeout(this._loopResetTimer);
+        this._loopResetTimer = null;
+      }
     },
   },
 
@@ -177,15 +182,17 @@ Component({
       const total = items.length;
       if (!total) return;
 
+      // 清除待执行的 loop 复位，立即复位
+      if (this._loopResetTimer) {
+        clearTimeout(this._loopResetTimer);
+        this._loopResetTimer = null;
+        this._updateChildSizes();
+      }
+
       let newIndex = index;
-      let shouldAnimate = animate;
 
       if (this.data.loop) {
         newIndex = ((index % total) + total) % total;
-        // loop jump across boundary: skip animation to avoid reverse sweep
-        if (Math.abs(newIndex - this._internalIndex) > 1) {
-          shouldAnimate = false;
-        }
       } else {
         newIndex = Math.max(0, Math.min(index, total - 1));
       }
@@ -193,7 +200,41 @@ Component({
       const prev = this._internalIndex;
       this._internalIndex = newIndex;
 
-      this._applyEffect(shouldAnimate);
+      // slide + loop 边界过渡：无缝动画而非瞬移
+      if (
+        this.data.loop &&
+        this.data.effect === 'slide' &&
+        animate &&
+        total > 1 &&
+        this.data.slidesPerView <= 1
+      ) {
+        const isForwardLoop = prev === total - 1 && newIndex === 0;
+        const isBackwardLoop = prev === 0 && newIndex === total - 1;
+
+        if (isForwardLoop || isBackwardLoop) {
+          this._slideLoopTransition(prev, newIndex, isForwardLoop);
+          this._rebuildDots();
+          if (prev !== newIndex) {
+            this.triggerEvent('change', { current: newIndex, previous: prev });
+          }
+          return;
+        }
+      }
+
+      // 非边界过渡，清理拖拽时预置的 boundary item
+      if (this._boundaryItemIndex >= 0) {
+        this._boundaryItemIndex = -1;
+        if (animate) {
+          this._loopResetTimer = setTimeout(() => {
+            this._loopResetTimer = null;
+            this._updateChildSizes();
+          }, this.data.duration + 20);
+        } else {
+          this._updateChildSizes();
+        }
+      }
+
+      this._applyEffect(animate);
       this._rebuildDots();
 
       if (prev !== newIndex) {
@@ -235,22 +276,23 @@ Component({
           style = `${base} opacity: ${isActive ? 1 : 0}; transition: opacity ${dur}ms; z-index: ${isActive ? 1 : 0};`;
         } else {
           // card
+          const cardBase = `${base} border-radius: var(--w-carousel-card-radius); overflow: hidden;`;
           const diff = i - cur;
           const isPrev = diff === -1 || (loop && diff === total - 1);
           const isNext = diff === 1 || (loop && diff === -(total - 1));
 
           if (diff === 0) {
             state = 'active';
-            style = `${base} transform: scale(1) translateX(0); opacity: 1; transition: transform ${dur}ms ease, opacity ${dur}ms ease; z-index: 1;`;
+            style = `${cardBase} transform: scale(1) translateX(0); opacity: 1; transition: transform ${dur}ms ease, opacity ${dur}ms ease; z-index: 1;`;
           } else if (isPrev) {
             state = 'prev';
-            style = `${base} transform: scale(0.85) translateX(-70%); opacity: 0.7; transition: transform ${dur}ms ease, opacity ${dur}ms ease; z-index: 0;`;
+            style = `${cardBase} transform: scale(0.85) translateX(-70%); opacity: 0.7; transition: transform ${dur}ms ease, opacity ${dur}ms ease; z-index: 0;`;
           } else if (isNext) {
             state = 'next';
-            style = `${base} transform: scale(0.85) translateX(70%); opacity: 0.7; transition: transform ${dur}ms ease, opacity ${dur}ms ease; z-index: 0;`;
+            style = `${cardBase} transform: scale(0.85) translateX(70%); opacity: 0.7; transition: transform ${dur}ms ease, opacity ${dur}ms ease; z-index: 0;`;
           } else {
             state = 'hidden';
-            style = `${base} opacity: 0; pointer-events: none; z-index: 0;`;
+            style = `${cardBase} opacity: 0; pointer-events: none; z-index: 0;`;
           }
         }
 
@@ -258,51 +300,224 @@ Component({
       });
     },
 
-    /* ── Touch handlers (slide only) ── */
+    /* ── Slide loop 无缝过渡 ── */
+    _getItemSizeStyle() {
+      const { direction, spaceBetween } = this.data;
+      return direction === 'horizontal'
+        ? `width: ${this._slideSize}px; height: 100%; margin-right: ${spaceBetween}px;`
+        : `width: 100%; height: ${this._slideSize}px; margin-bottom: ${spaceBetween}px;`;
+    },
+
+    _slideLoopTransition(fromIndex, toIndex, isForward) {
+      const items = this._getItems();
+      const total = items.length;
+      const { direction, spaceBetween, duration } = this.data;
+      const step = this._slideSize + spaceBetween;
+      const isH = direction === 'horizontal';
+      const axis = isH ? 'X' : 'Y';
+      const sizeStyle = this._getItemSizeStyle();
+
+      this._boundaryItemIndex = -1;
+
+      if (isForward) {
+        // 最后→第一：把 item[0] 移到最后一张后面
+        items[toIndex]._setState(
+          'active',
+          `${sizeStyle} transform: translate${axis}(${total * step}px);`,
+        );
+        // track 向前滑动一格到 item[0] 的临时位置
+        const offset = total * step;
+        const transform = isH ? `translateX(${-offset}px)` : `translateY(${-offset}px)`;
+        this.setData({
+          _trackStyle: `transform: ${transform}; transition: transform ${duration}ms ease;`,
+        });
+      } else {
+        // 第一→最后：把 item[last] 移到第一张前面
+        items[toIndex]._setState(
+          'active',
+          `${sizeStyle} transform: translate${axis}(${-total * step}px);`,
+        );
+        // track 向后滑动一格
+        const offset = -step;
+        const transform = isH ? `translateX(${-offset}px)` : `translateY(${-offset}px)`;
+        this.setData({
+          _trackStyle: `transform: ${transform}; transition: transform ${duration}ms ease;`,
+        });
+      }
+
+      // 动画结束后复位所有 item 和 track
+      this._loopResetTimer = setTimeout(() => {
+        this._loopResetTimer = null;
+        this._updateChildSizes();
+        this._applyEffect(false);
+      }, duration + 20);
+    },
+
+    /**
+     * 拖拽前预置边界 item，使跟手拖动时能看到下一张
+     */
+    _prepareBoundarySlide() {
+      const items = this._getItems();
+      const total = items.length;
+      if (total <= 1) return;
+
+      const cur = this._internalIndex;
+      const { direction, spaceBetween } = this.data;
+      const step = this._slideSize + spaceBetween;
+      const isH = direction === 'horizontal';
+      const axis = isH ? 'X' : 'Y';
+      const sizeStyle = this._getItemSizeStyle();
+
+      this._boundaryItemIndex = -1;
+
+      if (cur === 0) {
+        // 可能向前滑（回到最后）→ 把最后一张移到第一张前面
+        items[total - 1]._setState(
+          'active',
+          `${sizeStyle} transform: translate${axis}(${-total * step}px);`,
+        );
+        this._boundaryItemIndex = total - 1;
+      } else if (cur === total - 1) {
+        // 可能向后滑（到第一张）→ 把第一张移到最后一张后面
+        items[0]._setState(
+          'active',
+          `${sizeStyle} transform: translate${axis}(${total * step}px);`,
+        );
+        this._boundaryItemIndex = 0;
+      }
+    },
+
+    /* ── Touch handlers ── */
     onTouchStart(e) {
-      if (this.data.effect !== 'slide') return;
       this._stopAutoplay();
-      this._isDragging = true;
-      this._touchStartX = e.touches[0].clientX;
-      this._touchStartY = e.touches[0].clientY;
-      this._touchStartTime = Date.now();
-      this._startTranslate = this._internalIndex * (this._slideSize + this.data.spaceBetween);
+      // 清除待执行的 loop 复位
+      if (this._loopResetTimer) {
+        clearTimeout(this._loopResetTimer);
+        this._loopResetTimer = null;
+        this._updateChildSizes();
+        this._applyEffect(false);
+      }
+
+      this._drag.start(e.touches[0]);
+      if (this.data.effect === 'slide') {
+        this._startTranslate = this._internalIndex * (this._slideSize + this.data.spaceBetween);
+        // loop 模式下预置边界 item，使跟手拖动无缝
+        if (this.data.loop && this.data.slidesPerView <= 1) {
+          this._prepareBoundarySlide();
+        }
+      }
     },
 
     onTouchMove(e) {
-      if (!this._isDragging) return;
-      const { direction } = this.data;
-      const dx = e.touches[0].clientX - this._touchStartX;
-      const dy = e.touches[0].clientY - this._touchStartY;
-      const delta = direction === 'horizontal' ? dx : dy;
-      const offset = this._startTranslate - delta;
-      const transform =
-        direction === 'horizontal' ? `translateX(${-offset}px)` : `translateY(${-offset}px)`;
-      this.setData({
-        _trackStyle: `transform: ${transform}; transition: none;`,
-      });
+      if (!this._drag.isActive()) return;
+      const { effect, direction } = this.data;
+      const touch = e.touches[0];
+
+      if (effect === 'slide') {
+        const delta = this._drag.delta(touch, direction);
+        const offset = this._startTranslate - delta;
+        const transform =
+          direction === 'horizontal' ? `translateX(${-offset}px)` : `translateY(${-offset}px)`;
+        this.setData({ _trackStyle: `transform: ${transform}; transition: none;` });
+      } else {
+        const containerSize =
+          direction === 'horizontal' ? this._containerWidth : this._containerHeight;
+        const progress = this._drag.progress(touch, direction, containerSize);
+        if (effect === 'fade') {
+          this._applyFadeDrag(progress);
+        } else {
+          this._applyCardDrag(progress);
+        }
+      }
     },
 
     onTouchEnd(e) {
-      if (!this._isDragging) return;
-      this._isDragging = false;
       const { direction } = this.data;
-      const dx = e.changedTouches[0].clientX - this._touchStartX;
-      const dy = e.changedTouches[0].clientY - this._touchStartY;
-      const delta = direction === 'horizontal' ? dx : dy;
       const containerSize =
         direction === 'horizontal' ? this._containerWidth : this._containerHeight;
-      const timeElapsed = Date.now() - this._touchStartTime;
-      const velocity = timeElapsed > 0 ? delta / timeElapsed : 0;
+      const result = this._drag.end(e.changedTouches[0], direction, containerSize);
+      if (!result) return;
 
-      if (delta < -containerSize * 0.3 || velocity < -0.4) {
+      if (result.swipe === 1) {
         this._goTo(this._internalIndex + 1);
-      } else if (delta > containerSize * 0.3 || velocity > 0.4) {
+      } else if (result.swipe === -1) {
         this._goTo(this._internalIndex - 1);
       } else {
         this._goTo(this._internalIndex);
       }
       this._startAutoplay();
+    },
+
+    /* ── Fade 跟手拖动 ── */
+    _applyFadeDrag(progress) {
+      const items = this._getItems();
+      const total = items.length;
+      const cur = this._internalIndex;
+      const { loop } = this.data;
+      const absP = Math.abs(progress);
+
+      let targetIndex;
+      if (progress > 0) {
+        targetIndex = loop ? (cur + 1) % total : Math.min(cur + 1, total - 1);
+      } else {
+        targetIndex = loop ? (cur - 1 + total) % total : Math.max(cur - 1, 0);
+      }
+
+      const base = 'width: 100%; height: 100%; position: absolute; top: 0; left: 0;';
+      items.forEach((item, i) => {
+        let opacity, zIndex;
+        if (i === cur) {
+          opacity = 1 - absP;
+          zIndex = 1;
+        } else if (i === targetIndex && targetIndex !== cur) {
+          opacity = absP;
+          zIndex = 1;
+        } else {
+          opacity = 0;
+          zIndex = 0;
+        }
+        item._setState(
+          i === cur ? 'active' : 'hidden',
+          `${base} opacity: ${opacity}; z-index: ${zIndex}; transition: none;`,
+        );
+      });
+    },
+
+    /* ── Card 跟手拖动 ── */
+    _applyCardDrag(progress) {
+      const items = this._getItems();
+      const total = items.length;
+      const cur = this._internalIndex;
+      const { loop } = this.data;
+      const absP = Math.abs(progress);
+
+      const prevIndex = loop ? (cur - 1 + total) % total : cur - 1;
+      const nextIndex = loop ? (cur + 1) % total : cur + 1;
+
+      const base =
+        'width: 100%; height: 100%; position: absolute; top: 0; left: 0; border-radius: var(--w-carousel-card-radius); overflow: hidden;';
+      items.forEach((item, i) => {
+        let style;
+        if (i === cur) {
+          const tx = -progress * 70;
+          const scale = 1 - absP * 0.15;
+          const opacity = 1 - absP * 0.3;
+          style = `${base} transform: scale(${scale}) translateX(${tx}%); opacity: ${opacity}; z-index: 1; transition: none;`;
+        } else if (i === prevIndex && prevIndex >= 0) {
+          const tx = progress < 0 ? -70 + absP * 70 : -70;
+          const scale = progress < 0 ? 0.85 + absP * 0.15 : 0.85;
+          const opacity = progress < 0 ? 0.7 + absP * 0.3 : 0.7;
+          style = `${base} transform: scale(${scale}) translateX(${tx}%); opacity: ${opacity}; z-index: 0; transition: none;`;
+        } else if (i === nextIndex && nextIndex < total) {
+          const tx = progress > 0 ? 70 - absP * 70 : 70;
+          const scale = progress > 0 ? 0.85 + absP * 0.15 : 0.85;
+          const opacity = progress > 0 ? 0.7 + absP * 0.3 : 0.7;
+          style = `${base} transform: scale(${scale}) translateX(${tx}%); opacity: ${opacity}; z-index: 0; transition: none;`;
+        } else {
+          style = `${base} opacity: 0; pointer-events: none; z-index: 0;`;
+        }
+        item._setState(i === cur ? 'active' : 'other', style);
+      });
     },
 
     /* ── Card tap ── */
