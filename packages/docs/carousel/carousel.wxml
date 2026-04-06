@@ -48,7 +48,12 @@
 
       <view class="section">
         <view class="section__title">垂直方向</view>
-        <w-carousel class="carousel-demo" direction="vertical" loop dot-placement="right">
+        <w-carousel
+          class="carousel-demo carousel-demo--tall"
+          direction="vertical"
+          loop
+          dot-placement="right"
+        >
           <w-carousel-item><view class="slide-item slide-item--1">1</view></w-carousel-item>
           <w-carousel-item><view class="slide-item slide-item--2">2</view></w-carousel-item>
           <w-carousel-item><view class="slide-item slide-item--3">3</view></w-carousel-item>
