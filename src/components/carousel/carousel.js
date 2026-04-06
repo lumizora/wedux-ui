@@ -2,10 +2,10 @@ Component({
   relations: {
     '../carousel-item/carousel-item': {
       type: 'descendant',
-      linked() {
+      linked: function () {
         this._onChildrenChange();
       },
-      unlinked() {
+      unlinked: function () {
         this._onChildrenChange();
       },
     },
