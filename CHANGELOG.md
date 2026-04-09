@@ -1,3 +1,9 @@
+## [0.6.1](https://github.com/BitterBar/wedux-ui/compare/v0.6.0...v0.6.1) (2026-04-09)
+
+
+### Bug Fixes
+
+* **carousel:** 修复多 slide 模式切换时 item 慢速出现的问题 ([a422bf4](https://github.com/BitterBar/wedux-ui/commit/a422bf45d2c113848124d8a781e011aaec4b2c8c))
 # [0.6.0](https://github.com/BitterBar/wedux-ui/compare/v0.5.0...v0.6.0) (2026-04-06)
 
 
