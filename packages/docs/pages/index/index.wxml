@@ -9,7 +9,7 @@
         <view class="catalog-group__label">主题</view>
         <view class="catalog-card">
           <navigator
-            url="/packages/docs/theme-provider/theme-provider"
+            url="/theme-provider/theme-provider"
             hover-class="catalog-item--active"
             class="catalog-item"
           >
@@ -23,7 +23,7 @@
         <view class="catalog-group__label">布局</view>
         <view class="catalog-card">
           <navigator
-            url="/packages/docs/flex/flex"
+            url="/flex/flex"
             hover-class="catalog-item--active"
             class="catalog-item"
           >
@@ -31,7 +31,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/layout/layout"
+            url="/layout/layout"
             class="catalog-item"
             hover-class="catalog-item--hover"
           >
@@ -39,7 +39,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/list/list"
+            url="/list/list"
             class="catalog-item"
             hover-class="catalog-item--active"
           >
@@ -47,7 +47,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/navigation-bar/navigation-bar"
+            url="/navigation-bar/navigation-bar"
             class="catalog-item"
             hover-class="catalog-item--active"
           >
@@ -55,7 +55,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/infinite-scroll/infinite-scroll"
+            url="/infinite-scroll/infinite-scroll"
             class="catalog-item"
             hover-class="catalog-item--active"
           >
@@ -63,7 +63,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/tab-bar/tab-bar"
+            url="/tab-bar/tab-bar"
             class="catalog-item"
             hover-class="catalog-item--active"
           >
@@ -71,7 +71,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/carousel/carousel"
+            url="/carousel/carousel"
             class="catalog-item"
             hover-class="catalog-item--active"
           >
@@ -85,7 +85,7 @@
         <view class="catalog-group__label">基础</view>
         <view class="catalog-card">
           <navigator
-            url="/packages/docs/button/button"
+            url="/button/button"
             hover-class="catalog-item--active"
             class="catalog-item"
           >
@@ -93,7 +93,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/button-group/button-group"
+            url="/button-group/button-group"
             hover-class="catalog-item--active"
             class="catalog-item"
           >
@@ -101,7 +101,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/float-button/float-button"
+            url="/float-button/float-button"
             hover-class="catalog-item--active"
             class="catalog-item"
           >
@@ -109,7 +109,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/avatar/avatar"
+            url="/avatar/avatar"
             hover-class="catalog-item--active"
             class="catalog-item"
           >
@@ -117,7 +117,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/image/image"
+            url="/image/image"
             hover-class="catalog-item--active"
             class="catalog-item"
           >
@@ -125,7 +125,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/card/card"
+            url="/card/card"
             hover-class="catalog-item--active"
             class="catalog-item"
           >
@@ -133,7 +133,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/divider/divider"
+            url="/divider/divider"
             hover-class="catalog-item--active"
             class="catalog-item"
           >
@@ -141,7 +141,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/ellipsis/ellipsis"
+            url="/ellipsis/ellipsis"
             hover-class="catalog-item--active"
             class="catalog-item"
           >
@@ -149,7 +149,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/gradient-text/gradient-text"
+            url="/gradient-text/gradient-text"
             hover-class="catalog-item--active"
             class="catalog-item"
           >
@@ -157,7 +157,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/h/h"
+            url="/h/h"
             hover-class="catalog-item--active"
             class="catalog-item"
           >
@@ -165,7 +165,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/tag/tag"
+            url="/tag/tag"
             hover-class="catalog-item--active"
             class="catalog-item"
           >
@@ -173,7 +173,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/badge/badge"
+            url="/badge/badge"
             hover-class="catalog-item--active"
             class="catalog-item"
           >
@@ -181,7 +181,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/price/price"
+            url="/price/price"
             hover-class="catalog-item--active"
             class="catalog-item"
           >
@@ -189,7 +189,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/watermark/watermark"
+            url="/watermark/watermark"
             hover-class="catalog-item--active"
             class="catalog-item"
           >
@@ -197,7 +197,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/drawer/drawer"
+            url="/drawer/drawer"
             hover-class="catalog-item--active"
             class="catalog-item"
           >
@@ -205,7 +205,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/number-animation/number-animation"
+            url="/number-animation/number-animation"
             hover-class="catalog-item--active"
             class="catalog-item"
           >
@@ -213,7 +213,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/qr-code/qr-code"
+            url="/qr-code/qr-code"
             hover-class="catalog-item--active"
             class="catalog-item"
           >
@@ -221,7 +221,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/highlight/highlight"
+            url="/highlight/highlight"
             hover-class="catalog-item--active"
             class="catalog-item"
           >
@@ -229,7 +229,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/popover/popover"
+            url="/popover/popover"
             hover-class="catalog-item--active"
             class="catalog-item"
           >
@@ -237,7 +237,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/tooltip/tooltip"
+            url="/tooltip/tooltip"
             hover-class="catalog-item--active"
             class="catalog-item"
           >
@@ -245,7 +245,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/marquee/marquee"
+            url="/marquee/marquee"
             hover-class="catalog-item--active"
             class="catalog-item"
           >
@@ -253,7 +253,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/back-top/back-top"
+            url="/back-top/back-top"
             hover-class="catalog-item--active"
             class="catalog-item"
           >
@@ -261,7 +261,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/empty/empty"
+            url="/empty/empty"
             hover-class="catalog-item--active"
             class="catalog-item"
           >
@@ -275,7 +275,7 @@
         <view class="catalog-group__label">表单</view>
         <view class="catalog-card">
           <navigator
-            url="/packages/docs/form/form"
+            url="/form/form"
             hover-class="catalog-item--active"
             class="catalog-item"
           >
@@ -283,7 +283,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/input/input"
+            url="/input/input"
             hover-class="catalog-item--active"
             class="catalog-item"
           >
@@ -291,7 +291,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/input-otp/input-otp"
+            url="/input-otp/input-otp"
             hover-class="catalog-item--active"
             class="catalog-item"
           >
@@ -299,7 +299,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/switch/switch"
+            url="/switch/switch"
             hover-class="catalog-item--active"
             class="catalog-item"
           >
@@ -307,7 +307,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/radio/radio"
+            url="/radio/radio"
             hover-class="catalog-item--active"
             class="catalog-item"
           >
@@ -315,7 +315,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/checkbox/checkbox"
+            url="/checkbox/checkbox"
             hover-class="catalog-item--active"
             class="catalog-item"
           >
@@ -323,7 +323,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/time-picker/time-picker"
+            url="/time-picker/time-picker"
             hover-class="catalog-item--active"
             class="catalog-item"
           >
@@ -331,7 +331,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/date-picker/date-picker"
+            url="/date-picker/date-picker"
             hover-class="catalog-item--active"
             class="catalog-item"
           >
@@ -339,7 +339,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/calendar/calendar"
+            url="/calendar/calendar"
             hover-class="catalog-item--active"
             class="catalog-item"
           >
@@ -347,7 +347,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/color-picker/color-picker"
+            url="/color-picker/color-picker"
             hover-class="catalog-item--active"
             class="catalog-item"
           >
@@ -355,7 +355,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/rate/rate"
+            url="/rate/rate"
             hover-class="catalog-item--active"
             class="catalog-item"
           >
@@ -363,7 +363,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/select/select"
+            url="/select/select"
             hover-class="catalog-item--active"
             class="catalog-item"
           >
@@ -371,7 +371,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/stepper/stepper"
+            url="/stepper/stepper"
             hover-class="catalog-item--active"
             class="catalog-item"
           >
@@ -379,7 +379,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/tree/tree"
+            url="/tree/tree"
             hover-class="catalog-item--active"
             class="catalog-item"
           >
@@ -387,7 +387,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/tree-select/tree-select"
+            url="/tree-select/tree-select"
             hover-class="catalog-item--active"
             class="catalog-item"
           >
@@ -395,7 +395,7 @@
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
           <navigator
-            url="/packages/docs/upload/upload"
+            url="/upload/upload"
             hover-class="catalog-item--active"
             class="catalog-item"
           >
