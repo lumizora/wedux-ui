@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "w-price": "/src/components/price/price"
+    "w-price": "wedux-ui/components/price/price"
   },
   "navigationBarTitleText": "Price",
   "disableScroll": true

@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "w-gradient-text": "/src/components/gradient-text/gradient-text"
+    "w-gradient-text": "wedux-ui/components/gradient-text/gradient-text"
   },
   "navigationBarTitleText": "Gradient Text",
   "disableScroll": true

@@ -1,7 +1,7 @@
 {
   "usingComponents": {
-    "w-select": "/src/components/select/select",
-    "w-flex": "/src/components/flex/flex"
+    "w-select": "wedux-ui/components/select/select",
+    "w-flex": "wedux-ui/components/flex/flex"
   },
   "navigationBarTitleText": "Select",
   "disableScroll": true

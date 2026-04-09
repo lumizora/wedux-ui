@@ -1,7 +1,7 @@
 {
   "usingComponents": {
-    "w-checkbox-group": "/src/components/checkbox-group/checkbox-group",
-    "w-checkbox": "/src/components/checkbox/checkbox"
+    "w-checkbox-group": "wedux-ui/components/checkbox-group/checkbox-group",
+    "w-checkbox": "wedux-ui/components/checkbox/checkbox"
   },
   "navigationBarTitleText": "Checkbox",
   "disableScroll": true

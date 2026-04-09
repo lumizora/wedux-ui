@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "w-qr-code": "/src/components/qr-code/qr-code"
+    "w-qr-code": "wedux-ui/components/qr-code/qr-code"
   },
   "disableScroll": true
 }

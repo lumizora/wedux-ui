@@ -1,7 +1,7 @@
 {
   "usingComponents": {
-    "w-empty": "/src/components/empty/empty",
-    "w-button": "/src/components/button/button"
+    "w-empty": "wedux-ui/components/empty/empty",
+    "w-button": "wedux-ui/components/button/button"
   },
   "navigationBarTitleText": "Empty",
   "disableScroll": true

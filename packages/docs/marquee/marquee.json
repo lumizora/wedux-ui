@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "w-marquee": "/src/components/marquee/marquee"
+    "w-marquee": "wedux-ui/components/marquee/marquee"
   },
   "navigationBarTitleText": "Marquee",
   "disableScroll": true

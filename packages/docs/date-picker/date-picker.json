@@ -1,7 +1,7 @@
 {
   "usingComponents": {
-    "w-date-picker": "/src/components/date-picker/date-picker",
-    "w-flex": "/src/components/flex/flex"
+    "w-date-picker": "wedux-ui/components/date-picker/date-picker",
+    "w-flex": "wedux-ui/components/flex/flex"
   },
   "navigationBarTitleText": "Date Picker",
   "disableScroll": true

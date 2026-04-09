@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "w-calendar": "/src/components/calendar/calendar"
+    "w-calendar": "wedux-ui/components/calendar/calendar"
   },
   "navigationBarTitleText": "Calendar",
   "disableScroll": true

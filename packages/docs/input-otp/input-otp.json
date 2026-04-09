@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "w-input-otp": "/src/components/input-otp/input-otp"
+    "w-input-otp": "wedux-ui/components/input-otp/input-otp"
   },
   "navigationBarTitleText": "Input OTP",
   "disableScroll": true

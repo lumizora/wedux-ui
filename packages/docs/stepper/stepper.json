@@ -1,7 +1,7 @@
 {
   "usingComponents": {
-    "w-stepper": "/src/components/stepper/stepper",
-    "w-flex": "/src/components/flex/flex"
+    "w-stepper": "wedux-ui/components/stepper/stepper",
+    "w-flex": "wedux-ui/components/flex/flex"
   },
   "navigationBarTitleText": "Stepper",
   "disableScroll": true

@@ -1,7 +1,7 @@
 {
   "usingComponents": {
-    "w-tooltip": "../../../src/components/tooltip/tooltip",
-    "w-button": "../../../src/components/button/button"
+    "w-tooltip": "../../..wedux-ui/components/tooltip/tooltip",
+    "w-button": "../../..wedux-ui/components/button/button"
   },
   "navigationBarTitleText": "Tooltip",
   "disableScroll": true

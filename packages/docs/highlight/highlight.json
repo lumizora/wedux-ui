@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "w-highlight": "/src/components/highlight/highlight"
+    "w-highlight": "wedux-ui/components/highlight/highlight"
   },
   "navigationBarTitleText": "Highlight",
   "disableScroll": true

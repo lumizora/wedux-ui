@@ -1,7 +1,7 @@
 {
   "usingComponents": {
-    "w-input": "/src/components/input/input",
-    "w-textarea": "/src/components/textarea/textarea"
+    "w-input": "wedux-ui/components/input/input",
+    "w-textarea": "wedux-ui/components/textarea/textarea"
   },
   "navigationBarTitleText": "Input / Textarea",
   "disableScroll": true

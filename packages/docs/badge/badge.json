@@ -1,9 +1,9 @@
 {
   "usingComponents": {
-    "w-badge": "/src/components/badge/badge",
-    "w-avatar": "/src/components/avatar/avatar",
-    "w-flex": "/src/components/flex/flex",
-    "w-button": "/src/components/button/button"
+    "w-badge": "wedux-ui/components/badge/badge",
+    "w-avatar": "wedux-ui/components/avatar/avatar",
+    "w-flex": "wedux-ui/components/flex/flex",
+    "w-button": "wedux-ui/components/button/button"
   },
   "navigationBarTitleText": "Badge",
   "disableScroll": true

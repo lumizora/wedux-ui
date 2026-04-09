@@ -1,8 +1,8 @@
 {
   "usingComponents": {
-    "w-carousel": "/src/components/carousel/carousel",
-    "w-carousel-item": "/src/components/carousel-item/carousel-item",
-    "w-button": "/src/components/button/button"
+    "w-carousel": "wedux-ui/components/carousel/carousel",
+    "w-carousel-item": "wedux-ui/components/carousel-item/carousel-item",
+    "w-button": "wedux-ui/components/button/button"
   },
   "navigationBarTitleText": "Carousel",
   "disableScroll": true

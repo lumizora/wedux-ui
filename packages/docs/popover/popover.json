@@ -1,7 +1,7 @@
 {
   "usingComponents": {
-    "w-popover": "/src/components/popover/popover",
-    "w-button": "/src/components/button/button"
+    "w-popover": "wedux-ui/components/popover/popover",
+    "w-button": "wedux-ui/components/button/button"
   },
   "navigationBarTitleText": "Popover",
   "disableScroll": true

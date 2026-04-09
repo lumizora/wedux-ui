@@ -1,7 +1,7 @@
 {
   "usingComponents": {
-    "w-time-picker": "/src/components/time-picker/time-picker",
-    "w-flex": "/src/components/flex/flex"
+    "w-time-picker": "wedux-ui/components/time-picker/time-picker",
+    "w-flex": "wedux-ui/components/flex/flex"
   },
   "navigationBarTitleText": "Time Picker",
   "disableScroll": true

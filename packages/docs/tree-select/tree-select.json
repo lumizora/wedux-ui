@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "w-tree-select": "/src/components/tree-select/tree-select"
+    "w-tree-select": "wedux-ui/components/tree-select/tree-select"
   },
   "navigationBarTitleText": "TreeSelect",
   "disableScroll": true

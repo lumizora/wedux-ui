@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "w-h": "/src/components/h/h"
+    "w-h": "wedux-ui/components/h/h"
   },
   "navigationBarTitleText": "H 标题",
   "disableScroll": true

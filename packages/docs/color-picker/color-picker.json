@@ -1,7 +1,7 @@
 {
   "usingComponents": {
-    "w-color-picker": "/src/components/color-picker/color-picker",
-    "w-flex": "/src/components/flex/flex"
+    "w-color-picker": "wedux-ui/components/color-picker/color-picker",
+    "w-flex": "wedux-ui/components/flex/flex"
   },
   "navigationBarTitleText": "Color Picker",
   "disableScroll": true

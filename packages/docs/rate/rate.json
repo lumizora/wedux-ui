@@ -1,7 +1,7 @@
 {
   "usingComponents": {
-    "w-rate": "/src/components/rate/rate",
-    "w-flex": "/src/components/flex/flex"
+    "w-rate": "wedux-ui/components/rate/rate",
+    "w-flex": "wedux-ui/components/flex/flex"
   },
   "navigationBarTitleText": "Rate",
   "disableScroll": true

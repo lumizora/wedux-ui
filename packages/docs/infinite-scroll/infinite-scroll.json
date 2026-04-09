@@ -1,7 +1,7 @@
 {
   "usingComponents": {
-    "w-infinite-scroll": "/src/components/infinite-scroll/infinite-scroll",
-    "w-button": "/src/components/button/button"
+    "w-infinite-scroll": "wedux-ui/components/infinite-scroll/infinite-scroll",
+    "w-button": "wedux-ui/components/button/button"
   },
   "navigationBarTitleText": "InfiniteScroll",
   "disableScroll": true

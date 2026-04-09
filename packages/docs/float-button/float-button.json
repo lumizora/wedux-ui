@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "w-float-button": "/src/components/float-button/float-button"
+    "w-float-button": "wedux-ui/components/float-button/float-button"
   },
   "navigationBarTitleText": "Float Button",
   "disableScroll": true

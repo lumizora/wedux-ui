@@ -1,16 +1,16 @@
 {
   "usingComponents": {
-    "w-form": "/src/components/form/form",
-    "w-form-item": "/src/components/form-item/form-item",
-    "w-input": "/src/components/input/input",
-    "w-textarea": "/src/components/textarea/textarea",
-    "w-switch": "/src/components/switch/switch",
-    "w-radio-group": "/src/components/radio-group/radio-group",
-    "w-radio": "/src/components/radio/radio",
-    "w-checkbox-group": "/src/components/checkbox-group/checkbox-group",
-    "w-checkbox": "/src/components/checkbox/checkbox",
-    "w-button": "/src/components/button/button",
-    "w-flex": "/src/components/flex/flex"
+    "w-form": "wedux-ui/components/form/form",
+    "w-form-item": "wedux-ui/components/form-item/form-item",
+    "w-input": "wedux-ui/components/input/input",
+    "w-textarea": "wedux-ui/components/textarea/textarea",
+    "w-switch": "wedux-ui/components/switch/switch",
+    "w-radio-group": "wedux-ui/components/radio-group/radio-group",
+    "w-radio": "wedux-ui/components/radio/radio",
+    "w-checkbox-group": "wedux-ui/components/checkbox-group/checkbox-group",
+    "w-checkbox": "wedux-ui/components/checkbox/checkbox",
+    "w-button": "wedux-ui/components/button/button",
+    "w-flex": "wedux-ui/components/flex/flex"
   },
   "navigationBarTitleText": "Form",
   "disableScroll": true

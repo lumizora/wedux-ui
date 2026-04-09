@@ -1,10 +1,10 @@
 {
   "usingComponents": {
-    "w-tab-bar": "/src/components/tab-bar/tab-bar",
-    "w-navigation-bar": "/src/components/navigation-bar/navigation-bar",
-    "w-layout": "/src/components/layout/layout",
-    "w-layout-header": "/src/components/layout-header/layout-header",
-    "w-layout-content": "/src/components/layout-content/layout-content"
+    "w-tab-bar": "wedux-ui/components/tab-bar/tab-bar",
+    "w-navigation-bar": "wedux-ui/components/navigation-bar/navigation-bar",
+    "w-layout": "wedux-ui/components/layout/layout",
+    "w-layout-header": "wedux-ui/components/layout-header/layout-header",
+    "w-layout-content": "wedux-ui/components/layout-content/layout-content"
   },
   "navigationStyle": "custom",
   "disableScroll": true

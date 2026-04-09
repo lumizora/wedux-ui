@@ -1,7 +1,7 @@
 {
   "usingComponents": {
-    "w-switch": "/src/components/switch/switch",
-    "w-flex": "/src/components/flex/flex"
+    "w-switch": "wedux-ui/components/switch/switch",
+    "w-flex": "wedux-ui/components/flex/flex"
   },
   "navigationBarTitleText": "Switch",
   "disableScroll": true

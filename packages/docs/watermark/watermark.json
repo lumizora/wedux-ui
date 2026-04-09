@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "w-watermark": "/src/components/watermark/watermark"
+    "w-watermark": "wedux-ui/components/watermark/watermark"
   },
   "navigationBarTitleText": "Watermark",
   "disableScroll": true

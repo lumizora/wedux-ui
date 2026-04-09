@@ -1,8 +1,8 @@
 {
   "usingComponents": {
-    "w-drawer": "/src/components/drawer/drawer",
-    "w-button": "/src/components/button/button",
-    "w-flex": "/src/components/flex/flex"
+    "w-drawer": "wedux-ui/components/drawer/drawer",
+    "w-button": "wedux-ui/components/button/button",
+    "w-flex": "wedux-ui/components/flex/flex"
   },
   "navigationBarTitleText": "Drawer",
   "disableScroll": true

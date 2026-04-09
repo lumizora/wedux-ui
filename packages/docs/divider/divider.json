@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "w-divider": "/src/components/divider/divider"
+    "w-divider": "wedux-ui/components/divider/divider"
   },
   "navigationBarTitleText": "Divider",
   "disableScroll": true

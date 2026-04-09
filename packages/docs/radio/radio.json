@@ -1,8 +1,8 @@
 {
   "usingComponents": {
-    "w-radio-group": "/src/components/radio-group/radio-group",
-    "w-radio": "/src/components/radio/radio",
-    "w-radio-button": "/src/components/radio-button/radio-button"
+    "w-radio-group": "wedux-ui/components/radio-group/radio-group",
+    "w-radio": "wedux-ui/components/radio/radio",
+    "w-radio-button": "wedux-ui/components/radio-button/radio-button"
   },
   "navigationBarTitleText": "Radio",
   "disableScroll": true

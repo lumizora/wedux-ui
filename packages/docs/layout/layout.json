@@ -1,10 +1,10 @@
 {
   "usingComponents": {
-    "w-layout": "/src/components/layout/layout",
-    "w-layout-header": "/src/components/layout-header/layout-header",
-    "w-layout-content": "/src/components/layout-content/layout-content",
-    "w-layout-footer": "/src/components/layout-footer/layout-footer",
-    "w-layout-sider": "/src/components/layout-sider/layout-sider"
+    "w-layout": "wedux-ui/components/layout/layout",
+    "w-layout-header": "wedux-ui/components/layout-header/layout-header",
+    "w-layout-content": "wedux-ui/components/layout-content/layout-content",
+    "w-layout-footer": "wedux-ui/components/layout-footer/layout-footer",
+    "w-layout-sider": "wedux-ui/components/layout-sider/layout-sider"
   },
   "navigationBarTitleText": "Layout"
 }

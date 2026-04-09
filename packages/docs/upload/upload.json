@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "w-upload": "/src/components/upload/upload"
+    "w-upload": "wedux-ui/components/upload/upload"
   },
   "navigationBarTitleText": "Upload",
   "disableScroll": true

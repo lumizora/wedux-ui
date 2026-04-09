@@ -1,8 +1,8 @@
 {
   "usingComponents": {
-    "w-card": "/src/components/card/card",
-    "w-button": "/src/components/button/button",
-    "w-flex": "/src/components/flex/flex"
+    "w-card": "wedux-ui/components/card/card",
+    "w-button": "wedux-ui/components/button/button",
+    "w-flex": "wedux-ui/components/flex/flex"
   },
   "navigationBarTitleText": "Card",
   "disableScroll": true

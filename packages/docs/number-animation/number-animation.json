@@ -1,7 +1,7 @@
 {
   "usingComponents": {
-    "w-number-animation": "/src/components/number-animation/number-animation",
-    "w-button": "/src/components/button/button"
+    "w-number-animation": "wedux-ui/components/number-animation/number-animation",
+    "w-button": "wedux-ui/components/button/button"
   },
   "navigationBarTitleText": "Number Animation",
   "disableScroll": true

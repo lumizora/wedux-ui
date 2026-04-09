@@ -1,11 +1,11 @@
 {
   "usingComponents": {
-    "w-theme-provider": "/src/components/theme-provider/theme-provider",
-    "w-button": "/src/components/button/button",
-    "w-tag": "/src/components/tag/tag",
-    "w-switch": "/src/components/switch/switch",
-    "w-input": "/src/components/input/input",
-    "w-flex": "/src/components/flex/flex"
+    "w-theme-provider": "wedux-ui/components/theme-provider/theme-provider",
+    "w-button": "wedux-ui/components/button/button",
+    "w-tag": "wedux-ui/components/tag/tag",
+    "w-switch": "wedux-ui/components/switch/switch",
+    "w-input": "wedux-ui/components/input/input",
+    "w-flex": "wedux-ui/components/flex/flex"
   },
   "navigationBarTitleText": "Theme Provider",
   "disableScroll": true

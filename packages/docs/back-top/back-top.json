@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "w-back-top": "/src/components/back-top/back-top"
+    "w-back-top": "wedux-ui/components/back-top/back-top"
   },
   "navigationBarTitleText": "Back Top",
   "disableScroll": false

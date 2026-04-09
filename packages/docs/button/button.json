@@ -1,8 +1,8 @@
 {
   "usingComponents": {
-    "w-button": "/src/components/button/button",
-    "w-button-group": "/src/components/button-group/button-group",
-    "w-flex": "/src/components/flex/flex"
+    "w-button": "wedux-ui/components/button/button",
+    "w-button-group": "wedux-ui/components/button-group/button-group",
+    "w-flex": "wedux-ui/components/flex/flex"
   },
   "navigationBarTitleText": "Button",
   "disableScroll": true

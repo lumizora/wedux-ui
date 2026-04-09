@@ -1,7 +1,7 @@
 {
   "usingComponents": {
-    "w-tag": "/src/components/tag/tag",
-    "w-flex": "/src/components/flex/flex"
+    "w-tag": "wedux-ui/components/tag/tag",
+    "w-flex": "wedux-ui/components/flex/flex"
   },
   "navigationBarTitleText": "Tag",
   "disableScroll": true
