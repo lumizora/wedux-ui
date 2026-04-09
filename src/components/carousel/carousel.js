@@ -94,7 +94,8 @@ Component({
       this._slideSize = 0;
       this._autoplayTimer = null;
       this._loopResetTimer = null;
-      this._boundaryItemIndex = -1;
+      this._boundaryItemIndices = [];
+      this._boundaryPrepared = false;
 
       wx.nextTick(() => {
         this._measure();
@@ -119,12 +120,21 @@ Component({
     _onChildrenChange() {
       const items = this._getItems();
       const total = items.length;
-      this._internalIndex = Math.min(this._internalIndex || 0, Math.max(0, total - 1));
+      const maxIndex = Math.max(0, this._getPageCount(total) - 1);
+      this._internalIndex = Math.min(this._internalIndex || 0, maxIndex);
       this._rebuildDots();
       if (this._slideSize > 0) {
         this._updateChildSizes();
         this._goTo(this._internalIndex, false);
       }
+    },
+
+    _getPageCount(total) {
+      const spv = Math.floor(this.data.slidesPerView);
+      if (this.data.effect === 'slide' && spv > 1) {
+        return Math.max(1, total - spv + 1);
+      }
+      return total;
     },
 
     /* ── Measure ── */
@@ -189,27 +199,22 @@ Component({
         this._updateChildSizes();
       }
 
+      const pageCount = this._getPageCount(total);
       let newIndex = index;
 
       if (this.data.loop) {
-        newIndex = ((index % total) + total) % total;
+        newIndex = ((index % pageCount) + pageCount) % pageCount;
       } else {
-        newIndex = Math.max(0, Math.min(index, total - 1));
+        newIndex = Math.max(0, Math.min(index, pageCount - 1));
       }
 
       const prev = this._internalIndex;
       this._internalIndex = newIndex;
 
       // slide + loop 边界过渡：无缝动画而非瞬移
-      if (
-        this.data.loop &&
-        this.data.effect === 'slide' &&
-        animate &&
-        total > 1 &&
-        this.data.slidesPerView <= 1
-      ) {
-        const isForwardLoop = prev === total - 1 && newIndex === 0;
-        const isBackwardLoop = prev === 0 && newIndex === total - 1;
+      if (this.data.loop && this.data.effect === 'slide' && animate && pageCount > 1) {
+        const isForwardLoop = prev === pageCount - 1 && newIndex === 0;
+        const isBackwardLoop = prev === 0 && newIndex === pageCount - 1;
 
         if (isForwardLoop || isBackwardLoop) {
           this._slideLoopTransition(prev, newIndex, isForwardLoop);
@@ -221,9 +226,9 @@ Component({
         }
       }
 
-      // 非边界过渡，清理拖拽时预置的 boundary item
-      if (this._boundaryItemIndex >= 0) {
-        this._boundaryItemIndex = -1;
+      // 非边界过渡，清理拖拽时预置的 boundary items
+      if (this._boundaryItemIndices && this._boundaryItemIndices.length > 0) {
+        this._boundaryItemIndices = [];
         if (animate) {
           this._loopResetTimer = setTimeout(() => {
             this._loopResetTimer = null;
@@ -312,78 +317,111 @@ Component({
       const items = this._getItems();
       const total = items.length;
       const { direction, spaceBetween, duration } = this.data;
+      const spv = Math.max(1, Math.floor(this.data.slidesPerView));
       const step = this._slideSize + spaceBetween;
       const isH = direction === 'horizontal';
       const axis = isH ? 'X' : 'Y';
       const sizeStyle = this._getItemSizeStyle();
+      // 需要克隆的边界 item 数：满足视窗填充，同时避免与当前可见区域重叠
+      const cloneCount = Math.max(1, Math.min(spv, total - spv));
 
-      this._boundaryItemIndex = -1;
+      this._boundaryItemIndices = [];
 
-      if (isForward) {
-        // 最后→第一：把 item[0] 移到最后一张后面
-        items[toIndex]._setState(
-          'active',
-          `${sizeStyle} transform: translate${axis}(${total * step}px);`,
-        );
-        // track 向前滑动一格到 item[0] 的临时位置
-        const offset = total * step;
-        const transform = isH ? `translateX(${-offset}px)` : `translateY(${-offset}px)`;
-        this.setData({
-          _trackStyle: `transform: ${transform}; transition: transform ${duration}ms ease;`,
-        });
-      } else {
-        // 第一→最后：把 item[last] 移到第一张前面
-        items[toIndex]._setState(
-          'active',
-          `${sizeStyle} transform: translate${axis}(${-total * step}px);`,
-        );
-        // track 向后滑动一格
-        const offset = -step;
-        const transform = isH ? `translateX(${-offset}px)` : `translateY(${-offset}px)`;
-        this.setData({
-          _trackStyle: `transform: ${transform}; transition: transform ${duration}ms ease;`,
-        });
-      }
+      // 边界 item 的克隆定位（子组件 setData）与 track 过渡启动（父组件 setData）
+      // 必须在同一渲染帧落地，否则 track 动画先跑、item 还没就位，
+      // 视窗扫过空白区域会表现为"某一页慢慢加载出来"的闪烁。
+      // 用 groupSetData 强制跨组件渲染同步。
+      this.groupSetData(() => {
+        if (isForward) {
+          // 最后页→第一页：把 items[0..cloneCount-1] 移到最后一张后面
+          for (let i = 0; i < cloneCount; i++) {
+            items[i]._setState(
+              'active',
+              `${sizeStyle} transform: translate${axis}(${total * step}px);`,
+            );
+            this._boundaryItemIndices.push(i);
+          }
+          // track 向前滑动 cloneCount 格
+          const offset = (fromIndex + cloneCount) * step;
+          const transform = isH ? `translateX(${-offset}px)` : `translateY(${-offset}px)`;
+          this.setData({
+            _trackStyle: `transform: ${transform}; transition: transform ${duration}ms ease;`,
+          });
+        } else {
+          // 第一页→最后页：把 items[total-cloneCount..total-1] 移到第一张前面
+          for (let i = 0; i < cloneCount; i++) {
+            const idx = total - cloneCount + i;
+            items[idx]._setState(
+              'active',
+              `${sizeStyle} transform: translate${axis}(${-total * step}px);`,
+            );
+            this._boundaryItemIndices.push(idx);
+          }
+          // track 向后滑动 cloneCount 格
+          const offset = -cloneCount * step;
+          const transform = isH ? `translateX(${-offset}px)` : `translateY(${-offset}px)`;
+          this.setData({
+            _trackStyle: `transform: ${transform}; transition: transform ${duration}ms ease;`,
+          });
+        }
+      });
 
-      // 动画结束后复位所有 item 和 track
+      // 动画结束后复位所有 item 和 track —— 同样需要跨组件同步，
+      // 否则会出现"item 已复位但 track 还停在 cloneCount 偏移"或反之的一帧错位
       this._loopResetTimer = setTimeout(() => {
         this._loopResetTimer = null;
-        this._updateChildSizes();
-        this._applyEffect(false);
+        this.groupSetData(() => {
+          this._updateChildSizes();
+          this._applyEffect(false);
+        });
       }, duration + 20);
     },
 
     /**
-     * 拖拽前预置边界 item，使跟手拖动时能看到下一张
+     * 按滑动方向预置边界 item，使跟手拖动时能看到下一张
+     * @param {'forward'|'backward'} swipeDir
+     *   forward: 向后（下一页，手指左移），backward: 向前（上一页，手指右移）
      */
-    _prepareBoundarySlide() {
+    _prepareBoundarySlide(swipeDir) {
       const items = this._getItems();
       const total = items.length;
-      if (total <= 1) return;
+      const spv = Math.max(1, Math.floor(this.data.slidesPerView));
+      const pageCount = this._getPageCount(total);
+      if (pageCount <= 1) return;
 
       const cur = this._internalIndex;
+      // 只在边界处且方向匹配时才需要预置，否则 item 都在自然位置，直接可见
+      if (swipeDir === 'backward' && cur !== 0) return;
+      if (swipeDir === 'forward' && cur !== pageCount - 1) return;
+
       const { direction, spaceBetween } = this.data;
       const step = this._slideSize + spaceBetween;
       const isH = direction === 'horizontal';
       const axis = isH ? 'X' : 'Y';
       const sizeStyle = this._getItemSizeStyle();
+      const cloneCount = Math.max(1, Math.min(spv, total - spv));
 
-      this._boundaryItemIndex = -1;
+      this._boundaryItemIndices = [];
 
-      if (cur === 0) {
-        // 可能向前滑（回到最后）→ 把最后一张移到第一张前面
-        items[total - 1]._setState(
-          'active',
-          `${sizeStyle} transform: translate${axis}(${-total * step}px);`,
-        );
-        this._boundaryItemIndex = total - 1;
-      } else if (cur === total - 1) {
-        // 可能向后滑（到第一张）→ 把第一张移到最后一张后面
-        items[0]._setState(
-          'active',
-          `${sizeStyle} transform: translate${axis}(${total * step}px);`,
-        );
-        this._boundaryItemIndex = 0;
+      if (swipeDir === 'backward') {
+        // 手指右移（回到最后页）→ 把末尾 cloneCount 张移到第一张前面
+        for (let i = 0; i < cloneCount; i++) {
+          const idx = total - cloneCount + i;
+          items[idx]._setState(
+            'active',
+            `${sizeStyle} transform: translate${axis}(${-total * step}px);`,
+          );
+          this._boundaryItemIndices.push(idx);
+        }
+      } else {
+        // 手指左移（到第一页）→ 把开头 cloneCount 张移到最后一张后面
+        for (let i = 0; i < cloneCount; i++) {
+          items[i]._setState(
+            'active',
+            `${sizeStyle} transform: translate${axis}(${total * step}px);`,
+          );
+          this._boundaryItemIndices.push(i);
+        }
       }
     },
 
@@ -394,23 +432,25 @@ Component({
       if (this._loopResetTimer) {
         clearTimeout(this._loopResetTimer);
         this._loopResetTimer = null;
-        this._updateChildSizes();
-        this._applyEffect(false);
+        // item 复位和 track 复位必须同帧渲染，避免一帧错位
+        this.groupSetData(() => {
+          this._updateChildSizes();
+          this._applyEffect(false);
+        });
       }
 
       this._drag.start(e.touches[0]);
       if (this.data.effect === 'slide') {
         this._startTranslate = this._internalIndex * (this._slideSize + this.data.spaceBetween);
-        // loop 模式下预置边界 item，使跟手拖动无缝
-        if (this.data.loop && this.data.slidesPerView <= 1) {
-          this._prepareBoundarySlide();
-        }
+        // 边界预置推迟到 onTouchMove 首帧检测方向后再执行，
+        // 避免在用户实际滑动方向未知时提前移动可见 item
+        this._boundaryPrepared = false;
       }
     },
 
     onTouchMove(e) {
       if (!this._drag.isActive()) return;
-      const { effect, direction } = this.data;
+      const { effect, direction, loop } = this.data;
       const touch = e.touches[0];
 
       if (effect === 'slide') {
@@ -418,7 +458,22 @@ Component({
         const offset = this._startTranslate - delta;
         const transform =
           direction === 'horizontal' ? `translateX(${-offset}px)` : `translateY(${-offset}px)`;
-        this.setData({ _trackStyle: `transform: ${transform}; transition: none;` });
+        const trackStyle = `transform: ${transform}; transition: none;`;
+
+        // 首帧检测滑动方向：仅在边界处按实际方向预置 item，
+        // 与当前帧 track offset 在同一渲染帧生效，避免提前错误移动可见 item
+        if (loop && !this._boundaryPrepared) {
+          this._boundaryPrepared = true;
+          // delta > 0: 手指右移 = 向前（上一页），delta < 0: 左移 = 向后（下一页）
+          const swipeDir = delta > 0 ? 'backward' : 'forward';
+          this.groupSetData(() => {
+            this._prepareBoundarySlide(swipeDir);
+            this.setData({ _trackStyle: trackStyle });
+          });
+          return;
+        }
+
+        this.setData({ _trackStyle: trackStyle });
       } else {
         const containerSize =
           direction === 'horizontal' ? this._containerWidth : this._containerHeight;
