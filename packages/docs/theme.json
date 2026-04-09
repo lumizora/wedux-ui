@@ -1,0 +1,12 @@
+{
+  "page": {
+    "navigationBarTextStyle": {
+      "light": "black",
+      "dark": "white"
+    },
+    "navigationBarBackgroundColor": {
+      "light": "#ffffff",
+      "dark": "#1c1c1e"
+    }
+  }
+}
