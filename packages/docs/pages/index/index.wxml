@@ -22,27 +22,15 @@
       <view class="catalog-group">
         <view class="catalog-group__label">布局</view>
         <view class="catalog-card">
-          <navigator
-            url="/flex/flex"
-            hover-class="catalog-item--active"
-            class="catalog-item"
-          >
+          <navigator url="/flex/flex" hover-class="catalog-item--active" class="catalog-item">
             <view class="catalog-item__name">Flex</view>
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
-          <navigator
-            url="/layout/layout"
-            class="catalog-item"
-            hover-class="catalog-item--hover"
-          >
+          <navigator url="/layout/layout" class="catalog-item" hover-class="catalog-item--hover">
             <view class="catalog-item__name">Layout</view>
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
-          <navigator
-            url="/list/list"
-            class="catalog-item"
-            hover-class="catalog-item--active"
-          >
+          <navigator url="/list/list" class="catalog-item" hover-class="catalog-item--active">
             <view class="catalog-item__name">List 列表</view>
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
@@ -62,11 +50,7 @@
             <view class="catalog-item__name">Infinite Scroll 无限滚动</view>
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
-          <navigator
-            url="/tab-bar/tab-bar"
-            class="catalog-item"
-            hover-class="catalog-item--active"
-          >
+          <navigator url="/tab-bar/tab-bar" class="catalog-item" hover-class="catalog-item--active">
             <view class="catalog-item__name">Tab Bar 底部导航</view>
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
@@ -84,11 +68,7 @@
       <view class="catalog-group">
         <view class="catalog-group__label">基础</view>
         <view class="catalog-card">
-          <navigator
-            url="/button/button"
-            hover-class="catalog-item--active"
-            class="catalog-item"
-          >
+          <navigator url="/button/button" hover-class="catalog-item--active" class="catalog-item">
             <view class="catalog-item__name">Button 按钮</view>
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
@@ -108,35 +88,19 @@
             <view class="catalog-item__name">Float Button 浮动按钮</view>
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
-          <navigator
-            url="/avatar/avatar"
-            hover-class="catalog-item--active"
-            class="catalog-item"
-          >
+          <navigator url="/avatar/avatar" hover-class="catalog-item--active" class="catalog-item">
             <view class="catalog-item__name">Avatar 头像</view>
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
-          <navigator
-            url="/image/image"
-            hover-class="catalog-item--active"
-            class="catalog-item"
-          >
+          <navigator url="/image/image" hover-class="catalog-item--active" class="catalog-item">
             <view class="catalog-item__name">Image 图片</view>
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
-          <navigator
-            url="/card/card"
-            hover-class="catalog-item--active"
-            class="catalog-item"
-          >
+          <navigator url="/card/card" hover-class="catalog-item--active" class="catalog-item">
             <view class="catalog-item__name">Card 卡片</view>
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
-          <navigator
-            url="/divider/divider"
-            hover-class="catalog-item--active"
-            class="catalog-item"
-          >
+          <navigator url="/divider/divider" hover-class="catalog-item--active" class="catalog-item">
             <view class="catalog-item__name">Divider 分割线</view>
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
@@ -156,35 +120,19 @@
             <view class="catalog-item__name">Gradient Text 渐变文字</view>
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
-          <navigator
-            url="/h/h"
-            hover-class="catalog-item--active"
-            class="catalog-item"
-          >
+          <navigator url="/h/h" hover-class="catalog-item--active" class="catalog-item">
             <view class="catalog-item__name">H 标题</view>
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
-          <navigator
-            url="/tag/tag"
-            hover-class="catalog-item--active"
-            class="catalog-item"
-          >
+          <navigator url="/tag/tag" hover-class="catalog-item--active" class="catalog-item">
             <view class="catalog-item__name">Tag 标签</view>
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
-          <navigator
-            url="/badge/badge"
-            hover-class="catalog-item--active"
-            class="catalog-item"
-          >
+          <navigator url="/badge/badge" hover-class="catalog-item--active" class="catalog-item">
             <view class="catalog-item__name">Badge 徽标</view>
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
-          <navigator
-            url="/price/price"
-            hover-class="catalog-item--active"
-            class="catalog-item"
-          >
+          <navigator url="/price/price" hover-class="catalog-item--active" class="catalog-item">
             <view class="catalog-item__name">Price 价格</view>
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
@@ -196,11 +144,7 @@
             <view class="catalog-item__name">Watermark 水印</view>
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
-          <navigator
-            url="/drawer/drawer"
-            hover-class="catalog-item--active"
-            class="catalog-item"
-          >
+          <navigator url="/drawer/drawer" hover-class="catalog-item--active" class="catalog-item">
             <view class="catalog-item__name">Drawer 抽屉</view>
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
@@ -212,11 +156,7 @@
             <view class="catalog-item__name">Number Animation 数字动画</view>
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
-          <navigator
-            url="/qr-code/qr-code"
-            hover-class="catalog-item--active"
-            class="catalog-item"
-          >
+          <navigator url="/qr-code/qr-code" hover-class="catalog-item--active" class="catalog-item">
             <view class="catalog-item__name">QR Code 二维码</view>
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
@@ -228,27 +168,15 @@
             <view class="catalog-item__name">Highlight 高亮文本</view>
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
-          <navigator
-            url="/popover/popover"
-            hover-class="catalog-item--active"
-            class="catalog-item"
-          >
+          <navigator url="/popover/popover" hover-class="catalog-item--active" class="catalog-item">
             <view class="catalog-item__name">Popover 弹出气泡</view>
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
-          <navigator
-            url="/tooltip/tooltip"
-            hover-class="catalog-item--active"
-            class="catalog-item"
-          >
+          <navigator url="/tooltip/tooltip" hover-class="catalog-item--active" class="catalog-item">
             <view class="catalog-item__name">Tooltip 文字提示</view>
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
-          <navigator
-            url="/marquee/marquee"
-            hover-class="catalog-item--active"
-            class="catalog-item"
-          >
+          <navigator url="/marquee/marquee" hover-class="catalog-item--active" class="catalog-item">
             <view class="catalog-item__name">Marquee 走马灯</view>
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
@@ -260,11 +188,7 @@
             <view class="catalog-item__name">Back Top 返回顶部</view>
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
-          <navigator
-            url="/empty/empty"
-            hover-class="catalog-item--active"
-            class="catalog-item"
-          >
+          <navigator url="/empty/empty" hover-class="catalog-item--active" class="catalog-item">
             <view class="catalog-item__name">Empty 空状态</view>
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
@@ -274,19 +198,11 @@
       <view class="catalog-group">
         <view class="catalog-group__label">表单</view>
         <view class="catalog-card">
-          <navigator
-            url="/form/form"
-            hover-class="catalog-item--active"
-            class="catalog-item"
-          >
+          <navigator url="/form/form" hover-class="catalog-item--active" class="catalog-item">
             <view class="catalog-item__name">Form 表单</view>
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
-          <navigator
-            url="/input/input"
-            hover-class="catalog-item--active"
-            class="catalog-item"
-          >
+          <navigator url="/input/input" hover-class="catalog-item--active" class="catalog-item">
             <view class="catalog-item__name">Input 输入框</view>
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
@@ -298,19 +214,11 @@
             <view class="catalog-item__name">Input OTP 验证码输入</view>
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
-          <navigator
-            url="/switch/switch"
-            hover-class="catalog-item--active"
-            class="catalog-item"
-          >
+          <navigator url="/switch/switch" hover-class="catalog-item--active" class="catalog-item">
             <view class="catalog-item__name">Switch 开关</view>
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
-          <navigator
-            url="/radio/radio"
-            hover-class="catalog-item--active"
-            class="catalog-item"
-          >
+          <navigator url="/radio/radio" hover-class="catalog-item--active" class="catalog-item">
             <view class="catalog-item__name">Radio 单选</view>
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
@@ -354,35 +262,19 @@
             <view class="catalog-item__name">Color Picker 颜色选择</view>
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
-          <navigator
-            url="/rate/rate"
-            hover-class="catalog-item--active"
-            class="catalog-item"
-          >
+          <navigator url="/rate/rate" hover-class="catalog-item--active" class="catalog-item">
             <view class="catalog-item__name">Rate 评分</view>
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
-          <navigator
-            url="/select/select"
-            hover-class="catalog-item--active"
-            class="catalog-item"
-          >
+          <navigator url="/select/select" hover-class="catalog-item--active" class="catalog-item">
             <view class="catalog-item__name">Select 选择器</view>
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
-          <navigator
-            url="/stepper/stepper"
-            hover-class="catalog-item--active"
-            class="catalog-item"
-          >
+          <navigator url="/stepper/stepper" hover-class="catalog-item--active" class="catalog-item">
             <view class="catalog-item__name">Stepper 步进器</view>
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
-          <navigator
-            url="/tree/tree"
-            hover-class="catalog-item--active"
-            class="catalog-item"
-          >
+          <navigator url="/tree/tree" hover-class="catalog-item--active" class="catalog-item">
             <view class="catalog-item__name">Tree 树形控件</view>
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
@@ -394,11 +286,7 @@
             <view class="catalog-item__name">TreeSelect 树形选择</view>
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
-          <navigator
-            url="/upload/upload"
-            hover-class="catalog-item--active"
-            class="catalog-item"
-          >
+          <navigator url="/upload/upload" hover-class="catalog-item--active" class="catalog-item">
             <view class="catalog-item__name">Upload 上传</view>
             <view class="iconfont icon-right catalog-item__arrow"></view>
           </navigator>
