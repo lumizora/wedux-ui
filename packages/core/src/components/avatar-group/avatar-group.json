@@ -2,6 +2,6 @@
   "component": true,
   "styleIsolation": "apply-shared",
   "usingComponents": {
-    "w-avatar": "/src/components/avatar/avatar"
+    "w-avatar": "../avatar/avatar"
   }
 }
