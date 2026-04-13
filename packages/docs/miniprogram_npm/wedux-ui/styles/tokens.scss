@@ -1,0 +1,322 @@
+/* Design Tokens - extracted from WeUI v2.6.25 */
+page {
+  /* Brand & Semantic Colors */
+  --color-brand: #07c160;
+  --color-danger: #fa5151;
+  --color-info: #10aeff;
+  --color-warning: #fa9d3b;
+  --color-success: #74b600;
+
+  /* Background Colors */
+  --color-bg-page: #ededed;
+  --color-bg-base: #f7f7f7;
+  --color-bg-elevated: #ffffff;
+
+  /* Text Colors */
+  --color-text-primary: rgba(0, 0, 0, 0.9);
+  --color-text-secondary: rgba(0, 0, 0, 0.5);
+  --color-text-placeholder: rgba(0, 0, 0, 0.3);
+  --color-text-disabled: rgba(0, 0, 0, 0.1);
+  --color-text-anti: #ffffff;
+
+  /* Separator */
+  --color-separator: rgba(0, 0, 0, 0.1);
+
+  /* Press Overlay */
+  --color-press-overlay: rgba(0, 0, 0, 0.1);
+  --color-press-overlay-light: rgba(0, 0, 0, 0.06);
+
+  /* Button Heights */
+  --size-btn-height: 88rpx;
+  --size-btn-height-md: 72rpx;
+  --size-btn-height-sm: 56rpx;
+
+  /* Spacing */
+  --spacing-xs: 8rpx;
+  --spacing-sm: 16rpx;
+  --spacing-md: 24rpx;
+  --spacing-lg: 32rpx;
+  --spacing-xl: 48rpx;
+
+  /* Border Radius */
+  --radius-sm: 8rpx;
+  --radius-md: 12rpx;
+  --radius-lg: 20rpx;
+  --radius-full: 9999rpx;
+
+  /* Avatar */
+  --size-avatar-sm: 72rpx;
+  --size-avatar-md: 96rpx;
+  --size-avatar-lg: 128rpx;
+  --color-avatar-bg: rgba(0, 0, 0, 0.08);
+
+  /* Tag Heights */
+  --size-tag-height-sm: 40rpx;
+  --size-tag-height-md: 52rpx;
+  --size-tag-height-lg: 64rpx;
+
+  /* Shadows */
+  --shadow-float: 0 4rpx 20rpx rgba(0, 0, 0, 0.15);
+  --shadow-card-hover: 0 8rpx 32rpx rgba(0, 0, 0, 0.12);
+
+  /* Font Sizes */
+  --font-size-sm: 24rpx;
+  --font-size-md: 28rpx;
+  --font-size-lg: 32rpx;
+  --font-size-xl: 36rpx;
+
+  /* Heading Font Sizes */
+  --font-size-h1: 60rpx;
+  --font-size-h2: 48rpx;
+  --font-size-h3: 40rpx;
+  --font-size-h4: 36rpx;
+  --font-size-h5: 32rpx;
+  --font-size-h6: 28rpx;
+
+  /* Watermark */
+  --color-watermark: rgba(128, 128, 128, 0.15);
+
+  /* Heading Prefix Bar */
+  --size-h-bar-width: 6rpx;
+  --color-h-bar: var(--color-brand);
+
+  /* Input */
+  --size-input-height: 88rpx;
+  --size-input-height-md: 72rpx;
+  --size-input-height-sm: 56rpx;
+  --color-input-border: var(--color-separator);
+  --color-input-border-focus: var(--color-brand);
+  --color-input-border-error: var(--color-danger);
+  --color-input-border-warning: var(--color-warning);
+  --color-input-bg: var(--color-bg-elevated);
+  --color-input-bg-disabled: var(--color-bg-base);
+
+  /* Form Feedback */
+  --color-form-feedback-error: var(--color-danger);
+  --color-form-feedback-warning: var(--color-warning);
+  --font-size-form-label: var(--font-size-md);
+  --font-size-form-feedback: var(--font-size-sm);
+  --size-form-label-gap: var(--spacing-sm);
+
+  /* Switch */
+  --size-switch-width: 100rpx;
+  --size-switch-height: 56rpx;
+  --size-switch-width-sm: 80rpx;
+  --size-switch-height-sm: 44rpx;
+  --color-switch-bg: rgba(0, 0, 0, 0.12);
+  --color-switch-bg-checked: var(--color-brand);
+
+  /* Rate */
+  --size-rate: 48rpx;
+  --size-rate-sm: 36rpx;
+  --spacing-rate-gap: 4rpx;
+  --color-rate-inactive: rgba(0, 0, 0, 0.12);
+  --color-rate-active: var(--color-warning);
+
+  /* Stepper */
+  --size-stepper-height: 64rpx;
+  --size-stepper-height-sm: 48rpx;
+  --size-stepper-btn-width: 64rpx;
+  --size-stepper-btn-width-sm: 48rpx;
+  --size-stepper-input-width: 64rpx;
+  --size-stepper-input-width-sm: 48rpx;
+  --color-stepper-bg: rgba(0, 0, 0, 0.05);
+  --color-stepper-text: var(--color-text-primary);
+
+  /* Date Picker Range */
+  --color-date-range-bg: rgba(7, 193, 96, 0.1);
+
+  /* Radio & Checkbox */
+  --size-radio: 40rpx;
+  --size-checkbox: 40rpx;
+  --color-radio-checked: var(--color-brand);
+  --color-checkbox-checked: var(--color-brand);
+  --color-checkbox-check: #ffffff;
+
+  /* Upload */
+  --size-upload-grid: 160rpx;
+  --size-upload-icon: 48rpx;
+  --size-upload-delete: 32rpx;
+  --size-upload-progress: 4rpx;
+  --size-upload-list-thumb: 80rpx;
+  --spacing-upload-gap: 16rpx;
+  --spacing-upload-list-gap: 24rpx;
+  --color-upload-bg: rgba(0, 0, 0, 0.05);
+  --color-upload-icon: var(--color-text-secondary);
+  --color-upload-progress: var(--color-brand);
+  --color-upload-error: var(--color-danger);
+  --color-upload-mask: rgba(0, 0, 0, 0.5);
+  --color-upload-overlay-text: #ffffff;
+  --color-upload-progress-track: rgba(0, 0, 0, 0.1);
+  --radius-upload: var(--radius-md);
+
+  /* Calendar */
+  --size-calendar-cell-height: 80rpx;
+  --size-calendar-header-height: 88rpx;
+  --color-calendar-today-border: var(--color-brand);
+  --color-calendar-selected-bg: var(--color-brand);
+  --color-calendar-selected-text: var(--color-bg-elevated);
+
+  // Layout
+  --layout-bg: var(--color-bg-page);
+  --layout-header-bg: var(--color-bg-elevated);
+  --layout-footer-bg: var(--color-bg-elevated);
+  --layout-sider-bg: var(--color-bg-elevated);
+  --layout-border-color: var(--color-separator);
+  --layout-z-index: 100;
+
+  /* Tree */
+  --size-tree-node-height: 88rpx;
+  --color-tree-node-selected-bg: rgba(7, 193, 96, 0.08);
+  --color-tree-node-highlight-bg: rgba(7, 193, 96, 0.1);
+
+  /* Navigation Bar */
+  --navbar-height: 44px;
+  --navbar-bg: var(--color-bg-elevated);
+  --navbar-title-color: var(--color-text-primary);
+  --navbar-icon-color: var(--color-text-primary);
+
+  /* Tooltip */
+  --color-tooltip-bg: var(--color-bg-elevated);
+  --color-tooltip-text: var(--color-text-primary);
+
+  /* Popover */
+  --color-popover-bg: var(--color-bg-elevated);
+
+  /* List */
+  --color-list-bg: var(--color-bg-elevated);
+  --color-list-hover-bg: var(--color-bg-base);
+  --color-list-border: var(--color-separator);
+  --color-list-text: var(--color-text-primary);
+
+  /* Tab Bar */
+  --tab-bar-height: 100rpx;
+  --tab-bar-bg: var(--color-bg-elevated);
+  --tab-bar-color: var(--color-text-secondary);
+  --tab-bar-active-bg: rgba(0, 0, 0, 0.08);
+  --tab-bar-active-color: var(--color-text-primary);
+  --tab-bar-active-label-color: var(--color-brand);
+  --tab-bar-icon-size: 44rpx;
+  --tab-bar-icon-bg-size: 72rpx;
+  --tab-bar-label-size: var(--font-size-sm);
+  --tab-bar-z-index: 500;
+  --tab-bar-radius: 100rpx;
+  --tab-bar-margin: var(--spacing-lg);
+  --tab-bar-shadow: var(--shadow-float);
+
+  /* ========== Component-Level Variables ========== */
+
+  /* Button */
+  --w-btn-height: var(--size-btn-height);
+  --w-btn-height-md: var(--size-btn-height-md);
+  --w-btn-height-sm: var(--size-btn-height-sm);
+  --w-btn-radius: var(--radius-lg);
+  --w-btn-radius-md: var(--radius-md);
+  --w-btn-radius-sm: var(--radius-sm);
+  --w-btn-font-size: var(--font-size-lg);
+  --w-btn-font-size-md: var(--font-size-md);
+  --w-btn-font-size-sm: var(--font-size-sm);
+
+  /* Input */
+  --w-input-height: var(--size-input-height);
+  --w-input-height-md: var(--size-input-height-md);
+  --w-input-height-sm: var(--size-input-height-sm);
+  --w-input-radius: var(--radius-md);
+  --w-input-bg: var(--color-input-bg);
+  --w-input-border: var(--color-input-border);
+  --w-input-border-focus: var(--color-input-border-focus);
+
+  /* Switch */
+  --w-switch-width: var(--size-switch-width);
+  --w-switch-height: var(--size-switch-height);
+  --w-switch-width-sm: var(--size-switch-width-sm);
+  --w-switch-height-sm: var(--size-switch-height-sm);
+  --w-switch-bg: var(--color-switch-bg);
+  --w-switch-checked-bg: var(--color-switch-bg-checked);
+
+  /* Stepper */
+  --w-stepper-height: var(--size-stepper-height);
+  --w-stepper-height-sm: var(--size-stepper-height-sm);
+  --w-stepper-btn-width: var(--size-stepper-btn-width);
+  --w-stepper-btn-width-sm: var(--size-stepper-btn-width-sm);
+  --w-stepper-input-width: var(--size-stepper-input-width);
+  --w-stepper-input-width-sm: var(--size-stepper-input-width-sm);
+  --w-stepper-bg: var(--color-stepper-bg);
+  --w-stepper-text: var(--color-stepper-text);
+  --w-stepper-radius: var(--radius-md);
+  --w-stepper-font-size: var(--font-size-md);
+  --w-stepper-font-size-sm: var(--font-size-sm);
+
+  /* Tag */
+  --w-tag-height-sm: var(--size-tag-height-sm);
+  --w-tag-height-md: var(--size-tag-height-md);
+  --w-tag-height-lg: var(--size-tag-height-lg);
+  --w-tag-radius: var(--radius-sm);
+  --w-tag-font-size: var(--font-size-sm);
+
+  /* Card */
+  --w-card-bg: var(--color-bg-elevated);
+  --w-card-radius: var(--radius-md);
+  --w-card-border-color: var(--color-separator);
+
+  /* Badge (migrated from --badge-* to --w-badge-*) */
+  --w-badge-dot-size: 16rpx;
+  --w-badge-height: 36rpx;
+  --w-badge-font-size: var(--font-size-sm);
+  --w-badge-padding-x: 12rpx;
+  --w-badge-color-default: var(--color-danger);
+  --w-badge-color-primary: var(--color-brand);
+  --w-badge-color-success: var(--color-success);
+  --w-badge-color-info: var(--color-info);
+  --w-badge-color-warning: var(--color-warning);
+  --w-badge-color-error: var(--color-danger);
+  --w-badge-text-color: #ffffff;
+
+  /* Drawer */
+  --w-drawer-bg: var(--color-bg-elevated);
+  --w-drawer-mask-bg: rgba(0, 0, 0, 0.45);
+  --w-drawer-radius: var(--radius-lg);
+
+  /* List */
+  --w-list-bg: var(--color-list-bg);
+  --w-list-border: var(--color-list-border);
+  --w-list-hover-bg: var(--color-list-hover-bg);
+
+  /* Divider */
+  --w-divider-color: var(--color-separator);
+  --w-divider-spacing: var(--spacing-md);
+
+  /* Avatar */
+  --w-avatar-radius: var(--radius-sm);
+  --w-avatar-bg: var(--color-avatar-bg);
+
+  /* Marquee */
+  --w-marquee-gap: 32rpx;
+  --w-marquee-font-size: var(--font-size-md);
+  --w-marquee-color: var(--color-text-primary);
+
+  /* Empty */
+  --w-empty-image-size-sm: 80rpx;
+  --w-empty-image-size-md: 160rpx;
+  --w-empty-image-size-lg: 240rpx;
+  --w-empty-image-size: var(--w-empty-image-size-md);
+
+  /* Price */
+  --w-price-color: var(--color-brand);
+  --w-price-original-color: var(--color-text-secondary);
+
+  /* Image */
+  --w-image-radius: 0;
+  --w-image-bg: var(--color-bg-base);
+  --w-image-fade-duration: 300ms;
+  --w-image-loading-icon-size: 48rpx;
+  --w-image-error-icon-size: 48rpx;
+
+  /* Carousel */
+  --w-carousel-dot-color: rgba(255, 255, 255, 0.5);
+  --w-carousel-dot-color-active: #ffffff;
+  --w-carousel-dot-size: 16rpx;
+  --w-carousel-dot-line-width: 16rpx;
+  --w-carousel-dot-line-width-active: 48rpx;
+  --w-carousel-card-radius: var(--w-radius-lg, 16rpx);
+}

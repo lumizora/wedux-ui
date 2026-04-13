@@ -1,0 +1,9 @@
+<view
+  class="w-fab w-fab--{{shape}} w-fab--{{type}} {{disabled ? 'w-fab--disabled' : ''}}"
+  style="{{_style}}"
+  hover-class="{{disabled ? '' : 'w-fab--active'}}"
+  hover-stay-time="70"
+  bindtap="handleTap"
+>
+  <slot></slot>
+</view>

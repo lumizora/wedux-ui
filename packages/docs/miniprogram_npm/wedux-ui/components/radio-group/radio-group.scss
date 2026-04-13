@@ -1,0 +1,9 @@
+.w-radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+}
+
+.w-radio-group--vertical {
+  flex-direction: column;
+}

@@ -1,0 +1,8 @@
+<view
+  class="w-checkbox-button {{_checked ? 'w-checkbox-button--checked' : ''}} {{(disabled || _groupDisabled || _maxReached) ? 'w-checkbox-button--disabled' : ''}} w-checkbox-button--size-{{_groupSize || 'medium'}} {{round ? 'w-checkbox-button--round' : ''}}"
+  hover-class="none"
+  bindtap="handleTap"
+>
+  <text wx:if="{{label}}">{{label}}</text>
+  <slot wx:else></slot>
+</view>

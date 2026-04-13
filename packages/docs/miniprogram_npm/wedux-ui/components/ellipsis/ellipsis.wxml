@@ -1,0 +1,7 @@
+<view
+  class="w-ellipsis {{lineClamp > 1 && !_expanded ? 'w-ellipsis--line-clamp' : ''}} {{_expanded ? 'w-ellipsis--expanded' : ''}} {{expandTrigger === 'click' ? 'w-ellipsis--clickable' : ''}}"
+  style="{{_style}}"
+  bindtap="onTap"
+>
+  <slot></slot>
+</view>

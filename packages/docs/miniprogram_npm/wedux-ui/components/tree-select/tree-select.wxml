@@ -1,0 +1,118 @@
+<view class="w-tree-select">
+  <!-- Trigger -->
+  <view
+    class="w-tree-select__trigger w-tree-select--size-{{size || _formItemSize || 'medium'}} {{(disabled || _formItemDisabled) ? 'w-tree-select--disabled' : ''}} {{readonly ? 'w-tree-select--readonly' : ''}} {{status === 'error' ? 'w-tree-select--error' : ''}} {{status === 'warning' ? 'w-tree-select--warning' : ''}} {{(multiple || checkable) && _selectedTags.length ? 'w-tree-select--has-tags' : ''}}"
+    bindtap="handleTap"
+  >
+    <!-- Multi: tags -->
+    <view wx:if="{{(multiple || checkable) && _selectedTags.length}}" class="w-tree-select__tags">
+      <view wx:for="{{_selectedTags}}" wx:key="value" class="w-tree-select__tag">
+        <text class="w-tree-select__tag-text">{{item.label}}</text>
+        <view
+          wx:if="{{!disabled && !_formItemDisabled && !readonly}}"
+          class="w-tree-select__tag-close"
+          catchtap="handleTagRemove"
+          data-value="{{item.value}}"
+        >
+          <text class="w-tree-select__tag-close-icon iconfont icon-close"></text>
+        </view>
+      </view>
+      <view wx:if="{{_overflowCount > 0}}" class="w-tree-select__tag w-tree-select__tag--overflow">
+        <text class="w-tree-select__tag-text">+{{_overflowCount}}</text>
+      </view>
+    </view>
+    <!-- Multi: placeholder -->
+    <text wx:elif="{{multiple || checkable}}" class="w-tree-select__placeholder"
+      >{{placeholder}}</text
+    >
+    <!-- Single: display text -->
+    <text wx:elif="{{_displayText}}" class="w-tree-select__text">{{_displayText}}</text>
+    <text wx:else class="w-tree-select__placeholder">{{placeholder}}</text>
+
+    <!-- Clear / Arrow -->
+    <view
+      wx:if="{{clearable && (_displayText || _selectedTags.length) && !disabled && !_formItemDisabled && !readonly}}"
+      class="w-tree-select__clear"
+      catchtap="handleTriggerClear"
+    >
+      <text class="w-tree-select__clear-icon iconfont icon-close"></text>
+    </view>
+    <view wx:else class="w-tree-select__icon">
+      <text class="w-tree-select__arrow-icon iconfont icon-down"></text>
+    </view>
+  </view>
+
+  <!-- Popup -->
+  <w-drawer
+    show="{{_visible}}"
+    placement="bottom"
+    round="{{mode !== 'full'}}"
+    height="{{mode === 'full' ? '100%' : '60vh'}}"
+    bind:update:show="handleDrawerClose"
+    bind:afterenter="handleDrawerAfterEnter"
+  >
+    <view class="w-tree-select__panel {{mode === 'full' ? 'w-tree-select__panel--full' : ''}}">
+      <!-- Header -->
+      <view class="w-tree-select__header">
+        <view class="w-tree-select__btn" bindtap="handleCancel">
+          {{mode === 'full' ? '关闭' : '取消'}}
+        </view>
+        <view class="w-tree-select__title">{{title || '请选择'}}</view>
+        <view class="w-tree-select__btn w-tree-select__btn--primary" bindtap="handleConfirm">
+          确定
+        </view>
+      </view>
+
+      <!-- Search -->
+      <view wx:if="{{filterable}}" class="w-tree-select__search">
+        <input
+          class="w-tree-select__search-input"
+          placeholder="搜索"
+          value="{{_searchPattern}}"
+          bindinput="handleSearchInput"
+          confirm-type="search"
+        />
+      </view>
+
+      <!-- Selected tags in full mode -->
+      <view
+        wx:if="{{mode === 'full' && (multiple || checkable) && _selectedTags.length}}"
+        class="w-tree-select__selected"
+      >
+        <view wx:for="{{_selectedTags}}" wx:key="value" class="w-tree-select__selected-tag">
+          <text class="w-tree-select__selected-tag-text">{{item.label}}</text>
+          <view
+            class="w-tree-select__selected-tag-close"
+            catchtap="handleTagRemove"
+            data-value="{{item.value}}"
+          >
+            <text class="iconfont icon-close"></text>
+          </view>
+        </view>
+      </view>
+
+      <!-- Tree -->
+      <scroll-view class="w-tree-select__body" scroll-y>
+        <w-tree
+          class="w-tree-select__tree"
+          data="{{data}}"
+          checkable="{{checkable}}"
+          selectable="{{!checkable}}"
+          multiple="{{multiple}}"
+          cascade="{{cascade}}"
+          check-strategy="{{checkStrategy}}"
+          pattern="{{_searchPattern}}"
+          accordion="{{accordion}}"
+          show-line="{{showLine}}"
+          key-field="{{keyField}}"
+          label-field="{{labelField}}"
+          children-field="{{childrenField}}"
+          default-expand-all="{{defaultExpandAll}}"
+          check-on-click="{{checkable}}"
+          bind:update:selected-keys="handleTreeSelect"
+          bind:update:checked-keys="handleTreeCheck"
+        />
+      </scroll-view>
+    </view>
+  </w-drawer>
+</view>

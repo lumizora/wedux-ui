@@ -1,0 +1,23 @@
+.w-layout-header {
+  background: var(--layout-header-bg);
+
+  &__placeholder {
+    flex-shrink: 0;
+  }
+
+  &__fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: var(--layout-z-index);
+  }
+
+  &--bordered {
+    border-bottom: 1rpx solid var(--layout-border-color);
+  }
+
+  &--safe-area {
+    padding-top: env(safe-area-inset-top);
+  }
+}

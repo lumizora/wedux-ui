@@ -1,0 +1,16 @@
+<view
+  class="w-marquee {{!text ? 'w-marquee--hidden' : ''}}"
+  style="{{_containerStyle}}"
+  bindtap="onTap"
+>
+  <view class="w-marquee__group">
+    <block wx:for="{{_items}}" wx:key="*this">
+      <text class="w-marquee__item">{{text}}</text>
+    </block>
+  </view>
+  <view class="w-marquee__group">
+    <block wx:for="{{_items}}" wx:key="*this">
+      <text class="w-marquee__item">{{text}}</text>
+    </block>
+  </view>
+</view>

@@ -1,0 +1,10 @@
+<view
+  class="w-switch w-switch--size-{{size || _formItemSize || 'medium'}} {{checked ? 'w-switch--checked' : ''}} {{(disabled || _formItemDisabled) ? 'w-switch--disabled' : ''}}"
+  bindtap="handleTap"
+>
+  <view class="w-switch__track" style="{{_trackStyle}}">
+    <view class="w-switch__text" wx:if="{{checked && checkedText}}">{{checkedText}}</view>
+    <view class="w-switch__text" wx:elif="{{!checked && uncheckedText}}">{{uncheckedText}}</view>
+    <view class="w-switch__thumb"></view>
+  </view>
+</view>

@@ -1,0 +1,15 @@
+<view
+  class="w-avatar w-avatar--{{_groupSize || size}} {{(round || _groupRound) ? 'w-avatar--round' : ''}} {{bordered ? 'w-avatar--bordered' : ''}} {{_groupOverlap ? 'w-avatar--group-overlap' : ''}}"
+  style="{{color ? 'background-color: ' + color + ';' : ''}}"
+>
+  <image
+    wx:if="{{_currentSrc && !_imgError}}"
+    class="w-avatar__img"
+    src="{{_currentSrc}}"
+    mode="aspectFill"
+    binderror="handleImgError"
+  ></image>
+  <view wx:else class="w-avatar__content">
+    <slot></slot>
+  </view>
+</view>

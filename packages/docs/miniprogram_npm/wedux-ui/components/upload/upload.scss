@@ -1,0 +1,258 @@
+@import '../../styles/iconfont.scss';
+
+/* ===== Grid Mode ===== */
+.w-upload--grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-upload-gap);
+}
+
+.w-upload__grid-item {
+  position: relative;
+  border-radius: var(--radius-upload);
+  overflow: hidden;
+  background-color: var(--color-upload-bg);
+}
+
+.w-upload__thumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.w-upload__video-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: var(--size-upload-icon);
+  color: var(--color-upload-overlay-text);
+  line-height: 1;
+}
+
+.w-upload__file-info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-sm);
+  box-sizing: border-box;
+}
+
+.w-upload__file-icon {
+  font-size: var(--size-upload-icon);
+  color: var(--color-upload-icon);
+  margin-bottom: var(--spacing-xs);
+}
+
+.w-upload__file-name {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Delete button */
+.w-upload__delete {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: var(--size-upload-delete);
+  height: var(--size-upload-delete);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-upload-mask);
+  border-radius: 0 0 0 var(--radius-upload);
+  z-index: 2;
+}
+
+.w-upload__delete-icon {
+  font-size: 20rpx;
+  color: var(--color-upload-overlay-text);
+  line-height: 1;
+}
+
+/* Progress bar (grid) */
+.w-upload__progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: var(--size-upload-progress);
+  background-color: var(--color-upload-progress-track);
+}
+
+.w-upload__progress-bar {
+  height: 100%;
+  background-color: var(--color-upload-progress);
+  transition: width 0.2s;
+}
+
+/* Error overlay (grid) */
+.w-upload__error-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-upload-mask);
+  z-index: 1;
+}
+
+.w-upload__retry-icon {
+  font-size: var(--size-upload-icon);
+  color: var(--color-upload-overlay-text);
+}
+
+/* Add button (grid) */
+.w-upload__add {
+  position: relative;
+  border-radius: var(--radius-upload);
+  background-color: var(--color-upload-bg);
+}
+
+.w-upload__add-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: var(--size-upload-icon);
+  color: var(--color-upload-icon);
+  line-height: 1;
+}
+
+/* ===== List Mode ===== */
+.w-upload--list {
+  display: flex;
+  flex-direction: column;
+}
+
+.w-upload__list-item {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-upload-list-gap) 0;
+  border-bottom: 1rpx solid var(--color-separator);
+}
+
+.w-upload__list-thumb {
+  width: var(--size-upload-list-thumb);
+  height: var(--size-upload-list-thumb);
+  border-radius: var(--radius-upload);
+  margin-right: var(--spacing-sm);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.w-upload__list-thumb-img {
+  width: 100%;
+  height: 100%;
+}
+
+.w-upload__list-icon {
+  width: var(--size-upload-list-thumb);
+  height: var(--size-upload-list-thumb);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--size-upload-icon);
+  color: var(--color-upload-icon);
+  margin-right: var(--spacing-sm);
+  flex-shrink: 0;
+}
+
+.w-upload__list-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.w-upload__list-name {
+  font-size: var(--font-size-md);
+  color: var(--color-text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.w-upload__list-meta {
+  display: flex;
+  align-items: center;
+  margin-top: var(--spacing-xs);
+}
+
+.w-upload__list-size {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.w-upload__list-status {
+  font-size: var(--font-size-sm);
+  margin-left: var(--spacing-sm);
+}
+
+.w-upload__list-status--uploading {
+  color: var(--color-upload-progress);
+}
+
+.w-upload__list-status--error {
+  color: var(--color-upload-error);
+}
+
+/* List progress */
+.w-upload__list-progress {
+  height: var(--size-upload-progress);
+  background-color: var(--color-upload-progress-track);
+  border-radius: 2rpx;
+  margin-top: var(--spacing-xs);
+}
+
+.w-upload__list-progress-bar {
+  height: 100%;
+  border-radius: 2rpx;
+  background-color: var(--color-upload-progress);
+  transition: width 0.2s;
+}
+
+.w-upload__list-progress-bar--error {
+  background-color: var(--color-upload-error);
+}
+
+.w-upload__list-delete {
+  flex-shrink: 0;
+  padding: var(--spacing-sm);
+  font-size: var(--font-size-md);
+  color: var(--color-text-secondary);
+  line-height: 1;
+}
+
+/* List add button */
+.w-upload__list-add {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-upload-list-gap) 0;
+  color: var(--color-upload-icon);
+  font-size: var(--font-size-md);
+}
+
+.w-upload__list-add-icon {
+  font-size: var(--font-size-lg);
+  margin-right: var(--spacing-xs);
+}
+
+/* ===== States ===== */
+.w-upload--disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}

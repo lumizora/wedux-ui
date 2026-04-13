@@ -1,0 +1,59 @@
+<view class="w-tree">
+  <slot name="header"></slot>
+
+  <view wx:if="{{_visibleNodes.length === 0}}" class="w-tree__empty">
+    <text class="w-tree__empty-text">暂无数据</text>
+  </view>
+
+  <view
+    wx:for="{{_visibleNodes}}"
+    wx:key="key"
+    class="w-tree__node {{item.isSelected ? 'w-tree__node--selected' : ''}} {{item.disabled ? 'w-tree__node--disabled' : ''}}"
+    style="padding-left: {{item.paddingLeft}}rpx;"
+    data-key="{{item.key}}"
+    bindtap="handleNodeTap"
+    hover-class="{{item.disabled ? '' : 'w-tree__node--hover'}}"
+    hover-stay-time="70"
+  >
+    <!-- Switcher -->
+    <view
+      wx:if="{{!item.isLeaf}}"
+      class="w-tree__switcher {{item.isExpanded ? 'w-tree__switcher--expanded' : ''}}"
+      data-key="{{item.key}}"
+      catchtap="handleSwitcherTap"
+    >
+      <view wx:if="{{item.isLoading}}" class="w-tree__loading"></view>
+      <text wx:else class="w-tree__arrow iconfont icon-right"></text>
+    </view>
+    <view wx:else class="w-tree__switcher w-tree__switcher--leaf"></view>
+
+    <!-- Checkbox -->
+    <view
+      wx:if="{{checkable}}"
+      class="w-tree__checkbox {{item.isChecked ? 'w-tree__checkbox--checked' : ''}} {{item.isIndeterminate ? 'w-tree__checkbox--indeterminate' : ''}} {{item.disabled ? 'w-tree__checkbox--disabled' : ''}}"
+      data-key="{{item.key}}"
+      catchtap="handleCheckTap"
+    >
+      <view class="w-tree__checkbox-inner"></view>
+    </view>
+
+    <!-- Prefix icon -->
+    <text
+      wx:if="{{item.prefixIcon || item.icon}}"
+      class="w-tree__icon iconfont {{item.prefixIcon || item.icon}}"
+    ></text>
+
+    <!-- Label -->
+    <view class="w-tree__label">
+      <block wx:if="{{item.labelParts}}">
+        <text>{{item.labelParts[0]}}</text>
+        <text class="w-tree__highlight">{{item.labelParts[1]}}</text>
+        <text>{{item.labelParts[2]}}</text>
+      </block>
+      <text wx:else>{{item.label}}</text>
+    </view>
+
+    <!-- Suffix -->
+    <text wx:if="{{item.suffixText}}" class="w-tree__suffix">{{item.suffixText}}</text>
+  </view>
+</view>

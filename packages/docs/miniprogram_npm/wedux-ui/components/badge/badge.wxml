@@ -1,0 +1,11 @@
+<view class="w-badge">
+  <slot></slot>
+  <view
+    wx:if="{{_visible}}"
+    class="w-badge__sup w-badge__sup--{{type}} {{dot ? 'w-badge__sup--dot' : ''}} {{processing ? 'w-badge__sup--processing' : ''}}"
+    style="{{_style}}"
+  >
+    <text wx:if="{{!dot}}" class="w-badge__text">{{_displayValue}}</text>
+    <view wx:if="{{processing}}" class="w-badge__wave"></view>
+  </view>
+</view>

@@ -1,0 +1,14 @@
+<view class="w-list-item w-list-item--{{_size}}" bindtap="handleTap">
+  <view class="w-list-item__body">
+    <view class="w-list-item__prefix">
+      <slot name="prefix" />
+    </view>
+    <view class="w-list-item__main">
+      <slot />
+    </view>
+    <view class="w-list-item__suffix">
+      <slot name="suffix" />
+    </view>
+  </view>
+  <view class="w-list-item__divider" wx:if="{{_showDivider}}"></view>
+</view>

@@ -1,0 +1,28 @@
+@import '../../demo.scss';
+@import '../../miniprogram_npm/wedux-ui/styles/iconfont.scss';
+
+.demo-navbar-wrap {
+  border-radius: 16rpx;
+  overflow: hidden;
+  background-color: var(--navbar-bg);
+}
+
+.demo-custom-title {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.demo-badge {
+  font-size: 20rpx;
+  font-weight: 500;
+  line-height: 1;
+  padding: 4rpx 8rpx;
+  border-radius: 6rpx;
+  background-color: var(--color-error);
+}
+
+.demo-search-bar {
+  flex: 1;
+  padding: 0 24rpx;
+}

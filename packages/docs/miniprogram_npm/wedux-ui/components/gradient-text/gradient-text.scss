@@ -1,0 +1,7 @@
+.w-gradient-text {
+  display: inline;
+  font-size: var(--font-size-md);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

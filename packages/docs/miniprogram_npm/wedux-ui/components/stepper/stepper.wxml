@@ -1,0 +1,23 @@
+<view
+  class="w-stepper w-stepper--size-{{size || _formItemSize || 'medium'}} {{_disabled ? 'w-stepper--disabled' : ''}}"
+>
+  <view
+    class="w-stepper__minus {{(_minusDisabled || _disabled) ? 'w-stepper__minus--disabled' : ''}}"
+    bindtouchstart="onMinusTouchStart"
+    bindtouchend="onTouchEnd"
+    bindtouchcancel="onTouchEnd"
+  >
+    <view class="iconfont icon-minus"></view>
+  </view>
+  <view class="w-stepper__input">
+    <text>{{_displayValue}}</text>
+  </view>
+  <view
+    class="w-stepper__plus {{(_plusDisabled || _disabled) ? 'w-stepper__plus--disabled' : ''}}"
+    bindtouchstart="onPlusTouchStart"
+    bindtouchend="onTouchEnd"
+    bindtouchcancel="onTouchEnd"
+  >
+    <view class="iconfont icon-plus"></view>
+  </view>
+</view>

@@ -1,0 +1,10 @@
+.w-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--layout-bg);
+
+  &--has-sider {
+    flex-direction: row;
+  }
+}

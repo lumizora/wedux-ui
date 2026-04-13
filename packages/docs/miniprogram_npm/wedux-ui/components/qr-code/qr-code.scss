@@ -1,0 +1,8 @@
+.w-qr-code {
+  display: inline-block;
+
+  &__canvas,
+  &__image {
+    display: block;
+  }
+}

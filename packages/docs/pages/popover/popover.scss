@@ -1,0 +1,8 @@
+@import '../../demo.scss';
+
+.demo-popover-row {
+  display: flex;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+  margin-bottom: var(--spacing-md);
+}

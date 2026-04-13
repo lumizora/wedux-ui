@@ -1,0 +1,31 @@
+<view
+  class="w-card w-card--{{size}} {{bordered ? 'w-card--bordered' : ''}} {{hoverable ? 'w-card--hoverable' : ''}} {{segmented ? 'w-card--segmented' : ''}}"
+  hover-class="{{hoverable ? 'w-card--pressed' : 'none'}}"
+  hover-stay-time="100"
+  bindtap="handleTap"
+>
+  <view class="w-card__cover">
+    <view class="w-card__cover-inner">
+      <slot name="cover"></slot>
+    </view>
+  </view>
+
+  <view wx:if="{{title}}" class="w-card__header">
+    <view class="w-card__header-main">{{title}}</view>
+    <view class="w-card__header-extra">
+      <slot name="header-extra"></slot>
+    </view>
+  </view>
+
+  <view class="w-card__body {{_hasHeader ? 'w-card__body--no-top-pad' : ''}}">
+    <slot></slot>
+  </view>
+
+  <view class="w-card__footer">
+    <slot name="footer"></slot>
+  </view>
+
+  <view class="w-card__action">
+    <slot name="action"></slot>
+  </view>
+</view>

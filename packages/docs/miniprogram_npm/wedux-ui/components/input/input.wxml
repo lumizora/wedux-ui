@@ -1,0 +1,34 @@
+<view
+  class="w-input w-input--size-{{size || _formItemSize || 'medium'}} {{round ? 'w-input--round' : ''}} {{(disabled || _formItemDisabled) ? 'w-input--disabled' : ''}} {{readonly ? 'w-input--readonly' : ''}} {{_focused ? 'w-input--focus' : ''}} {{status === 'error' ? 'w-input--error' : ''}} {{status === 'warning' ? 'w-input--warning' : ''}}"
+>
+  <view class="w-input__prefix" wx:if="{{true}}">
+    <slot name="prefix"></slot>
+  </view>
+  <input
+    class="w-input__native"
+    value="{{value}}"
+    type="{{type}}"
+    password="{{password}}"
+    placeholder="{{placeholder}}"
+    placeholder-class="w-input__placeholder"
+    disabled="{{disabled || _formItemDisabled || readonly}}"
+    maxlength="{{maxlength}}"
+    bindinput="handleInput"
+    bindfocus="handleFocus"
+    bindblur="handleBlur"
+    bindconfirm="handleConfirm"
+  />
+  <view
+    wx:if="{{clearable && value && !disabled && !_formItemDisabled && !readonly}}"
+    class="w-input__clear"
+    bindtap="handleClear"
+  >
+    <text class="w-input__clear-icon iconfont icon-close"></text>
+  </view>
+  <view class="w-input__suffix" wx:if="{{true}}">
+    <slot name="suffix"></slot>
+  </view>
+  <view wx:if="{{showWordLimit && maxlength > 0}}" class="w-input__count">
+    {{value.length}}/{{maxlength}}
+  </view>
+</view>

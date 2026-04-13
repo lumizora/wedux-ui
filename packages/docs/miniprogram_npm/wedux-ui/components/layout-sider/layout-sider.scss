@@ -1,0 +1,13 @@
+.w-layout-sider {
+  flex-shrink: 0;
+  background: var(--layout-sider-bg);
+  height: 100%;
+
+  &__scroll {
+    height: 100%;
+  }
+
+  &--bordered {
+    border-right: 1rpx solid var(--layout-border-color);
+  }
+}

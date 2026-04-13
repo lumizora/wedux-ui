@@ -1,0 +1,13 @@
+@import '../../demo.scss';
+
+.drawer-demo-content {
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.drawer-demo-text {
+  font-size: var(--font-size-md);
+  color: var(--color-text-primary);
+}

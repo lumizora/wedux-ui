@@ -1,0 +1,12 @@
+<scroll-view
+  class="w-infinite-scroll"
+  scroll-y
+  lower-threshold="{{distance}}"
+  bindscrolltolower="onScrollToLower"
+>
+  <slot />
+  <view class="w-infinite-scroll__tip" wx:if="{{loading || finished}}">
+    <view class="w-infinite-scroll__spinner" wx:if="{{loading}}" />
+    <text class="w-infinite-scroll__text">{{loading ? loadingText : finishedText}}</text>
+  </view>
+</scroll-view>

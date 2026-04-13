@@ -1,0 +1,9 @@
+<view class="w-list {{bordered ? 'w-list--bordered' : ''}} w-list--{{size}}">
+  <view class="w-list__header">
+    <slot name="header" />
+  </view>
+  <slot />
+  <view class="w-list__footer">
+    <slot name="footer" />
+  </view>
+</view>

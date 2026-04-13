@@ -1,0 +1,13 @@
+<view
+  class="w-checkbox {{_checked ? 'w-checkbox--checked' : ''}} {{indeterminate ? 'w-checkbox--indeterminate' : ''}} {{(disabled || _groupDisabled || _maxReached) ? 'w-checkbox--disabled' : ''}} w-checkbox--size-{{_groupSize || 'medium'}}"
+  bindtap="handleTap"
+>
+  <view class="w-checkbox__box">
+    <view wx:if="{{indeterminate}}" class="w-checkbox__indeterminate"></view>
+    <view wx:else class="w-checkbox__check"></view>
+  </view>
+  <view class="w-checkbox__label">
+    <text wx:if="{{label}}">{{label}}</text>
+    <slot wx:else></slot>
+  </view>
+</view>

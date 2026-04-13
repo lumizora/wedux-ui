@@ -1,0 +1,33 @@
+<view
+  class="w-form-item w-form-item--{{_formLabelPlacement}} {{(validationStatus || _validationStatus) === 'error' ? 'w-form-item--error' : ''}} {{(validationStatus || _validationStatus) === 'warning' ? 'w-form-item--warning' : ''}}"
+>
+  <view
+    wx:if="{{_formShowLabel}}"
+    class="w-form-item__label"
+    style="{{_formLabelPlacement === 'left' ? 'width: ' + (labelWidth || _formLabelWidth || '160rpx') + ';' : ''}}"
+  >
+    <span
+      wx:if="{{_formShowRequireMark && _isRequired && (requireMarkPlacement || _formRequireMarkPlacement) === 'left'}}"
+      class="w-form-item__require"
+    >
+      *
+    </span>
+    <text wx:if="{{label}}">{{label}}</text>
+    <slot wx:else name="label"></slot>
+    <span
+      wx:if="{{_formShowRequireMark && _isRequired && (requireMarkPlacement || _formRequireMarkPlacement) !== 'left'}}"
+      class="w-form-item__require"
+    >
+      *
+    </span>
+  </view>
+  <view class="w-form-item__content">
+    <slot></slot>
+    <view
+      wx:if="{{(showFeedback !== null ? showFeedback : _formShowFeedback) && (feedback || _validationMessage)}}"
+      class="w-form-item__feedback w-form-item__feedback--{{validationStatus || _validationStatus || 'error'}}"
+    >
+      {{feedback || _validationMessage}}
+    </view>
+  </view>
+</view>

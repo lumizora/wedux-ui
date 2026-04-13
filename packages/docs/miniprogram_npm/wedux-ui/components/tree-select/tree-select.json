@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "styleIsolation": "apply-shared",
+  "usingComponents": {
+    "w-tree": "../tree/tree",
+    "w-drawer": "../drawer/drawer"
+  }
+}

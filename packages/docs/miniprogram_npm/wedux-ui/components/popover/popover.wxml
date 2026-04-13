@@ -1,0 +1,19 @@
+<view class="w-popover">
+  <view class="w-popover__trigger" bindtap="handleTriggerTap">
+    <slot name="trigger" />
+  </view>
+  <view
+    wx:if="{{_visible}}"
+    class="w-popover__body {{_active ? 'w-popover__body--active' : ''}}"
+    style="{{_bodyStyle}}"
+  >
+    <view
+      wx:if="{{showArrow}}"
+      class="w-popover__arrow {{_arrowClass}}"
+      style="{{_arrowStyle}}"
+    ></view>
+    <view class="w-popover__content">
+      <slot />
+    </view>
+  </view>
+</view>

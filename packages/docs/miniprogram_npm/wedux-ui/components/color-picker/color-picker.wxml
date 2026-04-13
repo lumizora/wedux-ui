@@ -1,0 +1,232 @@
+<view
+  class="w-color-picker w-color-picker--size-{{size || _formItemSize || 'medium'}} {{(disabled || _formItemDisabled) ? 'w-color-picker--disabled' : ''}} {{readonly ? 'w-color-picker--readonly' : ''}} {{status === 'error' ? 'w-color-picker--error' : ''}} {{status === 'warning' ? 'w-color-picker--warning' : ''}}"
+>
+  <view class="w-color-picker__trigger" bindtap="handleTap">
+    <view
+      wx:if="{{_displayColor}}"
+      class="w-color-picker__trigger-swatch"
+      style="background: {{_displayColor}}"
+    ></view>
+    <text wx:if="{{_displayText}}" class="w-color-picker__text">{{_displayText}}</text>
+    <text wx:else class="w-color-picker__placeholder">{{placeholder}}</text>
+    <view
+      wx:if="{{clearable && _displayText && !disabled && !_formItemDisabled && !readonly}}"
+      class="w-color-picker__clear"
+      catchtap="handleClear"
+    >
+      <view class="w-color-picker__clear-icon"></view>
+    </view>
+    <view wx:else class="w-color-picker__icon">
+      <view class="w-color-picker__color-icon"></view>
+    </view>
+  </view>
+
+  <w-drawer show="{{_visible}}" placement="bottom" round bind:update:show="handleCancel">
+    <view class="w-color-picker__panel">
+      <!-- Header -->
+      <view class="w-color-picker__header">
+        <view class="w-color-picker__btn" bindtap="handleCancel">取消</view>
+        <view class="w-color-picker__title">选择颜色</view>
+        <view class="w-color-picker__btn w-color-picker__btn--primary" bindtap="handleConfirm">
+          确认
+        </view>
+      </view>
+
+      <!-- SV Palette -->
+      <view class="w-color-picker__palette-wrap">
+        <view
+          class="w-color-picker__palette"
+          style="{{_paletteHue}}"
+          bindtouchstart="handlePaletteTouchStart"
+          bindtouchmove="handlePaletteTouchMove"
+          catchtouchmove="handlePaletteTouchMove"
+        >
+          <view class="w-color-picker__palette-white"></view>
+          <view class="w-color-picker__palette-black"></view>
+          <view
+            class="w-color-picker__palette-handle"
+            style="left: {{_handleX}}%; top: {{_handleY}}%"
+          ></view>
+        </view>
+      </view>
+
+      <!-- Controls: preview + sliders -->
+      <view class="w-color-picker__controls">
+        <view class="w-color-picker__preview">
+          <view class="w-color-picker__preview-checker"></view>
+          <view class="w-color-picker__preview-color" style="background: {{_previewColor}}"></view>
+        </view>
+
+        <view class="w-color-picker__sliders">
+          <!-- Hue slider -->
+          <view
+            class="w-color-picker__hue"
+            bindtouchstart="handleHueTouchStart"
+            bindtouchmove="handleHueTouchMove"
+            catchtouchmove="handleHueTouchMove"
+          >
+            <view class="w-color-picker__slider-handle" style="left: {{_hueX}}%"></view>
+          </view>
+
+          <!-- Alpha slider -->
+          <view
+            wx:if="{{showAlpha}}"
+            class="w-color-picker__alpha"
+            bindtouchstart="handleAlphaTouchStart"
+            bindtouchmove="handleAlphaTouchMove"
+            catchtouchmove="handleAlphaTouchMove"
+          >
+            <view class="w-color-picker__alpha-checker"></view>
+            <view class="w-color-picker__alpha-gradient" style="{{_alphaGradient}}"></view>
+            <view class="w-color-picker__slider-handle" style="left: {{_alphaX}}%"></view>
+          </view>
+        </view>
+      </view>
+
+      <!-- Input section -->
+      <view wx:if="{{_hasModes}}" class="w-color-picker__inputs">
+        <!-- HEX mode -->
+        <block wx:if="{{_inputMode === 'hex'}}">
+          <view class="w-color-picker__input-field w-color-picker__input-field--hex">
+            <input class="w-color-picker__input" value="{{_hexVal}}" bindblur="handleHexInput" />
+            <text class="w-color-picker__input-label">HEX</text>
+          </view>
+        </block>
+
+        <!-- RGB mode -->
+        <block wx:elif="{{_inputMode === 'rgb'}}">
+          <view class="w-color-picker__input-field">
+            <input
+              type="number"
+              class="w-color-picker__input"
+              value="{{_rVal}}"
+              data-channel="r"
+              bindblur="handleRgbInput"
+            />
+            <text class="w-color-picker__input-label">R</text>
+          </view>
+          <view class="w-color-picker__input-field">
+            <input
+              type="number"
+              class="w-color-picker__input"
+              value="{{_gVal}}"
+              data-channel="g"
+              bindblur="handleRgbInput"
+            />
+            <text class="w-color-picker__input-label">G</text>
+          </view>
+          <view class="w-color-picker__input-field">
+            <input
+              type="number"
+              class="w-color-picker__input"
+              value="{{_bVal}}"
+              data-channel="b"
+              bindblur="handleRgbInput"
+            />
+            <text class="w-color-picker__input-label">B</text>
+          </view>
+        </block>
+
+        <!-- HSL mode -->
+        <block wx:elif="{{_inputMode === 'hsl'}}">
+          <view class="w-color-picker__input-field">
+            <input
+              type="number"
+              class="w-color-picker__input"
+              value="{{_hslH}}"
+              data-channel="h"
+              bindblur="handleHslInput"
+            />
+            <text class="w-color-picker__input-label">H</text>
+          </view>
+          <view class="w-color-picker__input-field">
+            <input
+              type="number"
+              class="w-color-picker__input"
+              value="{{_hslS}}"
+              data-channel="s"
+              bindblur="handleHslInput"
+            />
+            <text class="w-color-picker__input-label">S</text>
+          </view>
+          <view class="w-color-picker__input-field">
+            <input
+              type="number"
+              class="w-color-picker__input"
+              value="{{_hslL}}"
+              data-channel="l"
+              bindblur="handleHslInput"
+            />
+            <text class="w-color-picker__input-label">L</text>
+          </view>
+        </block>
+
+        <!-- HSV mode -->
+        <block wx:elif="{{_inputMode === 'hsv'}}">
+          <view class="w-color-picker__input-field">
+            <input
+              type="number"
+              class="w-color-picker__input"
+              value="{{_h}}"
+              data-channel="h"
+              bindblur="handleHsvInput"
+            />
+            <text class="w-color-picker__input-label">H</text>
+          </view>
+          <view class="w-color-picker__input-field">
+            <input
+              type="number"
+              class="w-color-picker__input"
+              value="{{_s}}"
+              data-channel="s"
+              bindblur="handleHsvInput"
+            />
+            <text class="w-color-picker__input-label">S</text>
+          </view>
+          <view class="w-color-picker__input-field">
+            <input
+              type="number"
+              class="w-color-picker__input"
+              value="{{_v}}"
+              data-channel="v"
+              bindblur="handleHsvInput"
+            />
+            <text class="w-color-picker__input-label">V</text>
+          </view>
+        </block>
+
+        <!-- Alpha input -->
+        <view wx:if="{{showAlpha}}" class="w-color-picker__input-field">
+          <input
+            type="number"
+            class="w-color-picker__input"
+            value="{{_aVal}}"
+            bindblur="handleAlphaInput"
+          />
+          <text class="w-color-picker__input-label">A</text>
+        </view>
+
+        <!-- Mode toggle -->
+        <view
+          wx:if="{{_showModeToggle}}"
+          class="w-color-picker__mode-btn"
+          bindtap="handleModeToggle"
+        >
+          <view class="w-color-picker__mode-arrows"></view>
+        </view>
+      </view>
+
+      <!-- Swatches -->
+      <view wx:if="{{swatches.length}}" class="w-color-picker__swatches">
+        <view
+          wx:for="{{swatches}}"
+          wx:key="*this"
+          class="w-color-picker__swatch-item"
+          style="background: {{item}}"
+          bindtap="handleSwatchTap"
+          data-color="{{item}}"
+        ></view>
+      </view>
+    </view>
+  </w-drawer>
+</view>

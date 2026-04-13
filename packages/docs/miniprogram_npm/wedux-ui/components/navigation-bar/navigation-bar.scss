@@ -1,0 +1,63 @@
+@import '../../styles/iconfont.scss';
+
+.w-navbar {
+  background-color: var(--navbar-bg);
+}
+
+.w-navbar__content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.w-navbar__back {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 88rpx;
+  height: 100%;
+}
+
+.w-navbar__back--hover {
+  opacity: 0.5;
+}
+
+.w-navbar__back-slot {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.w-navbar__back-icon {
+  font-size: 52rpx;
+  color: var(--navbar-icon-color);
+}
+
+.w-navbar__custom-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  overflow: hidden;
+}
+
+.w-navbar__title {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--navbar-title-color);
+  box-sizing: border-box;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

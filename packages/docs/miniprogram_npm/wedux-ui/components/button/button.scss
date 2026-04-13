@@ -1,0 +1,499 @@
+.w-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--w-btn-height);
+  padding: 0 var(--spacing-xl);
+  border-radius: var(--w-btn-radius);
+  font-size: var(--w-btn-font-size);
+  font-weight: 400;
+  box-sizing: border-box;
+  transition: opacity 0.2s;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  border: 2rpx solid transparent;
+}
+
+/* Reset native button styles */
+wx-button:not([size='mini']) {
+  width: auto;
+  margin: 0;
+  outline: none;
+}
+
+/* Block */
+.w-btn--block {
+  display: flex;
+  width: 100%;
+}
+
+/* Strong */
+.w-btn--strong {
+  font-weight: 600;
+}
+
+/* Round (pill) */
+.w-btn--round,
+.w-btn--round.w-btn--size-medium,
+.w-btn--round.w-btn--size-small {
+  border-radius: 9999rpx;
+}
+
+/* ——— Filled Types ——— */
+
+.w-btn--primary {
+  background: var(--color-brand);
+  color: #ffffff;
+  border-color: var(--color-brand);
+}
+
+.w-btn--success {
+  background: var(--color-success);
+  color: #ffffff;
+  border-color: var(--color-success);
+}
+
+.w-btn--info {
+  background: var(--color-info);
+  color: #ffffff;
+  border-color: var(--color-info);
+}
+
+.w-btn--warning {
+  background: var(--color-warning);
+  color: #ffffff;
+  border-color: var(--color-warning);
+}
+
+.w-btn--error {
+  background: var(--color-danger);
+  color: #ffffff;
+  border-color: var(--color-danger);
+}
+
+.w-btn--default {
+  background: var(--color-bg-elevated);
+  color: var(--color-text-primary);
+  border-color: var(--color-separator);
+}
+
+.w-btn--tertiary {
+  background: var(--color-bg-base);
+  color: var(--color-text-primary);
+  border-color: transparent;
+}
+
+/* ——— Secondary variant (light tinted bg, colored text) ——— */
+
+.w-btn--secondary.w-btn--primary {
+  background: rgba(7, 193, 96, 0.12);
+  color: var(--color-brand);
+  border-color: transparent;
+}
+
+.w-btn--secondary.w-btn--success {
+  background: rgba(116, 182, 0, 0.12);
+  color: var(--color-success);
+  border-color: transparent;
+}
+
+.w-btn--secondary.w-btn--info {
+  background: rgba(16, 174, 255, 0.12);
+  color: var(--color-info);
+  border-color: transparent;
+}
+
+.w-btn--secondary.w-btn--warning {
+  background: rgba(250, 157, 59, 0.12);
+  color: var(--color-warning);
+  border-color: transparent;
+}
+
+.w-btn--secondary.w-btn--error {
+  background: rgba(250, 81, 81, 0.12);
+  color: var(--color-danger);
+  border-color: transparent;
+}
+
+.w-btn--secondary.w-btn--default {
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--color-text-primary);
+  border-color: transparent;
+}
+
+.w-btn--secondary.w-btn--tertiary {
+  background: rgba(0, 0, 0, 0.04);
+  color: var(--color-text-secondary);
+  border-color: transparent;
+}
+
+/* ——— Tertiary variant (extra-light tinted bg, colored text) ——— */
+
+.w-btn--primary.w-btn--tertiary {
+  background: rgba(7, 193, 96, 0.06);
+  color: var(--color-brand);
+  border-color: transparent;
+}
+
+.w-btn--success.w-btn--tertiary {
+  background: rgba(116, 182, 0, 0.06);
+  color: var(--color-success);
+  border-color: transparent;
+}
+
+.w-btn--info.w-btn--tertiary {
+  background: rgba(16, 174, 255, 0.06);
+  color: var(--color-info);
+  border-color: transparent;
+}
+
+.w-btn--warning.w-btn--tertiary {
+  background: rgba(250, 157, 59, 0.06);
+  color: var(--color-warning);
+  border-color: transparent;
+}
+
+.w-btn--error.w-btn--tertiary {
+  background: rgba(250, 81, 81, 0.06);
+  color: var(--color-danger);
+  border-color: transparent;
+}
+
+/* ——— Ghost variant (transparent bg, solid colored border) ——— */
+
+.w-btn--ghost.w-btn--primary {
+  background: transparent;
+  color: var(--color-brand);
+  border-color: var(--color-brand);
+}
+
+.w-btn--ghost.w-btn--success {
+  background: transparent;
+  color: var(--color-success);
+  border-color: var(--color-success);
+}
+
+.w-btn--ghost.w-btn--info {
+  background: transparent;
+  color: var(--color-info);
+  border-color: var(--color-info);
+}
+
+.w-btn--ghost.w-btn--warning {
+  background: transparent;
+  color: var(--color-warning);
+  border-color: var(--color-warning);
+}
+
+.w-btn--ghost.w-btn--error {
+  background: transparent;
+  color: var(--color-danger);
+  border-color: var(--color-danger);
+}
+
+.w-btn--ghost.w-btn--default {
+  background: transparent;
+  color: var(--color-text-primary);
+  border-color: var(--color-separator);
+}
+
+/* ——— Dashed variant (transparent bg, dashed border) ——— */
+
+.w-btn--dashed {
+  border-style: dashed;
+}
+
+.w-btn--dashed.w-btn--primary {
+  background: transparent;
+  color: var(--color-brand);
+  border-color: var(--color-brand);
+}
+
+.w-btn--dashed.w-btn--success {
+  background: transparent;
+  color: var(--color-success);
+  border-color: var(--color-success);
+}
+
+.w-btn--dashed.w-btn--info {
+  background: transparent;
+  color: var(--color-info);
+  border-color: var(--color-info);
+}
+
+.w-btn--dashed.w-btn--warning {
+  background: transparent;
+  color: var(--color-warning);
+  border-color: var(--color-warning);
+}
+
+.w-btn--dashed.w-btn--error {
+  background: transparent;
+  color: var(--color-danger);
+  border-color: var(--color-danger);
+}
+
+/* ——— Text variant (no bg, no border, just colored text) ——— */
+
+.w-btn--quaternary {
+  background: transparent;
+  border-color: transparent;
+  padding: 0 var(--spacing-sm);
+}
+
+.w-btn--quaternary.w-btn--primary {
+  color: var(--color-brand);
+}
+
+.w-btn--quaternary.w-btn--success {
+  color: var(--color-success);
+}
+
+.w-btn--quaternary.w-btn--info {
+  color: var(--color-info);
+}
+
+.w-btn--quaternary.w-btn--warning {
+  color: var(--color-warning);
+}
+
+.w-btn--quaternary.w-btn--error {
+  color: var(--color-danger);
+}
+
+.w-btn--quaternary.w-btn--default {
+  color: var(--color-text-primary);
+}
+
+.w-btn--quaternary.w-btn--tertiary {
+  color: var(--color-text-secondary);
+}
+
+/* ——— Text prop (inline text, no bg / border / height) ——— */
+
+.w-btn--text {
+  height: auto;
+  padding: 0;
+  border-color: transparent;
+  background: transparent;
+  border-radius: 0;
+}
+
+.w-btn--text.w-btn--size-default,
+.w-btn--text.w-btn--size-medium,
+.w-btn--text.w-btn--size-small {
+  height: auto;
+  padding: 0;
+}
+
+.w-btn--text.w-btn--primary {
+  color: var(--color-brand);
+}
+.w-btn--text.w-btn--success {
+  color: var(--color-success);
+}
+.w-btn--text.w-btn--info {
+  color: var(--color-info);
+}
+.w-btn--text.w-btn--warning {
+  color: var(--color-warning);
+}
+.w-btn--text.w-btn--error {
+  color: var(--color-danger);
+}
+.w-btn--text.w-btn--default {
+  color: var(--color-text-primary);
+}
+.w-btn--text.w-btn--tertiary {
+  color: var(--color-text-secondary);
+}
+
+.w-btn--text .w-btn__spinner {
+  border-color: rgba(0, 0, 0, 0.15);
+  border-top-color: currentColor;
+}
+
+.w-btn--text .w-btn__overlay {
+  display: none;
+}
+
+/* ——— Sizes ——— */
+
+.w-btn--size-default {
+  height: var(--w-btn-height);
+  font-size: var(--w-btn-font-size);
+  padding: 0 var(--spacing-xl);
+  border-radius: var(--w-btn-radius);
+}
+
+.w-btn--size-medium {
+  height: var(--w-btn-height-md);
+  font-size: var(--w-btn-font-size-md);
+  padding: 0 var(--spacing-lg);
+  border-radius: var(--w-btn-radius-md);
+}
+
+.w-btn--size-small {
+  height: var(--w-btn-height-sm);
+  font-size: var(--w-btn-font-size-sm);
+  padding: 0 var(--spacing-md);
+  border-radius: var(--w-btn-radius-sm);
+}
+
+/* Circle */
+.w-btn--circle {
+  width: var(--w-btn-height);
+  padding: 0;
+  border-radius: 50%;
+}
+
+.w-btn--circle.w-btn--size-medium {
+  width: var(--w-btn-height-md);
+}
+
+.w-btn--circle.w-btn--size-small {
+  width: var(--w-btn-height-sm);
+}
+
+/* Text variant size overrides — reduce horizontal padding */
+.w-btn--quaternary.w-btn--size-medium {
+  padding: 0 var(--spacing-xs);
+}
+
+.w-btn--quaternary.w-btn--size-small {
+  padding: 0 var(--spacing-xs);
+}
+
+/* Circle size overrides */
+.w-btn--circle.w-btn--size-default {
+  width: var(--w-btn-height);
+}
+
+/* ——— Press overlay ——— */
+
+.w-btn__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.w-btn--active .w-btn__overlay {
+  opacity: 1;
+  background: var(--color-press-overlay);
+}
+
+.w-btn--default.w-btn--active .w-btn__overlay,
+.w-btn--tertiary.w-btn--active .w-btn__overlay,
+.w-btn--secondary.w-btn--active .w-btn__overlay,
+.w-btn--ghost.w-btn--active .w-btn__overlay,
+.w-btn--dashed.w-btn--active .w-btn__overlay,
+.w-btn--quaternary.w-btn--active .w-btn__overlay {
+  background: var(--color-press-overlay-light);
+}
+
+/* ——— States ——— */
+
+.w-btn--disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.w-btn--loading {
+  pointer-events: none;
+}
+
+/* ——— Loading spinner ——— */
+
+.w-btn__spinner {
+  width: 36rpx;
+  height: 36rpx;
+  border: 4rpx solid rgba(255, 255, 255, 0.4);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  margin-right: var(--spacing-sm);
+  animation: w-spin 0.8s linear infinite;
+  flex-shrink: 0;
+}
+
+.w-btn--size-medium .w-btn__spinner {
+  width: 28rpx;
+  height: 28rpx;
+  border-width: 3rpx;
+}
+
+.w-btn--size-small .w-btn__spinner {
+  width: 22rpx;
+  height: 22rpx;
+  border-width: 2rpx;
+}
+
+/* Dark spinner for non-white-text buttons */
+.w-btn--default .w-btn__spinner,
+.w-btn--tertiary .w-btn__spinner,
+.w-btn--secondary .w-btn__spinner,
+.w-btn--ghost .w-btn__spinner,
+.w-btn--dashed .w-btn__spinner,
+.w-btn--quaternary .w-btn__spinner {
+  border-color: rgba(0, 0, 0, 0.15);
+  border-top-color: currentColor;
+}
+
+@keyframes w-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ——— Button group positioning — horizontal ——— */
+
+.w-btn--group-first {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right-width: 0;
+}
+
+.w-btn--group-middle {
+  border-radius: 0;
+  border-right-width: 0;
+}
+
+.w-btn--group-last {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+/* ——— Button group positioning — vertical ——— */
+
+.w-btn--group-v-first {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-width: 0;
+}
+
+.w-btn--group-v-middle {
+  border-radius: 0;
+  border-bottom-width: 0;
+}
+
+.w-btn--group-v-last {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+/* Bring active button's border to front */
+.w-btn--group-first.w-btn--active,
+.w-btn--group-middle.w-btn--active,
+.w-btn--group-last.w-btn--active,
+.w-btn--group-v-first.w-btn--active,
+.w-btn--group-v-middle.w-btn--active,
+.w-btn--group-v-last.w-btn--active {
+  position: relative;
+  z-index: 1;
+}

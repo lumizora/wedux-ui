@@ -1,0 +1,54 @@
+.w-fab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 96rpx;
+  height: 96rpx;
+  box-shadow: var(--shadow-float);
+  transition: opacity 0.2s;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.w-fab--circle {
+  border-radius: 50%;
+}
+
+.w-fab--square {
+  border-radius: var(--radius-md);
+}
+
+/* Types */
+.w-fab--primary {
+  background: var(--color-brand);
+  color: #ffffff;
+}
+
+.w-fab--default {
+  background: var(--color-bg-elevated);
+  color: var(--color-text-primary);
+}
+
+/* Press overlay */
+.w-fab--active::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--color-press-overlay);
+  border-radius: inherit;
+}
+
+.w-fab--default.w-fab--active::after {
+  background: var(--color-press-overlay-light);
+}
+
+/* Disabled */
+.w-fab--disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}

@@ -1,0 +1,16 @@
+<view class="w-qr-code" bind:tap="onTap">
+  <canvas
+    type="2d"
+    id="qr-canvas"
+    class="w-qr-code__canvas"
+    style="width: {{_canvasSize}}px; height: {{_canvasSize}}px;"
+    wx:if="{{!_tempImagePath}}"
+  ></canvas>
+  <image
+    wx:if="{{_tempImagePath}}"
+    class="w-qr-code__image"
+    src="{{_tempImagePath}}"
+    style="width: {{_canvasSize}}px; height: {{_canvasSize}}px;"
+    show-menu-by-longpress
+  />
+</view>

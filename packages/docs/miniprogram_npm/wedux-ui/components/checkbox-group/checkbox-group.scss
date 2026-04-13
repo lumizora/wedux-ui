@@ -1,0 +1,9 @@
+.w-checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+}
+
+.w-checkbox-group--vertical {
+  flex-direction: column;
+}
