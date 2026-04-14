@@ -28,7 +28,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ```plain-text
 wedux-ui/                            # workspace 根（private）
 ├── package.json                     # 仅 prettier 工具链
-├── pnpm-workspace.yaml              # 声明 packages/core、packages/docs
+├── pnpm-workspace.yaml              # 声明 packages/core、packages/docs、packages/app
 ├── .prettierrc / .prettierignore    # 全局格式化配置
 └── packages/
     ├── core/                        # 组件库（name: wedux-ui，可发布 npm）
@@ -50,7 +50,19 @@ wedux-ui/                            # workspace 根（private）
     │   └── pages/
     │       ├── index/               # 组件目录导航页
     │       └── {name}/              # 各组件 demo 页
-    └── app/                         # （待建）门店活动运营 Demo mini-program
+    └── app/                         # 门店活动运营 Demo mini-program（dep: wedux-ui workspace:*）
+        ├── app.js / app.json / app.scss
+        ├── project.config.json / sitemap.json / theme.json
+        ├── miniprogram_npm/wedux-ui  # symlink → packages/core/src
+        ├── utils/
+        │   └── mock.js              # 本地 mock 数据（activities、stats、statusConfig 等）
+        └── pages/
+            ├── dashboard/           # 首页（数据概览 + 快捷操作 + 最近活动）
+            ├── list/                # 活动列表（筛选 + 无限滚动 + 排序抽屉）
+            ├── form/                # 创建/编辑活动（完整表单 + 校验）
+            ├── detail/              # 活动详情（信息展示 + 操作聚合）
+            ├── settings/            # 主题设置（亮/暗切换 + 主色定制 + 实时预览）
+            └── share/               # 分享二维码（QR 码 + 保存/转发）
 ```
 
 ## 命名规范
