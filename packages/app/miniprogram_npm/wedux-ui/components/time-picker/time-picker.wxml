@@ -1,0 +1,47 @@
+<view class="w-time-picker">
+  <view
+    class="w-time-picker__trigger w-time-picker--size-{{size || _formItemSize || 'medium'}} {{(disabled || _formItemDisabled) ? 'w-time-picker--disabled' : ''}} {{readonly ? 'w-time-picker--readonly' : ''}} {{status === 'error' ? 'w-time-picker--error' : ''}} {{status === 'warning' ? 'w-time-picker--warning' : ''}}"
+    bindtap="handleTap"
+  >
+    <text wx:if="{{_displayText}}" class="w-time-picker__text">{{_displayText}}</text>
+    <text wx:else class="w-time-picker__placeholder">{{placeholder}}</text>
+    <view
+      wx:if="{{clearable && _displayText && !disabled && !_formItemDisabled && !readonly}}"
+      class="w-time-picker__clear"
+      catchtap="handleClear"
+    >
+      <text class="w-time-picker__clear-icon iconfont icon-close"></text>
+    </view>
+    <view wx:else class="w-time-picker__icon">
+      <text class="w-time-picker__clock iconfont icon-clock"></text>
+    </view>
+  </view>
+
+  <w-drawer show="{{_visible}}" placement="bottom" round bind:update:show="handleCancel">
+    <view class="w-time-picker__panel">
+      <view class="w-time-picker__header">
+        <view class="w-time-picker__btn" bindtap="handleCancel">取消</view>
+        <view class="w-time-picker__title">选择时间</view>
+        <view class="w-time-picker__btn w-time-picker__btn--primary" bindtap="handleConfirm">
+          确认
+        </view>
+      </view>
+      <picker-view
+        class="w-time-picker__picker"
+        value="{{_pickerValue}}"
+        indicator-class="w-time-picker__indicator"
+        bindchange="handlePickerChange"
+      >
+        <picker-view-column>
+          <view wx:for="{{_hours}}" wx:key="*this" class="w-time-picker__item">{{item}}</view>
+        </picker-view-column>
+        <picker-view-column>
+          <view wx:for="{{_minutes}}" wx:key="*this" class="w-time-picker__item">{{item}}</view>
+        </picker-view-column>
+        <picker-view-column wx:if="{{_showSeconds}}">
+          <view wx:for="{{_seconds}}" wx:key="*this" class="w-time-picker__item">{{item}}</view>
+        </picker-view-column>
+      </picker-view>
+    </view>
+  </w-drawer>
+</view>

@@ -1,0 +1,3 @@
+<view class="w-checkbox-group {{vertical ? 'w-checkbox-group--vertical' : ''}}">
+  <slot></slot>
+</view>

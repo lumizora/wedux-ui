@@ -1,0 +1,96 @@
+@import '../../styles/iconfont.scss';
+
+.w-input {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  width: 100%;
+  height: var(--w-input-height);
+  padding: 0 var(--spacing-md);
+  background: var(--w-input-bg);
+  border: 2rpx solid var(--w-input-border);
+  border-radius: var(--w-input-radius);
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+  gap: var(--spacing-xs);
+}
+
+.w-input--size-medium {
+  height: var(--w-input-height-md);
+}
+
+.w-input--size-small {
+  height: var(--w-input-height-sm);
+  padding: 0 var(--spacing-sm);
+  font-size: var(--font-size-sm);
+}
+
+.w-input--round {
+  border-radius: var(--radius-full);
+}
+
+.w-input--focus {
+  border-color: var(--w-input-border-focus);
+}
+
+.w-input--disabled {
+  background: var(--color-input-bg-disabled);
+  opacity: 0.6;
+}
+
+.w-input--error {
+  border-color: var(--color-input-border-error);
+}
+
+.w-input--warning {
+  border-color: var(--color-input-border-warning);
+}
+
+.w-input__native {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  font-size: inherit;
+  color: var(--color-text-primary);
+  background: transparent;
+}
+
+.w-input__placeholder {
+  color: var(--color-text-placeholder);
+}
+
+.w-input__prefix,
+.w-input__suffix {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.w-input__clear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36rpx;
+  height: 36rpx;
+  flex-shrink: 0;
+}
+
+.w-input__clear-icon {
+  width: 28rpx;
+  height: 28rpx;
+  border-radius: 50%;
+  background: var(--color-text-placeholder);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16rpx;
+  color: var(--color-bg-elevated);
+  line-height: 1;
+}
+
+.w-input__count {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+  margin-left: var(--spacing-xs);
+}

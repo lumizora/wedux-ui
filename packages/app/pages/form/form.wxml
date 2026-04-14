@@ -1,0 +1,178 @@
+<view class="page">
+  <w-theme-provider theme="{{theme}}">
+    <w-layout>
+      <w-layout-header position="static">
+        <w-navigation-bar title="{{isEdit ? '编辑活动' : '新建活动'}}" />
+      </w-layout-header>
+      <w-layout-content>
+        <scroll-view scroll-y enhanced="{{true}}" show-scrollbar="{{false}}" class="scroll-view">
+          <w-form id="activityForm" model="{{formData}}" label-placement="top" show-require-mark>
+            <!-- 基本信息 -->
+            <view class="form-section">
+              <view class="form-section__title">基本信息</view>
+
+              <w-form-item label="活动名称" path="title" required>
+                <w-input
+                  value="{{formData.title}}"
+                  placeholder="请输入活动名称（5-30字）"
+                  maxlength="{{30}}"
+                  bind:change="onTitleChange"
+                />
+              </w-form-item>
+
+              <w-form-item label="活动类型" path="type" required>
+                <w-select
+                  value="{{formData.type}}"
+                  options="{{typeOptions}}"
+                  placeholder="请选择活动类型"
+                  bind:change="onTypeChange"
+                />
+              </w-form-item>
+
+              <w-form-item label="活动描述" path="description" required>
+                <w-textarea
+                  value="{{formData.description}}"
+                  placeholder="请详细描述活动内容、参与规则及奖励..."
+                  maxlength="{{500}}"
+                  show-count
+                  rows="{{4}}"
+                  bind:change="onDescChange"
+                />
+              </w-form-item>
+
+              <w-form-item label="活动地点" path="location">
+                <w-input
+                  value="{{formData.location}}"
+                  placeholder="请输入活动地点（可选）"
+                  bind:change="onLocationChange"
+                />
+              </w-form-item>
+            </view>
+
+            <w-divider />
+
+            <!-- 时间设置 -->
+            <view class="form-section">
+              <view class="form-section__title">时间设置</view>
+
+              <view class="datetime-row">
+                <w-form-item label="开始日期" path="startDate" required class="datetime-item">
+                  <w-date-picker
+                    value="{{formData.startDate}}"
+                    placeholder="选择日期"
+                    bind:change="onStartDateChange"
+                  />
+                </w-form-item>
+                <w-form-item label="开始时间" path="startTime" required class="datetime-item">
+                  <w-time-picker
+                    value="{{formData.startTime}}"
+                    placeholder="选择时间"
+                    bind:change="onStartTimeChange"
+                  />
+                </w-form-item>
+              </view>
+
+              <view class="datetime-row">
+                <w-form-item label="结束日期" path="endDate" required class="datetime-item">
+                  <w-date-picker
+                    value="{{formData.endDate}}"
+                    placeholder="选择日期"
+                    bind:change="onEndDateChange"
+                  />
+                </w-form-item>
+                <w-form-item label="结束时间" path="endTime" required class="datetime-item">
+                  <w-time-picker
+                    value="{{formData.endTime}}"
+                    placeholder="选择时间"
+                    bind:change="onEndTimeChange"
+                  />
+                </w-form-item>
+              </view>
+            </view>
+
+            <w-divider />
+
+            <!-- 目标与预算 -->
+            <view class="form-section">
+              <view class="form-section__title">目标与预算</view>
+
+              <w-form-item label="目标参与人数" path="targetCount" required>
+                <view class="stepper-wrap">
+                  <w-stepper
+                    value="{{formData.targetCount}}"
+                    min="{{1}}"
+                    max="{{99999}}"
+                    step="{{10}}"
+                    bind:change="onTargetCountChange"
+                  />
+                  <text class="stepper-unit">人</text>
+                </view>
+              </w-form-item>
+
+              <w-form-item label="活动预算（元）" path="budget" required>
+                <w-input
+                  value="{{formData.budget}}"
+                  type="number"
+                  placeholder="请输入预算金额"
+                  prefix="¥"
+                  bind:change="onBudgetChange"
+                />
+              </w-form-item>
+            </view>
+
+            <w-divider />
+
+            <!-- 封面与标签 -->
+            <view class="form-section">
+              <view class="form-section__title">封面与标签</view>
+
+              <w-form-item label="活动封面" path="coverFiles">
+                <w-upload
+                  file-list="{{formData.coverFiles}}"
+                  max-count="{{1}}"
+                  bind:change="onUploadChange"
+                  tip="建议尺寸 600×300，支持 JPG/PNG"
+                />
+              </w-form-item>
+
+              <w-form-item label="活动标签" path="tags">
+                <w-checkbox-group value="{{formData.tags}}" bind:change="onTagsChange">
+                  <view class="tag-grid">
+                    <w-checkbox wx:for="{{tagOptions}}" wx:key="value" value="{{item.value}}"
+                      >{{item.label}}</w-checkbox
+                    >
+                  </view>
+                </w-checkbox-group>
+              </w-form-item>
+            </view>
+
+            <w-divider />
+
+            <!-- 高级设置 -->
+            <view class="form-section">
+              <view class="form-section__title">高级设置</view>
+
+              <w-form-item label="活动开始时推送通知" path="enableNotify">
+                <w-switch checked="{{formData.enableNotify}}" bind:change="onNotifyChange" />
+              </w-form-item>
+            </view>
+          </w-form>
+
+          <!-- 提交区域 -->
+          <view class="submit-area">
+            <w-button class="submit-btn" bind:tap="onReset" type="default">重置</w-button>
+            <w-button
+              class="submit-btn submit-btn--primary"
+              type="primary"
+              loading="{{submitting}}"
+              bind:tap="onSubmit"
+              >{{isEdit ? '保存修改' : '立即创建'}}</w-button
+            >
+          </view>
+
+          <view class="bottom-spacer"></view>
+        </scroll-view>
+      </w-layout-content>
+    </w-layout>
+  </w-theme-provider>
+</view>

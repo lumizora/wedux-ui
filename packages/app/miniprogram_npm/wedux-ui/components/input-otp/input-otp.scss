@@ -1,0 +1,122 @@
+.w-input-otp {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  position: relative;
+}
+
+.w-input-otp__slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--size-otp-slot);
+  height: var(--size-otp-slot);
+  background: var(--color-input-bg);
+  border: 2rpx solid var(--color-input-border);
+  border-radius: var(--radius-md);
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+  position: relative;
+}
+
+.w-input-otp__slot--focus {
+  border-color: var(--color-input-border-focus);
+}
+
+.w-input-otp__slot--filled {
+  border-color: var(--color-text-secondary);
+}
+
+.w-input-otp__char {
+  font-size: var(--font-size-xl);
+  color: var(--color-text-primary);
+  line-height: 1;
+}
+
+.w-input-otp__placeholder {
+  font-size: var(--font-size-xl);
+  color: var(--color-text-placeholder);
+  line-height: 1;
+}
+
+.w-input-otp__mask-dot {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  background: var(--color-text-primary);
+}
+
+.w-input-otp__cursor {
+  width: 2rpx;
+  height: 40rpx;
+  background: var(--color-brand);
+  animation: w-otp-blink 1s step-end infinite;
+}
+
+@keyframes w-otp-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Hidden input - positioned off-screen but still focusable */
+.w-input-otp__hidden {
+  position: absolute;
+  left: -9999rpx;
+  width: 1rpx;
+  height: 1rpx;
+  opacity: 0;
+}
+
+/* Size variants */
+.w-input-otp--size-medium .w-input-otp__slot {
+  --size-otp-slot: 88rpx;
+}
+
+.w-input-otp--size-small .w-input-otp__slot {
+  --size-otp-slot: 72rpx;
+}
+
+.w-input-otp--size-small .w-input-otp__char,
+.w-input-otp--size-small .w-input-otp__placeholder {
+  font-size: var(--font-size-lg);
+}
+
+.w-input-otp--size-small .w-input-otp__cursor {
+  height: 32rpx;
+}
+
+.w-input-otp--size-large .w-input-otp__slot {
+  --size-otp-slot: 104rpx;
+}
+
+.w-input-otp--size-large .w-input-otp__char,
+.w-input-otp--size-large .w-input-otp__placeholder {
+  font-size: var(--font-size-h4);
+}
+
+.w-input-otp--size-large .w-input-otp__cursor {
+  height: 48rpx;
+}
+
+/* Disabled */
+.w-input-otp--disabled {
+  opacity: 0.6;
+}
+
+.w-input-otp--disabled .w-input-otp__slot {
+  background: var(--color-input-bg-disabled);
+}
+
+/* Status */
+.w-input-otp--error .w-input-otp__slot {
+  border-color: var(--color-input-border-error);
+}
+
+.w-input-otp--warning .w-input-otp__slot {
+  border-color: var(--color-input-border-warning);
+}

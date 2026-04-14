@@ -1,0 +1,138 @@
+@import '../../styles/iconfont.scss';
+
+.w-tag {
+  display: inline-flex;
+  align-items: center;
+  height: var(--w-tag-height-md);
+  padding: 0 var(--spacing-sm);
+  border-radius: var(--w-tag-radius);
+  font-size: var(--w-tag-font-size);
+  font-weight: 400;
+  box-sizing: border-box;
+  white-space: nowrap;
+  border: 2rpx solid transparent;
+  transition: opacity 0.2s;
+  line-height: 1;
+}
+
+/* ——— Sizes ——— */
+
+.w-tag--size-small {
+  height: var(--w-tag-height-sm);
+  padding: 0 var(--spacing-xs);
+  font-size: 22rpx;
+}
+
+.w-tag--size-medium {
+  height: var(--w-tag-height-md);
+  padding: 0 var(--spacing-sm);
+  font-size: var(--w-tag-font-size);
+}
+
+.w-tag--size-large {
+  height: var(--w-tag-height-lg);
+  padding: 0 var(--spacing-md);
+  font-size: var(--font-size-md);
+}
+
+/* Round */
+.w-tag--round {
+  border-radius: 9999rpx;
+}
+
+/* Strong */
+.w-tag--strong {
+  font-weight: 600;
+}
+
+/* ——— Type colors (filled style) ——— */
+
+.w-tag--default {
+  background: var(--color-bg-base);
+  color: var(--color-text-primary);
+  border-color: var(--color-separator);
+}
+
+.w-tag--primary {
+  background: rgba(7, 193, 96, 0.1);
+  color: var(--color-brand);
+  border-color: rgba(7, 193, 96, 0.3);
+}
+
+.w-tag--success {
+  background: rgba(116, 182, 0, 0.1);
+  color: var(--color-success);
+  border-color: rgba(116, 182, 0, 0.3);
+}
+
+.w-tag--info {
+  background: rgba(16, 174, 255, 0.1);
+  color: var(--color-info);
+  border-color: rgba(16, 174, 255, 0.3);
+}
+
+.w-tag--warning {
+  background: rgba(250, 157, 59, 0.1);
+  color: var(--color-warning);
+  border-color: rgba(250, 157, 59, 0.3);
+}
+
+.w-tag--error {
+  background: rgba(250, 81, 81, 0.1);
+  color: var(--color-danger);
+  border-color: rgba(250, 81, 81, 0.3);
+}
+
+/* Borderless */
+.w-tag--borderless {
+  border-color: transparent;
+}
+
+/* ——— States ——— */
+
+.w-tag--disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.w-tag--active {
+  opacity: 0.7;
+}
+
+/* ——— Checkable ——— */
+
+.w-tag--checked {
+  background: var(--color-brand);
+  color: #ffffff;
+  border-color: var(--color-brand);
+}
+
+.w-tag--unchecked {
+  background: transparent;
+  color: var(--color-text-secondary);
+  border-color: var(--color-separator);
+}
+
+.w-tag--unchecked.w-tag--borderless {
+  border-color: transparent;
+}
+
+/* ——— Close button ——— */
+
+.w-tag__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: var(--spacing-xs);
+  width: 28rpx;
+  height: 28rpx;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+.w-tag__close-icon {
+  font-size: 20rpx;
+  line-height: 1;
+  color: currentColor;
+  opacity: 0.6;
+}

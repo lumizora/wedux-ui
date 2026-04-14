@@ -1,0 +1,20 @@
+{
+  "pages": [
+    "pages/dashboard/dashboard",
+    "pages/list/list",
+    "pages/settings/settings",
+    "pages/form/form",
+    "pages/detail/detail",
+    "pages/share/share"
+  ],
+  "usingComponents": {},
+  "window": {
+    "navigationBarTextStyle": "@navigationBarTextStyle",
+    "navigationBarBackgroundColor": "@navigationBarBackgroundColor"
+  },
+  "darkmode": true,
+  "themeLocation": "theme.json",
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

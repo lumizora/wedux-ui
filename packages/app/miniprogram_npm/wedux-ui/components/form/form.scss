@@ -1,0 +1,11 @@
+.w-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.w-form--inline {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}

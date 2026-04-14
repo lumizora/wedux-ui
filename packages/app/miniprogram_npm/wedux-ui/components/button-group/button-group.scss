@@ -1,0 +1,8 @@
+.w-btn-group {
+  display: inline-flex;
+  flex-direction: row;
+}
+
+.w-btn-group--vertical {
+  flex-direction: column;
+}

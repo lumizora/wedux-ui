@@ -1,0 +1,21 @@
+<button
+  class="w-btn w-btn--{{type}} w-btn--size-{{_groupSize || size}} {{secondary ? 'w-btn--secondary' : ''}} {{tertiary ? 'w-btn--tertiary' : ''}} {{ghost ? 'w-btn--ghost' : ''}} {{dashed ? 'w-btn--dashed' : ''}} {{quaternary ? 'w-btn--quaternary' : ''}} {{text ? 'w-btn--text' : ''}} {{strong ? 'w-btn--strong' : ''}} {{round ? 'w-btn--round' : ''}} {{circle ? 'w-btn--circle' : ''}} {{block ? 'w-btn--block' : ''}} {{disabled ? 'w-btn--disabled' : ''}} {{loading ? 'w-btn--loading' : ''}} {{_groupClass}}"
+  style="{{_style}}"
+  hover-class="{{text ? '' : 'w-btn--active'}}"
+  hover-stay-time="70"
+  catchtap="handleTap"
+  open-type="{{openType}}"
+  form-type="{{formType}}"
+  bindgetphonenumber="handleGetPhoneNumber"
+  bindgetrealtimephonenumber="handleGetRealtimePhoneNumber"
+  bindchooseavatar="handleChooseAvatar"
+  bindgetuserinfo="handleUserInfo"
+  bindcontact="handleContact"
+  bindlaunchapp="handleLaunchApp"
+  bindopensetting="handleOpenSetting"
+  bindagreeprivacyauthorization="handleAgreePrivacyAuthorization"
+>
+  <view wx:if="{{loading}}" class="w-btn__spinner"></view>
+  <view class="w-btn__overlay"></view>
+  <slot></slot>
+</button>

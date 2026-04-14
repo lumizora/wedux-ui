@@ -1,0 +1,79 @@
+<view class="w-select">
+  <view
+    class="w-select__trigger w-select--size-{{size || _formItemSize || 'medium'}} {{(disabled || _formItemDisabled) ? 'w-select--disabled' : ''}} {{readonly ? 'w-select--readonly' : ''}} {{status === 'error' ? 'w-select--error' : ''}} {{status === 'warning' ? 'w-select--warning' : ''}} {{multiple && _selectedTags.length ? 'w-select--has-tags' : ''}}"
+    bindtap="handleTap"
+  >
+    <!-- 多选：标签展示 -->
+    <view wx:if="{{multiple && _selectedTags.length}}" class="w-select__tags">
+      <view wx:for="{{_selectedTags}}" wx:key="value" class="w-select__tag">
+        <text class="w-select__tag-text">{{item.label}}</text>
+        <view
+          wx:if="{{!disabled && !_formItemDisabled && !readonly}}"
+          class="w-select__tag-close"
+          catchtap="handleTagRemove"
+          data-value="{{item.value}}"
+        >
+          <text class="w-select__tag-close-icon iconfont icon-close"></text>
+        </view>
+      </view>
+    </view>
+    <!-- 多选：占位符 -->
+    <text wx:elif="{{multiple}}" class="w-select__placeholder">{{placeholder}}</text>
+    <!-- 单选：文本展示 -->
+    <text wx:elif="{{_displayText}}" class="w-select__text">{{_displayText}}</text>
+    <text wx:else class="w-select__placeholder">{{placeholder}}</text>
+
+    <view
+      wx:if="{{clearable && (multiple ? _selectedTags.length : _displayText) && !disabled && !_formItemDisabled && !readonly}}"
+      class="w-select__clear"
+      catchtap="handleTriggerClear"
+    >
+      <text class="w-select__clear-icon iconfont icon-close"></text>
+    </view>
+    <view wx:else class="w-select__icon">
+      <text class="w-select__arrow-icon iconfont icon-down"></text>
+    </view>
+  </view>
+
+  <w-drawer show="{{_visible}}" placement="bottom" round bind:update:show="handleCancel">
+    <view class="w-select__panel">
+      <view class="w-select__header">
+        <view wx:if="{{clearable}}" class="w-select__btn" bindtap="handleClear">清除</view>
+        <view wx:else class="w-select__btn" bindtap="handleCancel">取消</view>
+        <view class="w-select__title">{{title || '请选择'}}</view>
+        <view class="w-select__btn w-select__btn--primary" bindtap="handleConfirm">确定</view>
+      </view>
+
+      <!-- 单选：滚轮 -->
+      <picker-view
+        wx:if="{{!multiple}}"
+        class="w-select__picker"
+        value="{{_pickerValue}}"
+        indicator-class="w-select__indicator"
+        bindchange="handlePickerChange"
+      >
+        <picker-view-column>
+          <view wx:for="{{options}}" wx:key="value" class="w-select__item">{{item.label}}</view>
+        </picker-view-column>
+      </picker-view>
+
+      <!-- 多选：勾选列表 -->
+      <scroll-view wx:else class="w-select__list" scroll-y>
+        <view
+          wx:for="{{options}}"
+          wx:key="value"
+          class="w-select__option"
+          hover-class="w-select__option--active"
+          hover-stay-time="70"
+          bindtap="handleOptionTap"
+          data-value="{{item.value}}"
+        >
+          <view
+            class="w-select__dot {{_selectedMap[item.value] ? 'w-select__dot--selected' : ''}}"
+          ></view>
+          <text class="w-select__option-label">{{item.label}}</text>
+        </view>
+      </scroll-view>
+    </view>
+  </w-drawer>
+</view>

@@ -1,0 +1,16 @@
+<block wx:if="{{position === 'fixed'}}">
+  <view class="w-layout-header__placeholder" style="height: {{_placeholderHeight}}px"></view>
+  <view class="w-layout-header__fixed">
+    <view
+      class="w-layout-header {{bordered ? 'w-layout-header--bordered' : ''}} {{safeArea ? 'w-layout-header--safe-area' : ''}}"
+    >
+      <slot></slot>
+    </view>
+  </view>
+</block>
+<view
+  wx:else
+  class="w-layout-header {{bordered ? 'w-layout-header--bordered' : ''}} {{safeArea ? 'w-layout-header--safe-area' : ''}}"
+>
+  <slot></slot>
+</view>

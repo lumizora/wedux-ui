@@ -1,0 +1,142 @@
+<!-- Grid Mode -->
+<view
+  wx:if="{{mode === 'grid'}}"
+  class="w-upload w-upload--grid {{(disabled || _formItemDisabled) ? 'w-upload--disabled' : ''}}"
+>
+  <view
+    wx:for="{{fileList}}"
+    wx:key="index"
+    class="w-upload__grid-item"
+    style="{{_itemStyle}}"
+    data-index="{{index}}"
+    bindtap="handlePreview"
+  >
+    <!-- Image -->
+    <image
+      wx:if="{{item.type === 'image'}}"
+      class="w-upload__thumb"
+      src="{{item.thumb || item.url}}"
+      mode="aspectFill"
+    />
+    <!-- Video -->
+    <block wx:elif="{{item.type === 'video'}}">
+      <image class="w-upload__thumb" src="{{item.thumb || item.url}}" mode="aspectFill" />
+      <text class="w-upload__video-icon iconfont icon-play_fill"></text>
+    </block>
+    <!-- File -->
+    <view wx:else class="w-upload__file-info">
+      <text class="w-upload__file-icon iconfont icon-file"></text>
+      <text class="w-upload__file-name">{{item.name || '文件'}}</text>
+    </view>
+
+    <!-- Error overlay -->
+    <view
+      wx:if="{{item.status === 'error'}}"
+      class="w-upload__error-overlay"
+      catchtap="handleRetry"
+      data-index="{{index}}"
+    >
+      <text class="w-upload__retry-icon iconfont icon-retry"></text>
+    </view>
+
+    <!-- Progress bar -->
+    <view wx:if="{{item.status === 'uploading'}}" class="w-upload__progress">
+      <view class="w-upload__progress-bar" style="width: {{item.progress || 0}}%"></view>
+    </view>
+
+    <!-- Delete button -->
+    <view
+      wx:if="{{!readonly && !(disabled || _formItemDisabled)}}"
+      class="w-upload__delete"
+      catchtap="handleDelete"
+      data-index="{{index}}"
+    >
+      <text class="w-upload__delete-icon iconfont icon-close"></text>
+    </view>
+  </view>
+
+  <!-- Add button (grid) -->
+  <view
+    wx:if="{{!readonly && !(disabled || _formItemDisabled) && _showAdd}}"
+    class="w-upload__add"
+    style="{{_itemStyle}}"
+    bindtap="handleChoose"
+  >
+    <slot wx:if="{{_useSlot}}" />
+    <text wx:else class="w-upload__add-icon iconfont icon-add"></text>
+  </view>
+</view>
+
+<!-- List Mode -->
+<view
+  wx:else
+  class="w-upload w-upload--list {{(disabled || _formItemDisabled) ? 'w-upload--disabled' : ''}}"
+>
+  <view wx:for="{{fileList}}" wx:key="index" class="w-upload__list-item">
+    <!-- Thumb / Icon -->
+    <view
+      wx:if="{{item.type === 'image' || item.type === 'video'}}"
+      class="w-upload__list-thumb"
+      data-index="{{index}}"
+      bindtap="handlePreview"
+    >
+      <image class="w-upload__list-thumb-img" src="{{item.thumb || item.url}}" mode="aspectFill" />
+    </view>
+    <view wx:else class="w-upload__list-icon" data-index="{{index}}" bindtap="handlePreview">
+      <text class="iconfont icon-file"></text>
+    </view>
+
+    <!-- Content -->
+    <view class="w-upload__list-content" data-index="{{index}}" bindtap="handleListContentTap">
+      <view class="w-upload__list-name">{{item.name || item.url}}</view>
+      <view class="w-upload__list-meta">
+        <text wx:if="{{item.size}}" class="w-upload__list-size">{{_fileSizes[index] || ''}}</text>
+        <text
+          wx:if="{{item.status === 'uploading'}}"
+          class="w-upload__list-status w-upload__list-status--uploading"
+        >
+          {{item.progress || 0}}%
+        </text>
+        <text
+          wx:if="{{item.status === 'error'}}"
+          class="w-upload__list-status w-upload__list-status--error"
+        >
+          重新上传
+        </text>
+      </view>
+      <!-- List progress bar -->
+      <view
+        wx:if="{{item.status === 'uploading' || item.status === 'error'}}"
+        class="w-upload__list-progress"
+      >
+        <view
+          class="w-upload__list-progress-bar {{item.status === 'error' ? 'w-upload__list-progress-bar--error' : ''}}"
+          style="width: {{item.progress || 0}}%"
+        ></view>
+      </view>
+    </view>
+
+    <!-- Delete -->
+    <view
+      wx:if="{{!readonly && !(disabled || _formItemDisabled)}}"
+      class="w-upload__list-delete"
+      catchtap="handleDelete"
+      data-index="{{index}}"
+    >
+      <text class="iconfont icon-close"></text>
+    </view>
+  </view>
+
+  <!-- Add button (list) -->
+  <view
+    wx:if="{{!readonly && !(disabled || _formItemDisabled) && _showAdd}}"
+    class="w-upload__list-add"
+    bindtap="handleChoose"
+  >
+    <slot wx:if="{{_useSlot}}" />
+    <block wx:else>
+      <text class="w-upload__list-add-icon iconfont icon-add"></text>
+      <text>选择文件</text>
+    </block>
+  </view>
+</view>

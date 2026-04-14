@@ -1,0 +1,26 @@
+{
+  "usingComponents": {
+    "w-theme-provider": "wedux-ui/components/theme-provider/theme-provider",
+    "w-layout": "wedux-ui/components/layout/layout",
+    "w-layout-header": "wedux-ui/components/layout-header/layout-header",
+    "w-layout-content": "wedux-ui/components/layout-content/layout-content",
+    "w-navigation-bar": "wedux-ui/components/navigation-bar/navigation-bar",
+    "w-form": "wedux-ui/components/form/form",
+    "w-form-item": "wedux-ui/components/form-item/form-item",
+    "w-input": "wedux-ui/components/input/input",
+    "w-textarea": "wedux-ui/components/textarea/textarea",
+    "w-select": "wedux-ui/components/select/select",
+    "w-date-picker": "wedux-ui/components/date-picker/date-picker",
+    "w-time-picker": "wedux-ui/components/time-picker/time-picker",
+    "w-upload": "wedux-ui/components/upload/upload",
+    "w-checkbox-group": "wedux-ui/components/checkbox-group/checkbox-group",
+    "w-checkbox": "wedux-ui/components/checkbox/checkbox",
+    "w-stepper": "wedux-ui/components/stepper/stepper",
+    "w-switch": "wedux-ui/components/switch/switch",
+    "w-button": "wedux-ui/components/button/button",
+    "w-divider": "wedux-ui/components/divider/divider",
+    "w-tag": "wedux-ui/components/tag/tag"
+  },
+  "navigationStyle": "custom",
+  "disableScroll": true
+}

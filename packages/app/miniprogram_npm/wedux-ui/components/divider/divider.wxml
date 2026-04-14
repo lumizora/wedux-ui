@@ -1,0 +1,8 @@
+<view
+  class="w-divider {{vertical ? 'w-divider--vertical' : ''}} {{dashed ? 'w-divider--dashed' : ''}} {{_hasTitle && !vertical ? 'w-divider--with-title w-divider--title-' + titlePlacement : ''}}"
+>
+  <view wx:if="{{_hasTitle && !vertical}}" class="w-divider__title">
+    <block wx:if="{{title}}">{{title}}</block>
+    <slot wx:else></slot>
+  </view>
+</view>

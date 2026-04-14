@@ -1,0 +1,194 @@
+<view class="page">
+  <w-theme-provider theme="{{theme}}">
+    <w-layout>
+      <w-layout-header position="static">
+        <w-navigation-bar use-content-slot>
+          <view slot="content" class="nav-content">
+            <view class="nav-back" bind:tap="onBack">
+              <view class="iconfont icon-left"></view>
+            </view>
+            <view class="nav-content__title">活动详情</view>
+            <view class="nav-more" bind:tap="onMoreTap">
+              <view class="iconfont icon-more"></view>
+            </view>
+          </view>
+        </w-navigation-bar>
+      </w-layout-header>
+      <w-layout-content>
+        <scroll-view scroll-y enhanced="{{true}}" show-scrollbar="{{false}}" class="scroll-view">
+          <block wx:if="{{activity}}">
+            <!-- 封面图 -->
+            <w-image
+              class="cover"
+              src="{{activity.coverImage}}"
+              mode="aspectFill"
+              width="{{750}}"
+              height="{{360}}"
+            />
+
+            <!-- 标题区 -->
+            <view class="title-section">
+              <view class="title-row">
+                <view class="title-text">{{activity.title}}</view>
+                <w-tag type="{{activity.statusType}}">{{activity.statusLabel}}</w-tag>
+              </view>
+              <view class="type-row">
+                <view class="iconfont icon-tag type-icon"></view>
+                <text class="type-text">{{activity.typeName}}</text>
+                <view class="dot"></view>
+                <view class="iconfont icon-location type-icon"></view>
+                <text class="type-text">{{activity.location}}</text>
+              </view>
+              <view class="tags-row" wx:if="{{activity.tags.length > 0}}">
+                <w-tag
+                  wx:for="{{activity.tags}}"
+                  wx:key="*this"
+                  wx:for-item="tag"
+                  size="small"
+                  plain
+                  type="info"
+                  >{{tag}}</w-tag
+                >
+              </view>
+            </view>
+
+            <w-divider />
+
+            <!-- 数据统计 -->
+            <view class="stats-section">
+              <view class="stat-item">
+                <view class="stat-item__value">{{activity.actualCount}}</view>
+                <view class="stat-item__label">已参与</view>
+              </view>
+              <view class="stat-divider"></view>
+              <view class="stat-item">
+                <view class="stat-item__value">{{activity.targetCount}}</view>
+                <view class="stat-item__label">目标人数</view>
+              </view>
+              <view class="stat-divider"></view>
+              <view class="stat-item">
+                <view class="stat-item__value">{{activity.progressRate}}%</view>
+                <view class="stat-item__label">完成进度</view>
+              </view>
+              <view class="stat-divider"></view>
+              <view class="stat-item">
+                <view class="stat-item__value">¥{{activity.budget}}</view>
+                <view class="stat-item__label">活动预算</view>
+              </view>
+            </view>
+
+            <!-- 进度条 -->
+            <view class="progress-section">
+              <view class="progress-bar">
+                <view class="progress-bar__fill" style="width: {{activity.progressRate}}%"></view>
+              </view>
+            </view>
+
+            <w-divider />
+
+            <!-- 活动信息 -->
+            <view class="info-section">
+              <view class="info-section__title">活动信息</view>
+              <w-list>
+                <w-list-item title="开始时间" extra="{{activity.startTime}}" arrow="{{false}}" />
+                <w-list-item title="结束时间" extra="{{activity.endTime}}" arrow="{{false}}" />
+                <w-list-item title="活动类型" extra="{{activity.typeName}}" arrow="{{false}}" />
+                <w-list-item
+                  title="活动地点"
+                  extra="{{activity.location || '未设置'}}"
+                  arrow="{{false}}"
+                />
+                <w-list-item title="创建时间" extra="{{activity.createdAt}}" arrow="{{false}}" />
+              </w-list>
+            </view>
+
+            <w-divider />
+
+            <!-- 活动描述 -->
+            <view class="desc-section">
+              <view class="desc-section__title">活动描述</view>
+              <view class="desc-section__content">{{activity.description}}</view>
+            </view>
+
+            <w-divider />
+
+            <!-- 参与者 -->
+            <view class="participants-section">
+              <view class="participants-header">
+                <view class="participants-title">参与者</view>
+                <view class="participants-count">{{activity.actualCount}} 人已参与</view>
+              </view>
+              <view class="participants-avatars">
+                <w-avatar-group max="{{5}}">
+                  <w-avatar
+                    wx:for="{{participants}}"
+                    wx:key="id"
+                    src="{{item.avatar}}"
+                    size="medium"
+                  />
+                </w-avatar-group>
+                <view class="participants-more" wx:if="{{activity.actualCount > 5}}">
+                  <text>+{{activity.actualCount - 5}}人</text>
+                </view>
+              </view>
+            </view>
+
+            <view class="bottom-spacer"></view>
+          </block>
+
+          <!-- 空状态 -->
+          <view wx:else class="empty-wrap">
+            <w-empty description="活动不存在或已被删除" />
+          </view>
+        </scroll-view>
+      </w-layout-content>
+    </w-layout>
+
+    <!-- 底部操作栏 -->
+    <view class="action-bar" wx:if="{{activity}}">
+      <w-button bind:tap="onShare" type="default" class="action-btn">
+        <view class="iconfont icon-share"></view>
+        <text>分享</text>
+      </w-button>
+      <w-button
+        wx:if="{{activity.canPublish}}"
+        bind:tap="onPublish"
+        type="primary"
+        class="action-btn action-btn--main"
+        >发布活动</w-button
+      >
+      <w-button wx:elif="{{activity.canEdit}}" bind:tap="onEdit" type="default" class="action-btn">
+        <view class="iconfont icon-edit"></view>
+        <text>编辑</text>
+      </w-button>
+      <w-button
+        wx:if="{{activity.canPause}}"
+        bind:tap="onToggleStatus"
+        type="warn"
+        class="action-btn action-btn--main"
+        >暂停活动</w-button
+      >
+      <w-button
+        wx:elif="{{activity.canResume}}"
+        bind:tap="onToggleStatus"
+        type="primary"
+        class="action-btn action-btn--main"
+        >恢复活动</w-button
+      >
+    </view>
+
+    <!-- 更多操作 popover -->
+    <w-popover open="{{showMorePopover}}" placement="bottom-end" bind:close="onMoreClose">
+      <view class="more-actions">
+        <view
+          wx:for="{{moreActions}}"
+          wx:key="key"
+          class="more-action-item {{item.key === 'delete' ? 'more-action-item--danger' : ''}}"
+          data-key="{{item.key}}"
+          bind:tap="onMoreAction"
+          ><text>{{item.label}}</text></view
+        >
+      </view>
+    </w-popover>
+  </w-theme-provider>
+</view>

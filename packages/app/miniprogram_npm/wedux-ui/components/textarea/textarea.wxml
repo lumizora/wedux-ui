@@ -1,0 +1,20 @@
+<view
+  class="w-textarea w-textarea--size-{{size || _formItemSize || 'medium'}} {{(disabled || _formItemDisabled) ? 'w-textarea--disabled' : ''}} {{_focused ? 'w-textarea--focus' : ''}} {{status === 'error' ? 'w-textarea--error' : ''}} {{status === 'warning' ? 'w-textarea--warning' : ''}}"
+>
+  <textarea
+    class="w-textarea__native"
+    value="{{value}}"
+    placeholder="{{placeholder}}"
+    placeholder-class="w-textarea__placeholder"
+    disabled="{{disabled || _formItemDisabled}}"
+    maxlength="{{maxlength}}"
+    auto-height="{{autoHeight}}"
+    style="min-height: {{rows * 40}}rpx;"
+    bindinput="handleInput"
+    bindfocus="handleFocus"
+    bindblur="handleBlur"
+  />
+  <view wx:if="{{showWordLimit && maxlength > 0}}" class="w-textarea__count">
+    {{value.length}}/{{maxlength}}
+  </view>
+</view>

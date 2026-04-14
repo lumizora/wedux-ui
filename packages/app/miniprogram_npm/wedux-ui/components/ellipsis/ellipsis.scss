@@ -1,0 +1,22 @@
+.w-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+
+  &--line-clamp {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+    word-break: break-all;
+  }
+
+  &--expanded {
+    overflow: visible;
+    text-overflow: unset;
+    white-space: normal;
+    display: block;
+    -webkit-line-clamp: unset;
+    line-clamp: unset;
+  }
+}

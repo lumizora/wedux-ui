@@ -1,0 +1,47 @@
+<view class="w-calendar">
+  <!-- Navigation -->
+  <view class="w-calendar__nav">
+    <view class="w-calendar__nav-btn" bindtap="handlePrevMonth">
+      <text class="iconfont icon-left"></text>
+    </view>
+    <view class="w-calendar__nav-title">{{_panelTitle}}</view>
+    <view class="w-calendar__nav-btn" bindtap="handleNextMonth">
+      <text class="iconfont icon-right"></text>
+    </view>
+  </view>
+
+  <!-- Weekday headers -->
+  <view class="w-calendar__weekdays">
+    <view wx:for="{{_weekDays}}" wx:key="*this" class="w-calendar__weekday">{{item}}</view>
+  </view>
+
+  <!-- Day grid -->
+  <view class="w-calendar__days">
+    <view
+      wx:for="{{_days}}"
+      wx:key="index"
+      class="w-calendar__day {{item.inCurrentMonth ? '' : 'w-calendar__day--other'}} {{item.isSelected ? 'w-calendar__day--selected' : ''}} {{item.isToday ? 'w-calendar__day--today' : ''}} {{item.isDisabled ? 'w-calendar__day--disabled' : ''}}"
+      bindtap="handleDayTap"
+      data-year="{{item.year}}"
+      data-month="{{item.month}}"
+      data-date="{{item.date}}"
+      data-disabled="{{item.isDisabled}}"
+    >
+      <view class="w-calendar__day-content">
+        <view class="w-calendar__day-inner">{{item.date}}</view>
+        <view
+          wx:if="{{item.mark && item.mark.text}}"
+          class="w-calendar__mark-text"
+          style="{{item.mark.color ? 'color:' + item.mark.color : ''}}"
+        >
+          {{item.mark.text}}
+        </view>
+        <view
+          wx:elif="{{item.mark}}"
+          class="w-calendar__mark-dot"
+          style="{{item.mark.color ? 'background:' + item.mark.color : ''}}"
+        ></view>
+      </view>
+    </view>
+  </view>
+</view>

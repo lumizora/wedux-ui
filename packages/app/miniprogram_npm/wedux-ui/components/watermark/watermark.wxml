@@ -1,0 +1,13 @@
+<view class="w-watermark {{fullscreen ? 'w-watermark--fullscreen' : ''}}">
+  <slot></slot>
+  <view
+    class="w-watermark__layer {{selectable ? '' : 'w-watermark--no-select'}}"
+    style="z-index: {{zIndex}}; {{_bgStyle}}"
+  ></view>
+  <canvas
+    type="2d"
+    id="watermark-canvas"
+    class="w-watermark__canvas"
+    style="width: {{_canvasW}}px; height: {{_canvasH}}px;"
+  ></canvas>
+</view>

@@ -1,0 +1,3 @@
+<view class="w-radio-group {{vertical ? 'w-radio-group--vertical' : ''}}">
+  <slot></slot>
+</view>

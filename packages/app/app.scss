@@ -1,0 +1,8 @@
+@import './miniprogram_npm/wedux-ui/styles/iconfont.scss';
+@import './miniprogram_npm/wedux-ui/styles/index.scss';
+
+page {
+  background: var(--color-bg-page);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-md);
+}

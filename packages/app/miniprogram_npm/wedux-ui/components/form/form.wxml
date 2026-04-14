@@ -1,0 +1,3 @@
+<view class="w-form {{inline ? 'w-form--inline' : ''}}">
+  <slot></slot>
+</view>

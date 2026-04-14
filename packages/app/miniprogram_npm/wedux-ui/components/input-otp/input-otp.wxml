@@ -1,0 +1,38 @@
+<view
+  class="w-input-otp w-input-otp--size-{{size || _formItemSize || 'medium'}} {{(disabled || _formItemDisabled) ? 'w-input-otp--disabled' : ''}} {{readonly ? 'w-input-otp--readonly' : ''}} {{status === 'error' ? 'w-input-otp--error' : ''}} {{status === 'warning' ? 'w-input-otp--warning' : ''}}"
+  style="{{gap ? 'gap: ' + gap + 'rpx;' : ''}}"
+  bindtap="handleTap"
+>
+  <view
+    wx:for="{{_slots}}"
+    wx:key="index"
+    class="w-input-otp__slot {{_focused && _cursorIndex === index ? 'w-input-otp__slot--focus' : ''}} {{item ? 'w-input-otp__slot--filled' : ''}}"
+  >
+    <block wx:if="{{mask && item}}">
+      <view class="w-input-otp__mask-dot"></view>
+    </block>
+    <block wx:elif="{{item}}">
+      <text class="w-input-otp__char">{{item}}</text>
+    </block>
+    <block wx:elif="{{!_focused && placeholder}}">
+      <text class="w-input-otp__placeholder">{{placeholder}}</text>
+    </block>
+    <view
+      wx:if="{{_focused && _cursorIndex === index && !item}}"
+      class="w-input-otp__cursor"
+    ></view>
+  </view>
+
+  <!-- Hidden input captures all keyboard events -->
+  <input
+    class="w-input-otp__hidden"
+    value="{{value}}"
+    type="{{type}}"
+    focus="{{_focused}}"
+    maxlength="{{length}}"
+    disabled="{{disabled || _formItemDisabled || readonly}}"
+    bindinput="handleInput"
+    bindfocus="handleFocus"
+    bindblur="handleBlur"
+  />
+</view>

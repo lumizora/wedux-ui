@@ -1,0 +1,214 @@
+<view class="w-date-picker">
+  <view
+    class="w-date-picker__trigger w-date-picker--size-{{size || _formItemSize || 'medium'}} {{(disabled || _formItemDisabled) ? 'w-date-picker--disabled' : ''}} {{readonly ? 'w-date-picker--readonly' : ''}} {{status === 'error' ? 'w-date-picker--error' : ''}} {{status === 'warning' ? 'w-date-picker--warning' : ''}}"
+    bindtap="handleTap"
+  >
+    <text wx:if="{{_displayText}}" class="w-date-picker__text">{{_displayText}}</text>
+    <text wx:else class="w-date-picker__placeholder">{{placeholder}}</text>
+    <view
+      wx:if="{{clearable && _displayText && !disabled && !_formItemDisabled && !readonly}}"
+      class="w-date-picker__clear"
+      catchtap="handleClear"
+    >
+      <text class="w-date-picker__clear-icon iconfont icon-close"></text>
+    </view>
+    <view wx:else class="w-date-picker__icon">
+      <text class="w-date-picker__calendar-icon iconfont icon-calendar"></text>
+    </view>
+  </view>
+
+  <w-drawer show="{{_visible}}" placement="bottom" round bind:update:show="handleCancel">
+    <view class="w-date-picker__panel">
+      <!-- Header -->
+      <view class="w-date-picker__header">
+        <view class="w-date-picker__btn" bindtap="handleCancel">取消</view>
+        <view class="w-date-picker__title">
+          {{type === 'datetime' ? '选择日期时间' : type === 'month' ? '选择月份' : type === 'year' ?
+          '选择年份' : type === 'daterange' ? '选择日期范围' : type === 'datetimerange' ?
+          '选择日期时间范围' : type === 'monthrange' ? '选择月份范围' : type === 'yearrange' ?
+          '选择年份范围' : type === 'quarter' ? '选择季度' : type === 'quarterrange' ?
+          '选择季度范围' : type === 'week' ? '选择周' : '选择日期'}}
+        </view>
+        <view class="w-date-picker__btn w-date-picker__btn--primary" bindtap="handleConfirm">
+          确认
+        </view>
+      </view>
+
+      <!-- Range Bar (range types only) -->
+      <view wx:if="{{_isRange}}" class="w-date-picker__range-bar">
+        <view
+          class="w-date-picker__range-bar-item {{_activeEndpoint === 'start' ? 'w-date-picker__range-bar-item--active' : ''}}"
+          bindtap="handleEndpointTap"
+          data-endpoint="start"
+        >
+          <text>{{_rangeStartText || '开始'}}</text>
+        </view>
+        <text class="w-date-picker__range-bar-separator">~</text>
+        <view
+          class="w-date-picker__range-bar-item {{_activeEndpoint === 'end' ? 'w-date-picker__range-bar-item--active' : ''}}"
+          bindtap="handleEndpointTap"
+          data-endpoint="end"
+        >
+          <text>{{_rangeEndText || '结束'}}</text>
+        </view>
+      </view>
+
+      <!-- Shortcut bar -->
+      <view wx:if="{{type === 'date' || type === 'datetime'}}" class="w-date-picker__shortcuts">
+        <view class="w-date-picker__shortcut" bindtap="handleShortcut" data-action="today">
+          今天
+        </view>
+        <view
+          wx:if="{{type === 'datetime'}}"
+          class="w-date-picker__shortcut"
+          bindtap="handleShortcut"
+          data-action="now"
+        >
+          此刻
+        </view>
+      </view>
+      <view
+        wx:elif="{{type === 'daterange' || type === 'datetimerange'}}"
+        class="w-date-picker__shortcuts"
+      >
+        <view class="w-date-picker__shortcut" bindtap="handleShortcut" data-action="today">
+          今天
+        </view>
+        <view
+          wx:if="{{type === 'datetimerange'}}"
+          class="w-date-picker__shortcut"
+          bindtap="handleShortcut"
+          data-action="now"
+        >
+          此刻
+        </view>
+      </view>
+      <view wx:elif="{{type === 'week'}}" class="w-date-picker__shortcuts">
+        <view class="w-date-picker__shortcut" bindtap="handleShortcut" data-action="thisWeek">
+          本周
+        </view>
+      </view>
+      <view wx:elif="{{type === 'monthrange'}}" class="w-date-picker__shortcuts">
+        <view class="w-date-picker__shortcut" bindtap="handleShortcut" data-action="thisMonth">
+          本月
+        </view>
+      </view>
+      <view wx:elif="{{type === 'yearrange'}}" class="w-date-picker__shortcuts">
+        <view class="w-date-picker__shortcut" bindtap="handleShortcut" data-action="thisYear">
+          今年
+        </view>
+      </view>
+      <view
+        wx:elif="{{type === 'quarter' || type === 'quarterrange'}}"
+        class="w-date-picker__shortcuts"
+      >
+        <view class="w-date-picker__shortcut" bindtap="handleShortcut" data-action="thisQuarter">
+          本季度
+        </view>
+      </view>
+
+      <!-- Navigation -->
+      <view class="w-date-picker__nav">
+        <view class="w-date-picker__nav-btn" bindtap="handlePrev">
+          <text class="iconfont icon-left"></text>
+        </view>
+        <view class="w-date-picker__nav-title" bindtap="handleTitleTap">{{_panelTitle}}</view>
+        <view class="w-date-picker__nav-btn" bindtap="handleNext">
+          <text class="iconfont icon-right"></text>
+        </view>
+      </view>
+
+      <!-- Date panel (date / datetime / daterange / datetimerange / week) -->
+      <view wx:if="{{_panelMode === 'date'}}" class="w-date-picker__calendar">
+        <view class="w-date-picker__weekdays">
+          <view wx:for="{{_weekDays}}" wx:key="*this" class="w-date-picker__weekday">{{item}}</view>
+        </view>
+        <view class="w-date-picker__days">
+          <view
+            wx:for="{{_days}}"
+            wx:key="index"
+            class="w-date-picker__day {{item.isCurrentMonth ? '' : 'w-date-picker__day--other'}} {{item.isSelected ? 'w-date-picker__day--selected' : ''}} {{item.isToday ? 'w-date-picker__day--today' : ''}} {{item.isRangeStart ? 'w-date-picker__day--range-start' : ''}} {{item.isRangeEnd ? 'w-date-picker__day--range-end' : ''}} {{item.isInRange ? 'w-date-picker__day--in-range' : ''}}"
+            bindtap="handleDayTap"
+            data-year="{{item.year}}"
+            data-month="{{item.month}}"
+            data-day="{{item.day}}"
+          >
+            <view class="w-date-picker__day-inner">{{item.day}}</view>
+          </view>
+        </view>
+      </view>
+
+      <!-- Month panel -->
+      <view wx:if="{{_panelMode === 'month'}}" class="w-date-picker__months">
+        <view
+          wx:for="{{_monthList}}"
+          wx:key="month"
+          class="w-date-picker__month-cell {{item.isSelected ? 'w-date-picker__month-cell--selected' : ''}} {{item.isCurrent ? 'w-date-picker__month-cell--current' : ''}} {{item.isRangeStart ? 'w-date-picker__month-cell--range-start' : ''}} {{item.isRangeEnd ? 'w-date-picker__month-cell--range-end' : ''}} {{item.isInRange ? 'w-date-picker__month-cell--in-range' : ''}}"
+          bindtap="handleMonthTap"
+          data-month="{{item.month}}"
+        >
+          {{item.label}}
+        </view>
+      </view>
+
+      <!-- Year panel -->
+      <view wx:if="{{_panelMode === 'year'}}" class="w-date-picker__years">
+        <view
+          wx:for="{{_yearObjList}}"
+          wx:key="year"
+          class="w-date-picker__year-cell {{item.isSelected ? 'w-date-picker__year-cell--selected' : ''}} {{item.isCurrent ? 'w-date-picker__year-cell--current' : ''}} {{item.isRangeStart ? 'w-date-picker__year-cell--range-start' : ''}} {{item.isRangeEnd ? 'w-date-picker__year-cell--range-end' : ''}} {{item.isInRange ? 'w-date-picker__year-cell--in-range' : ''}}"
+          bindtap="handleYearTap"
+          data-year="{{item.year}}"
+        >
+          {{item.year}}
+        </view>
+      </view>
+
+      <!-- Quarter panel -->
+      <view wx:if="{{_panelMode === 'quarter'}}" class="w-date-picker__quarters">
+        <view
+          wx:for="{{_quarterList}}"
+          wx:key="quarter"
+          class="w-date-picker__quarter-cell {{item.isSelected ? 'w-date-picker__quarter-cell--selected' : ''}} {{item.isCurrent ? 'w-date-picker__quarter-cell--current' : ''}} {{item.isRangeStart ? 'w-date-picker__quarter-cell--range-start' : ''}} {{item.isRangeEnd ? 'w-date-picker__quarter-cell--range-end' : ''}} {{item.isInRange ? 'w-date-picker__quarter-cell--in-range' : ''}}"
+          bindtap="handleQuarterTap"
+          data-quarter="{{item.quarter}}"
+        >
+          {{item.label}}
+        </view>
+      </view>
+
+      <!-- Time picker for datetime / datetimerange -->
+      <view
+        wx:if="{{(type === 'datetime' || type === 'datetimerange') && _panelMode === 'date'}}"
+        class="w-date-picker__time"
+      >
+        <view class="w-date-picker__time-label">
+          {{type === 'datetimerange' ? (_activeEndpoint === 'start' ? '开始时间' : '结束时间') :
+          '时间'}}
+        </view>
+        <picker-view
+          class="w-date-picker__time-picker"
+          value="{{type === 'datetimerange' ? (_activeEndpoint === 'start' ? _startTimePickerValue : _endTimePickerValue) : _timePickerValue}}"
+          indicator-class="w-date-picker__time-indicator"
+          bindchange="handleTimeChange"
+        >
+          <picker-view-column>
+            <view wx:for="{{_timeHours}}" wx:key="*this" class="w-date-picker__time-item">
+              {{item}}
+            </view>
+          </picker-view-column>
+          <picker-view-column>
+            <view wx:for="{{_timeMinutes}}" wx:key="*this" class="w-date-picker__time-item">
+              {{item}}
+            </view>
+          </picker-view-column>
+          <picker-view-column>
+            <view wx:for="{{_timeSeconds}}" wx:key="*this" class="w-date-picker__time-item">
+              {{item}}
+            </view>
+          </picker-view-column>
+        </picker-view>
+      </view>
+    </view>
+  </w-drawer>
+</view>

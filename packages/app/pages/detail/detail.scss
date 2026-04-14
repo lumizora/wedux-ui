@@ -1,0 +1,263 @@
+.page {
+  height: 100vh;
+}
+
+.scroll-view {
+  height: 100%;
+}
+
+.cover {
+  width: 100%;
+  height: 360rpx;
+  display: block;
+}
+
+.title-section {
+  padding: 24rpx 32rpx 16rpx;
+  background: var(--color-bg-elevated);
+}
+
+.title-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 16rpx;
+  margin-bottom: 12rpx;
+}
+
+.title-text {
+  flex: 1;
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.4;
+}
+
+.type-row {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  margin-bottom: 16rpx;
+}
+
+.type-icon {
+  font-size: 22rpx;
+  color: var(--color-text-secondary);
+}
+
+.type-text {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.dot {
+  width: 6rpx;
+  height: 6rpx;
+  border-radius: 50%;
+  background: var(--color-text-placeholder);
+  margin: 0 4rpx;
+}
+
+.tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8rpx;
+}
+
+.stats-section {
+  display: flex;
+  background: var(--color-bg-elevated);
+  padding: 24rpx 16rpx;
+}
+
+.stat-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8rpx;
+
+  &__value {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--color-brand);
+  }
+
+  &__label {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+  }
+}
+
+.stat-divider {
+  width: 1rpx;
+  background: var(--color-separator);
+  margin: 8rpx 0;
+}
+
+.progress-section {
+  padding: 0 32rpx 24rpx;
+  background: var(--color-bg-elevated);
+}
+
+.progress-bar {
+  height: 12rpx;
+  background: var(--color-separator);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+
+  &__fill {
+    height: 100%;
+    background: var(--color-brand);
+    border-radius: var(--radius-full);
+    transition: width 0.4s ease;
+  }
+}
+
+.info-section {
+  background: var(--color-bg-elevated);
+  padding-bottom: 8rpx;
+
+  &__title {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    padding: 20rpx 32rpx 8rpx;
+    text-transform: uppercase;
+    letter-spacing: 2rpx;
+  }
+}
+
+.desc-section {
+  background: var(--color-bg-elevated);
+  padding: 24rpx 32rpx;
+
+  &__title {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    margin-bottom: 16rpx;
+    text-transform: uppercase;
+    letter-spacing: 2rpx;
+  }
+
+  &__content {
+    font-size: var(--font-size-md);
+    color: var(--color-text-primary);
+    line-height: 1.8;
+  }
+}
+
+.participants-section {
+  background: var(--color-bg-elevated);
+  padding: 24rpx 32rpx;
+}
+
+.participants-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+
+.participants-title {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 2rpx;
+}
+
+.participants-count {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.participants-avatars {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.participants-more {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.action-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  gap: 16rpx;
+  padding: 16rpx 32rpx calc(env(safe-area-inset-bottom) + 16rpx);
+  background: var(--color-bg-elevated);
+  border-top: 1rpx solid var(--color-separator);
+}
+
+.action-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+
+  &--main {
+    flex: 2;
+  }
+}
+
+.nav-content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0 8rpx;
+
+  &__title {
+    flex: 1;
+    text-align: center;
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+}
+
+.nav-back {
+  padding: 0 8rpx;
+  font-size: 36rpx;
+  color: var(--color-text-primary);
+  min-width: 64rpx;
+}
+
+.nav-more {
+  padding: 0 8rpx;
+  font-size: 36rpx;
+  color: var(--color-text-primary);
+  min-width: 64rpx;
+  text-align: right;
+}
+
+.more-actions {
+  min-width: 240rpx;
+  padding: 8rpx 0;
+}
+
+.more-action-item {
+  padding: 24rpx 32rpx;
+  font-size: var(--font-size-md);
+  color: var(--color-text-primary);
+
+  &--danger {
+    color: var(--color-danger);
+  }
+}
+
+.empty-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 120rpx 32rpx;
+}
+
+.bottom-spacer {
+  height: 160rpx;
+}

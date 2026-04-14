@@ -1,0 +1,3 @@
+<view class="w-btn-group {{vertical ? 'w-btn-group--vertical' : ''}}">
+  <slot></slot>
+</view>

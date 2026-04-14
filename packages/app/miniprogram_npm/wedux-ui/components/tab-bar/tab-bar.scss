@@ -1,0 +1,53 @@
+@import '../../styles/iconfont.scss';
+
+.w-tab-bar {
+  position: fixed;
+  bottom: env(safe-area-inset-bottom);
+  left: var(--tab-bar-margin);
+  right: var(--tab-bar-margin);
+  padding: var(--spacing-xs) var(--spacing-xs) calc(var(--spacing-xs));
+  background: var(--tab-bar-bg);
+  border-radius: var(--tab-bar-radius);
+  box-shadow: var(--tab-bar-shadow);
+  z-index: var(--tab-bar-z-index);
+  display: flex;
+  align-items: center;
+  box-sizing: content-box;
+  margin-bottom: var(--spacing-sm);
+}
+
+.w-tab-bar__item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4rpx;
+  padding: var(--spacing-sm) 0;
+  color: var(--tab-bar-color);
+  border-radius: var(--tab-bar-radius);
+}
+
+.w-tab-bar__icon {
+  font-size: var(--tab-bar-icon-size);
+  transition: color 0.2s;
+}
+
+.w-tab-bar__label {
+  font-size: var(--tab-bar-label-size);
+  line-height: 1.2;
+  transition: color 0.2s;
+}
+
+/* Active state */
+.w-tab-bar__item--active {
+  background-color: var(--tab-bar-active-bg);
+
+  .w-tab-bar__icon {
+    color: var(--tab-bar-active-color);
+  }
+
+  .w-tab-bar__label {
+    color: var(--tab-bar-active-color);
+  }
+}

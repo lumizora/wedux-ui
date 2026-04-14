@@ -1,0 +1,116 @@
+<view class="page">
+  <w-theme-provider theme="{{theme}}">
+    <w-layout>
+      <w-layout-header position="static">
+        <w-navigation-bar title="设置" back="{{false}}" />
+      </w-layout-header>
+      <w-layout-content>
+        <scroll-view scroll-y enhanced="{{true}}" show-scrollbar="{{false}}" class="scroll-view">
+          <!-- 个人信息 -->
+          <view class="profile-card">
+            <w-avatar src="https://picsum.photos/seed/admin/200/200" size="large" />
+            <view class="profile-info">
+              <view class="profile-name">运营管理员</view>
+              <view class="profile-role">超级管理员 · 全国门店</view>
+            </view>
+            <w-badge count="{{3}}">
+              <view class="iconfont icon-notice profile-notice"></view>
+            </w-badge>
+          </view>
+
+          <w-divider />
+
+          <!-- 主题模式 -->
+          <view class="section-title">外观</view>
+          <w-list>
+            <w-list-item title="深色模式" arrow="{{false}}">
+              <w-switch
+                slot="extra"
+                checked="{{themeMode === 'dark'}}"
+                bind:change="onThemeModeChange"
+              />
+            </w-list-item>
+          </w-list>
+
+          <!-- 主色选择 -->
+          <view class="section-title">主题色</view>
+          <view class="preset-colors">
+            <view
+              wx:for="{{presetColors}}"
+              wx:key="value"
+              class="color-dot {{primaryColor === item.value ? 'color-dot--active' : ''}}"
+              style="background: {{item.value}};"
+              data-color="{{item.value}}"
+              bind:tap="onPresetColorTap"
+            >
+              <view
+                wx:if="{{primaryColor === item.value}}"
+                class="iconfont icon-check color-dot__check"
+              ></view>
+            </view>
+          </view>
+
+          <view class="color-picker-wrap">
+            <view class="color-picker-label">自定义颜色</view>
+            <w-color-picker value="{{primaryColor}}" bind:change="onColorChange" />
+          </view>
+
+          <view class="reset-btn-wrap">
+            <w-button size="small" bind:tap="onResetTheme">恢复默认主题</w-button>
+          </view>
+
+          <w-divider />
+
+          <!-- 实时预览 -->
+          <view class="section-title">主题预览</view>
+          <view class="preview-area">
+            <view class="preview-row">
+              <w-button type="primary" size="small">主要按钮</w-button>
+              <w-button type="default" size="small">默认按钮</w-button>
+              <w-button type="warn" size="small">警告按钮</w-button>
+            </view>
+            <view class="preview-row">
+              <w-tag type="success">进行中</w-tag>
+              <w-tag type="warning">草稿</w-tag>
+              <w-tag type="danger">已暂停</w-tag>
+              <w-tag type="default">已结束</w-tag>
+              <w-tag type="info">标签</w-tag>
+            </view>
+            <view class="preview-row">
+              <view class="preview-label">评分组件</view>
+              <w-rate value="{{previewRating}}" bind:change="onPreviewRatingChange" />
+            </view>
+            <view class="preview-row preview-row--switch">
+              <view class="preview-label">开关组件</view>
+              <w-switch checked="{{previewSwitchChecked}}" bind:change="onPreviewSwitchChange" />
+            </view>
+            <w-input value="预览输入框" placeholder="请输入内容" />
+          </view>
+
+          <w-divider />
+
+          <!-- 功能设置 -->
+          <view class="section-title">功能</view>
+          <w-list>
+            <w-list-item title="消息通知" />
+            <w-list-item title="数据同步" />
+            <w-list-item title="导出报表" />
+            <w-list-item title="帮助与反馈" />
+          </w-list>
+
+          <w-divider />
+
+          <!-- 关于 -->
+          <view class="section-title">关于</view>
+          <w-list>
+            <w-list-item title="版本" extra="v1.0.0" arrow="{{false}}" />
+            <w-list-item title="组件库" extra="wedux-ui v0.6.1" arrow="{{false}}" />
+          </w-list>
+
+          <view class="bottom-spacer"></view>
+        </scroll-view>
+      </w-layout-content>
+    </w-layout>
+    <w-tab-bar active="{{activeTab}}" items="{{tabs}}" bind:change="onTabChange" />
+  </w-theme-provider>
+</view>

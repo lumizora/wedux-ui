@@ -1,0 +1,12 @@
+<view
+  class="w-radio {{_checked ? 'w-radio--checked' : ''}} {{(disabled || _groupDisabled) ? 'w-radio--disabled' : ''}} w-radio--size-{{_groupSize || 'medium'}}"
+  bindtap="handleTap"
+>
+  <view class="w-radio__dot">
+    <view class="w-radio__dot-inner"></view>
+  </view>
+  <view class="w-radio__label">
+    <text wx:if="{{label}}">{{label}}</text>
+    <slot wx:else></slot>
+  </view>
+</view>

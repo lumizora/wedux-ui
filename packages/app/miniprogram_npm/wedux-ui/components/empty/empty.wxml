@@ -1,0 +1,13 @@
+<view class="w-empty w-empty--{{size}}">
+  <view class="w-empty__image" style="{{_imageStyle}}">
+    <view class="w-empty__image-default iconfont icon-empty"></view>
+    <view class="w-empty__image-slot">
+      <slot name="image"></slot>
+    </view>
+  </view>
+  <view class="w-empty__title"><text>{{title}}</text></view>
+  <view wx:if="{{description}}" class="w-empty__description"><text>{{description}}</text></view>
+  <view class="w-empty__extra">
+    <slot name="extra"></slot>
+  </view>
+</view>

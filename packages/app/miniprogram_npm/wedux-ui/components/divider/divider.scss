@@ -1,0 +1,75 @@
+.w-divider {
+  display: flex;
+  align-items: center;
+  margin: var(--w-divider-spacing) 0;
+  color: var(--color-text-primary);
+  font-size: var(--font-size-md);
+  font-weight: 500;
+
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    border-top: 1rpx solid var(--w-divider-color);
+  }
+
+  /* No title — single line, hide ::after */
+  &:not(.w-divider--with-title) {
+    &::after {
+      display: none;
+    }
+  }
+
+  /* With title */
+  &--with-title {
+    &::before,
+    &::after {
+      content: '';
+    }
+  }
+
+  /* Title placement */
+  &--title-left::before {
+    flex: none;
+    width: 5%;
+    min-width: 20rpx;
+  }
+
+  &--title-right::after {
+    flex: none;
+    width: 5%;
+    min-width: 20rpx;
+  }
+
+  /* Dashed — use 2rpx so the dash pattern is visible on real devices */
+  &--dashed::before,
+  &--dashed::after {
+    border-top: 2rpx dashed var(--w-divider-color);
+  }
+
+  &--dashed.w-divider--vertical {
+    border-left: 2rpx dashed var(--w-divider-color);
+  }
+
+  /* Vertical */
+  &--vertical {
+    display: inline-flex;
+    align-self: stretch;
+    height: auto;
+    min-height: 1em;
+    margin: 0 var(--spacing-sm);
+    vertical-align: middle;
+    border-top: 0;
+    border-left: 1rpx solid var(--w-divider-color);
+
+    &::before,
+    &::after {
+      display: none;
+    }
+  }
+}
+
+.w-divider__title {
+  padding: 0 var(--spacing-md);
+  white-space: nowrap;
+}

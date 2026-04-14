@@ -1,0 +1,13 @@
+<scroll-view
+  class="w-layout-content"
+  scroll-y="{{scrollY}}"
+  scroll-x="{{scrollX}}"
+  scroll-top="{{scrollTop}}"
+  scroll-into-view="{{scrollIntoView}}"
+  scroll-with-animation="{{scrollWithAnimation}}"
+  bindscroll="_onScroll"
+  bindscrolltolower="_onScrollToLower"
+  bindscrolltoupper="_onScrollToUpper"
+>
+  <slot></slot>
+</scroll-view>

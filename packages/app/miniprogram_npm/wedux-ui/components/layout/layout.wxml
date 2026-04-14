@@ -1,0 +1,3 @@
+<view class="w-layout {{_hasSider ? 'w-layout--has-sider' : ''}}">
+  <slot></slot>
+</view>

@@ -1,0 +1,10 @@
+<view
+  wx:if="{{_visible}}"
+  class="w-back-top"
+  style="{{_style}}"
+  hover-class="w-back-top--active"
+  hover-stay-time="70"
+  bindtap="handleTap"
+>
+  <text class="iconfont icon-top w-back-top__icon"></text>
+</view>

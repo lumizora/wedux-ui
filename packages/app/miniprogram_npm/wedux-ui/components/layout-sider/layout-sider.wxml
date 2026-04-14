@@ -1,0 +1,5 @@
+<view class="w-layout-sider {{bordered ? 'w-layout-sider--bordered' : ''}}" style="{{_style}}">
+  <scroll-view class="w-layout-sider__scroll" scroll-y="{{scrollY}}" bindscroll="_onScroll">
+    <slot></slot>
+  </scroll-view>
+</view>

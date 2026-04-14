@@ -1,0 +1,17 @@
+<view class="w-tooltip">
+  <view class="w-tooltip__trigger" bindtap="handleTriggerTap">
+    <slot name="trigger" />
+  </view>
+  <view
+    wx:if="{{_visible}}"
+    class="w-tooltip__body {{_active ? 'w-tooltip__body--active' : ''}}"
+    style="{{_bodyStyle}}"
+  >
+    <view
+      wx:if="{{showArrow}}"
+      class="w-tooltip__arrow {{_arrowClass}}"
+      style="{{_arrowStyle}}"
+    ></view>
+    <view class="w-tooltip__content">{{content}}</view>
+  </view>
+</view>

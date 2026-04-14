@@ -1,0 +1,12 @@
+<view
+  class="w-tag {{checkable ? '' : 'w-tag--' + type}} w-tag--size-{{size}} {{round ? 'w-tag--round' : ''}} {{bordered ? '' : 'w-tag--borderless'}} {{strong ? 'w-tag--strong' : ''}} {{disabled ? 'w-tag--disabled' : ''}} {{checkable ? 'w-tag--checkable' : ''}} {{checkable && checked ? 'w-tag--checked' : ''}} {{checkable && !checked ? 'w-tag--unchecked' : ''}}"
+  style="{{_style}}"
+  hover-class="{{disabled ? '' : 'w-tag--active'}}"
+  hover-stay-time="70"
+  bindtap="handleTap"
+>
+  <slot></slot>
+  <view wx:if="{{closable && !disabled}}" class="w-tag__close" catchtap="handleClose">
+    <text class="w-tag__close-icon iconfont icon-close"></text>
+  </view>
+</view>

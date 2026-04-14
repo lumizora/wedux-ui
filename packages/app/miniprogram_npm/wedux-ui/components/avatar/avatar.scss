@@ -1,0 +1,68 @@
+.w-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--size-avatar-md);
+  height: var(--size-avatar-md);
+  border-radius: var(--w-avatar-radius);
+  background-color: var(--w-avatar-bg);
+  overflow: hidden;
+  flex-shrink: 0;
+  position: relative;
+  box-sizing: border-box;
+  font-size: var(--font-size-md);
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+/* Sizes */
+.w-avatar--small {
+  width: var(--size-avatar-sm);
+  height: var(--size-avatar-sm);
+  font-size: var(--font-size-sm);
+}
+
+.w-avatar--medium {
+  width: var(--size-avatar-md);
+  height: var(--size-avatar-md);
+  font-size: var(--font-size-md);
+}
+
+.w-avatar--large {
+  width: var(--size-avatar-lg);
+  height: var(--size-avatar-lg);
+  font-size: var(--font-size-lg);
+}
+
+/* Round */
+.w-avatar--round {
+  border-radius: 50%;
+}
+
+/* Bordered — white ring, useful when overlapping */
+.w-avatar--bordered {
+  border: 4rpx solid var(--color-bg-elevated);
+}
+
+/* Group overlap */
+.w-avatar--group-overlap {
+  margin-left: -20rpx;
+}
+
+/* Image */
+.w-avatar__img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Text / icon content */
+.w-avatar__content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  line-height: 1;
+  white-space: nowrap;
+}

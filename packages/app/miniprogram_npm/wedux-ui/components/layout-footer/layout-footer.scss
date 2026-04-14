@@ -1,0 +1,23 @@
+.w-layout-footer {
+  background: var(--layout-footer-bg);
+
+  &__placeholder {
+    flex-shrink: 0;
+  }
+
+  &__fixed {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: var(--layout-z-index);
+  }
+
+  &--bordered {
+    border-top: 1rpx solid var(--layout-border-color);
+  }
+
+  &--safe-area {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}

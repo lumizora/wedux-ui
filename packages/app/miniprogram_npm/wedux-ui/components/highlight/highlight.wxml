@@ -1,0 +1,10 @@
+<text class="w-highlight"
+  ><block wx:for="{{_segments}}" wx:key="index"
+    ><text
+      wx:if="{{item.isMatch}}"
+      class="w-highlight__mark {{highlightClass}}"
+      style="{{highlightStyle}}"
+      >{{item.text}}</text
+    ><block wx:else>{{item.text}}</block></block
+  ></text
+>

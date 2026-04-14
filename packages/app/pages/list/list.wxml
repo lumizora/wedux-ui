@@ -1,0 +1,149 @@
+<view class="page">
+  <w-theme-provider theme="{{theme}}">
+    <w-layout>
+      <w-layout-header position="static">
+        <w-navigation-bar back="{{false}}" use-content-slot>
+          <view slot="content" class="nav-content">
+            <view class="nav-content__title">活动管理</view>
+            <view class="nav-btn" bind:tap="onSortTap">
+              <view class="iconfont icon-filter"></view>
+            </view>
+          </view>
+        </w-navigation-bar>
+      </w-layout-header>
+      <w-layout-content>
+        <!-- 筛选 tabs -->
+        <scroll-view scroll-x class="filter-scroll" show-scrollbar="{{false}}">
+          <view class="filter-tabs">
+            <view
+              wx:for="{{filterTabs}}"
+              wx:key="key"
+              class="filter-tab {{activeFilter === item.key ? 'filter-tab--active' : ''}}"
+              data-key="{{item.key}}"
+              bind:tap="onFilterChange"
+              ><text>{{item.label}}</text></view
+            >
+          </view>
+        </scroll-view>
+
+        <!-- 列表内容 -->
+        <scroll-view
+          scroll-y
+          enhanced="{{true}}"
+          show-scrollbar="{{false}}"
+          class="list-scroll"
+          bind:scroll="onScroll"
+          id="list-scroll"
+        >
+          <view class="list-content">
+            <!-- 操作栏 -->
+            <view class="toolbar">
+              <view class="toolbar__count">共 {{list.length}} 条</view>
+              <view class="toolbar__action" bind:tap="onNewActivity">
+                <view class="iconfont icon-plus"></view>
+                <text>新建活动</text>
+              </view>
+            </view>
+
+            <!-- 列表项 -->
+            <view wx:if="{{list.length > 0}}" class="activity-list">
+              <view
+                wx:for="{{list}}"
+                wx:key="id"
+                class="activity-card"
+                data-id="{{item.id}}"
+                bind:tap="onActivityTap"
+              >
+                <w-image
+                  class="activity-card__cover"
+                  src="{{item.coverImage}}"
+                  mode="aspectFill"
+                  radius="{{12}}"
+                />
+                <view class="activity-card__body">
+                  <view class="activity-card__header">
+                    <w-ellipsis
+                      class="activity-card__title"
+                      content="{{item.title}}"
+                      lines="{{2}}"
+                    />
+                    <w-tag type="{{item.statusType}}" size="small">{{item.statusLabel}}</w-tag>
+                  </view>
+                  <view class="activity-card__desc">
+                    <w-ellipsis content="{{item.description}}" lines="{{2}}" />
+                  </view>
+                  <view class="activity-card__meta">
+                    <view class="meta-item">
+                      <view class="iconfont icon-time meta-item__icon"></view>
+                      <text class="meta-item__text">{{item.startTime}}</text>
+                    </view>
+                    <view class="meta-item">
+                      <view class="iconfont icon-user meta-item__icon"></view>
+                      <text class="meta-item__text"
+                        >{{item.actualCount}}/{{item.targetCount}}人</text
+                      >
+                    </view>
+                  </view>
+                  <view class="activity-card__tags" wx:if="{{item.tags.length > 0}}">
+                    <w-tag
+                      wx:for="{{item.tags}}"
+                      wx:key="*this"
+                      wx:for-item="tag"
+                      size="small"
+                      type="info"
+                      plain
+                      >{{tag}}</w-tag
+                    >
+                  </view>
+                  <view class="progress-bar">
+                    <view class="progress-bar__track">
+                      <view class="progress-bar__fill" style="width: {{item.progressRate}}%"></view>
+                    </view>
+                    <text class="progress-bar__label">{{item.progressRate}}%</text>
+                  </view>
+                </view>
+              </view>
+            </view>
+
+            <!-- 空状态 -->
+            <view wx:else class="empty-wrap">
+              <w-empty description="暂无活动数据" />
+              <w-button type="primary" bind:tap="onNewActivity" style="margin-top: 32rpx"
+                >创建第一个活动</w-button
+              >
+            </view>
+
+            <!-- 加载更多 -->
+            <w-infinite-scroll
+              wx:if="{{list.length > 0}}"
+              loading="{{loading}}"
+              finished="{{!hasMore}}"
+              bind:load="onLoadMore"
+              finished-text="没有更多活动了"
+            />
+          </view>
+        </scroll-view>
+
+        <w-back-top show="{{showBackTop}}" scroll-view-id="list-scroll" />
+      </w-layout-content>
+    </w-layout>
+
+    <!-- 排序抽屉 -->
+    <w-drawer title="排序方式" position="bottom" open="{{showSortDrawer}}" bind:close="onSortClose">
+      <view class="sort-list">
+        <view
+          wx:for="{{sortOptions}}"
+          wx:key="key"
+          class="sort-item {{sortBy === item.key ? 'sort-item--active' : ''}}"
+          data-key="{{item.key}}"
+          bind:tap="onSortSelect"
+        >
+          <text>{{item.label}}</text>
+          <view wx:if="{{sortBy === item.key}}" class="iconfont icon-check sort-item__check"></view>
+        </view>
+      </view>
+    </w-drawer>
+
+    <w-tab-bar active="{{activeTab}}" items="{{tabs}}" bind:change="onTabChange" />
+  </w-theme-provider>
+</view>

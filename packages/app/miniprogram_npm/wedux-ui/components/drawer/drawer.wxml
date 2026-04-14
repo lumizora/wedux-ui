@@ -1,0 +1,22 @@
+<view
+  wx:if="{{_visible}}"
+  class="w-drawer w-drawer--{{placement}} {{_active ? 'w-drawer--active' : ''}} {{round ? 'w-drawer--round' : ''}}"
+  style="z-index: {{zIndex}};"
+  catchtouchmove="handlePrevent"
+>
+  <view wx:if="{{showMask}}" class="w-drawer__mask" bindtap="handleMaskTap"></view>
+  <view class="w-drawer__body" style="{{_bodyStyle}}" bindtransitionend="handleTransitionEnd">
+    <view wx:if="{{title || closable}}" class="w-drawer__header">
+      <view class="w-drawer__title">{{title}}</view>
+      <view wx:if="{{closable}}" class="w-drawer__close" bindtap="handleClose">
+        <text class="w-drawer__close-icon iconfont icon-close"></text>
+      </view>
+    </view>
+    <view class="w-drawer__content">
+      <slot></slot>
+    </view>
+    <view class="w-drawer__footer">
+      <slot name="footer"></slot>
+    </view>
+  </view>
+</view>

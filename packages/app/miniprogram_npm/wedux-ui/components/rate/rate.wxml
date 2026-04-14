@@ -1,0 +1,16 @@
+<view
+  class="w-rate w-rate--size-{{size || _formItemSize || 'medium'}} {{(disabled || _formItemDisabled) ? 'w-rate--disabled' : ''}} {{readonly ? 'w-rate--readonly' : ''}}"
+>
+  <view
+    wx:for="{{_stars}}"
+    wx:key="index"
+    class="w-rate__item w-rate__item-{{item.index}} {{item.state === 'full' ? 'w-rate__item--active' : ''}} {{item.state === 'half' ? 'w-rate__item--half' : ''}} {{!(disabled || _formItemDisabled || readonly) ? 'w-rate__item--interactive' : ''}}"
+    data-index="{{item.index}}"
+    bindtap="handleTap"
+  >
+    <view class="w-rate__icon w-rate__icon--inactive">★</view>
+    <view class="w-rate__icon w-rate__icon--active" style="{{_activeStyle}}">
+      <view class="w-rate__icon-inner">★</view>
+    </view>
+  </view>
+</view>
