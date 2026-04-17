@@ -1,3 +1,0 @@
-<view class="w-theme-provider" style="{{themeStyle}}">
-  <slot></slot>
-</view>

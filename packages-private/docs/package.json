@@ -1,0 +1,8 @@
+{
+  "name": "@wedux-ui/docs",
+  "private": true,
+  "description": "wedux-ui 组件文档与演示",
+  "dependencies": {
+    "wedux-ui": "workspace:*"
+  }
+}

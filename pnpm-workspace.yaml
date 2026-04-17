@@ -1,4 +1,2 @@
 packages:
-  - 'packages/core'
-  - 'packages/docs'
-  - 'packages/app'
+  - 'packages-private/*'

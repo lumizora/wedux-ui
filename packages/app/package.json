@@ -1,9 +1,0 @@
-{
-  "name": "@wedux-ui/app",
-  "version": "0.0.0",
-  "private": true,
-  "description": "wedux-ui 门店活动运营 Demo 小程序",
-  "dependencies": {
-    "wedux-ui": "workspace:*"
-  }
-}

@@ -1,0 +1,46 @@
+{
+  "pages": [
+    "pages/dashboard/dashboard",
+    "pages/list/list",
+    "pages/settings/settings",
+    "pages/form/form",
+    "pages/detail/detail",
+    "pages/share/share"
+  ],
+  "usingComponents": {},
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#07c160",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/dashboard/dashboard",
+        "text": "首页",
+        "iconPath": "icons/home.png",
+        "selectedIconPath": "icons/home.png"
+      },
+      {
+        "pagePath": "pages/list/list",
+        "text": "活动",
+        "iconPath": "icons/function.png",
+        "selectedIconPath": "icons/function.png"
+      },
+      {
+        "pagePath": "pages/settings/settings",
+        "text": "设置",
+        "iconPath": "icons/setting.png",
+        "selectedIconPath": "icons/setting.png"
+      }
+    ]
+  },
+  "window": {
+    "navigationBarTextStyle": "@navigationBarTextStyle",
+    "navigationBarBackgroundColor": "@navigationBarBackgroundColor"
+  },
+  "darkmode": true,
+  "themeLocation": "theme.json",
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

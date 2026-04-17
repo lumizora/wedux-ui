@@ -1,12 +1,41 @@
 {
-  "name": "@wedux-ui/root",
-  "private": true,
+  "name": "wedux-ui",
+  "version": "0.6.1",
+  "description": "微信小程序组件库，支持主题切换",
+  "miniprogram": "src",
+  "files": [
+    "src"
+  ],
+  "keywords": [
+    "miniprogram",
+    "weixin",
+    "component",
+    "ui"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lumizora/wedux-ui.git"
+  },
+  "author": "L",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lumizora/wedux-ui/issues"
+  },
+  "homepage": "https://github.com/lumizora/wedux-ui#readme",
   "packageManager": "pnpm@10.26.0",
   "scripts": {
+    "build": "node scripts/build.js",
+    "release": "node scripts/release.js",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "prepublishOnly": "node scripts/build.js",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
   "devDependencies": {
-    "prettier": "^3.8.1"
+    "conventional-changelog-cli": "^5.0.0",
+    "enquirer": "^2.4.1",
+    "picocolors": "^1.1.1",
+    "prettier": "^3.8.1",
+    "semver": "^7.7.4"
   }
 }
