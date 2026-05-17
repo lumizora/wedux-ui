@@ -1,43 +1,39 @@
 import { activities, statusConfig } from '../../utils/mock';
 
-const PAGE_SIZE = 3;
-const filterTabs = [
-  { key: 'all', label: '全部' },
-  { key: 'active', label: '进行中' },
-  { key: 'ended', label: '已结束' },
-  { key: 'draft', label: '草稿' },
-  { key: 'paused', label: '已暂停' },
-];
-
 Page({
   data: {
     theme: {},
-    filterTabs,
+    keyword: '',
     activeFilter: 'all',
+    sortBy: 'createdAt',
+    filterTabs: [
+      { key: 'all', label: '全部' },
+      { key: 'active', label: '进行中' },
+      { key: 'draft', label: '草稿' },
+      { key: 'paused', label: '已暂停' },
+      { key: 'ended', label: '已结束' },
+    ],
+    sortOptions: [
+      { key: 'createdAt', label: '最新创建' },
+      { key: 'startTime', label: '开始时间' },
+      { key: 'participants', label: '参与人数' },
+    ],
     list: [],
     totalCount: 0,
-    page: 1,
-    hasMore: true,
     loading: false,
+    hasMore: false,
     showSortDrawer: false,
-    sortBy: 'createdAt',
-    sortOptions: [
-      { key: 'createdAt', label: '创建时间' },
-      { key: 'startTime', label: '开始时间' },
-      { key: 'actualCount', label: '参与人数' },
-    ],
-    contentScrollTop: 0,
     showBackTop: false,
+    contentScrollTop: 0,
   },
 
   onLoad() {
     this.loadTheme();
-    this.loadList(true);
+    this.loadList();
   },
 
   onShow() {
     this.loadTheme();
-    this.loadList(true);
   },
 
   loadTheme() {
@@ -45,65 +41,41 @@ Page({
     this.setData({ theme: app.globalData.theme });
   },
 
-  loadList(reset = false) {
-    if (this.data.loading) return;
-    this.setData({ loading: true });
-
-    const { activeFilter, sortBy, page } = this.data;
-    const currentPage = reset ? 1 : page;
-
-    const filtered = activities.filter((a) => {
-      if (activeFilter === 'all') return true;
-      return a.status === activeFilter;
-    });
-
-    filtered.sort((a, b) => {
-      if (sortBy === 'actualCount') return b.actualCount - a.actualCount;
-      return b[sortBy] > a[sortBy] ? 1 : -1;
-    });
-
-    const start = (currentPage - 1) * PAGE_SIZE;
-    const chunk = filtered.slice(start, start + PAGE_SIZE);
-    const mapped = chunk.map((a) => ({
+  loadList() {
+    const { keyword, activeFilter } = this.data;
+    let filtered = activities.map((a) => ({
       ...a,
       statusLabel: statusConfig[a.status]?.label || a.status,
       statusType: statusConfig[a.status]?.type || 'default',
       progressRate: a.targetCount > 0 ? Math.round((a.actualCount / a.targetCount) * 100) : 0,
     }));
 
-    const hasMore = start + PAGE_SIZE < filtered.length;
-    const list = reset ? mapped : [...this.data.list, ...mapped];
+    if (activeFilter !== 'all') {
+      filtered = filtered.filter((a) => a.status === activeFilter);
+    }
 
-    this.setData({
-      list,
-      totalCount: filtered.length,
-      page: currentPage + 1,
-      hasMore,
-      loading: false,
-    });
+    if (keyword) {
+      const kw = keyword.toLowerCase();
+      filtered = filtered.filter(
+        (a) =>
+          a.title.toLowerCase().includes(kw) || a.description.toLowerCase().includes(kw),
+      );
+    }
+
+    this.setData({ list: filtered, totalCount: filtered.length, hasMore: false });
+  },
+
+  onSearch(e) {
+    this.setData({ keyword: e.detail.value }, () => this.loadList());
+  },
+
+  onSearchClear() {
+    this.setData({ keyword: '' }, () => this.loadList());
   },
 
   onFilterChange(e) {
     const { key } = e.currentTarget.dataset;
-    this.setData({ activeFilter: key, page: 1, list: [], hasMore: true });
-    this.loadList(true);
-  },
-
-  onLoadMore() {
-    if (!this.data.hasMore || this.data.loading) return;
-    this.loadList(false);
-  },
-
-  onContentScroll(e) {
-    const { scrollTop } = e.detail;
-    this.setData({
-      contentScrollTop: scrollTop,
-      showBackTop: scrollTop > 400,
-    });
-  },
-
-  onBackTop() {
-    this.setData({ contentScrollTop: 0 });
+    this.setData({ activeFilter: key }, () => this.loadList());
   },
 
   onSortTap() {
@@ -111,21 +83,30 @@ Page({
   },
 
   onSortDrawerChange(e) {
-    this.setData({ showSortDrawer: e.detail.show });
+    this.setData({ showSortDrawer: e.detail.value });
   },
 
   onSortSelect(e) {
     const { key } = e.currentTarget.dataset;
-    this.setData({ sortBy: key, showSortDrawer: false, page: 1, list: [] });
-    this.loadList(true);
+    this.setData({ sortBy: key, showSortDrawer: false }, () => this.loadList());
+  },
+
+  onLoadMore() {},
+
+  onContentScroll(e) {
+    this.setData({ showBackTop: e.detail.scrollTop > 400 });
+  },
+
+  onBackTop() {
+    this.setData({ contentScrollTop: 0 });
+  },
+
+  onNewActivity() {
+    wx.navigateTo({ url: '/pages/form/form' });
   },
 
   onActivityTap(e) {
     const { id } = e.currentTarget.dataset;
     wx.navigateTo({ url: `/pages/detail/detail?id=${id}` });
-  },
-
-  onNewActivity() {
-    wx.navigateTo({ url: '/pages/form/form' });
   },
 });

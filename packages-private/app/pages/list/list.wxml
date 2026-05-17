@@ -10,6 +10,30 @@
             </view>
           </view>
         </w-navigation-bar>
+
+        <!-- 搜索栏 -->
+        <view class="search-bar">
+          <w-input
+            value="{{keyword}}"
+            placeholder="搜索活动名称..."
+            clearable
+            bind:change="onSearch"
+            bind:clear="onSearchClear"
+          />
+        </view>
+
+        <!-- 筛选 Tabs -->
+        <scroll-view scroll-x class="filter-scroll" show-scrollbar="{{false}}">
+          <view class="filter-tabs">
+            <view
+              wx:for="{{filterTabs}}"
+              wx:key="key"
+              class="filter-tab {{activeFilter === item.key ? 'filter-tab--active' : ''}}"
+              data-key="{{item.key}}"
+              bind:tap="onFilterChange"
+            ><text>{{item.label}}</text></view>
+          </view>
+        </scroll-view>
       </w-layout-header>
 
       <w-layout-content
@@ -17,111 +41,94 @@
         bind:scroll="onContentScroll"
         bind:scrolltolower="onLoadMore"
       >
-        <!-- 筛选 tabs（sticky） -->
-        <view class="filter-bar">
-          <scroll-view scroll-x class="filter-scroll" show-scrollbar="{{false}}">
-            <view class="filter-tabs">
-              <view
-                wx:for="{{filterTabs}}"
-                wx:key="key"
-                class="filter-tab {{activeFilter === item.key ? 'filter-tab--active' : ''}}"
-                data-key="{{item.key}}"
-                bind:tap="onFilterChange"
-                ><text>{{item.label}}</text></view
-              >
-            </view>
-          </scroll-view>
+        <!-- 计数栏 -->
+        <view class="toolbar">
+          <view class="toolbar__count">共 {{totalCount}} 条</view>
         </view>
 
-        <!-- 列表内容 -->
-        <view class="list-content">
-          <!-- 操作栏 -->
-          <view class="toolbar">
-            <view class="toolbar__count">共 {{totalCount}} 条</view>
-            <view class="toolbar__action" bind:tap="onNewActivity">
-              <view class="iconfont icon-plus"></view>
-              <text>新建活动</text>
-            </view>
-          </view>
-
-          <!-- 列表项 -->
-          <view wx:if="{{list.length > 0}}" class="activity-list">
-            <view
-              wx:for="{{list}}"
-              wx:key="id"
-              class="activity-card"
-              data-id="{{item.id}}"
-              bind:tap="onActivityTap"
-            >
+        <!-- 列表 -->
+        <view wx:if="{{list.length > 0}}" class="activity-list">
+          <view
+            wx:for="{{list}}"
+            wx:key="id"
+            class="activity-card"
+            data-id="{{item.id}}"
+            bind:tap="onActivityTap"
+          >
+            <view class="activity-card__cover">
               <w-image
-                class="activity-card__cover"
                 src="{{item.coverImage}}"
                 mode="aspectFill"
-                radius="8rpx"
+                width="702rpx"
+                height="240rpx"
+                radius="0"
               />
-              <view class="activity-card__body">
-                <view class="activity-card__header">
-                  <w-ellipsis class="activity-card__title" lineClamp="{{2}}"
-                    >{{item.title}}</w-ellipsis
-                  >
-                  <w-tag type="{{item.statusType}}" size="small">{{item.statusLabel}}</w-tag>
+              <w-tag
+                class="activity-card__status-tag"
+                type="{{item.statusType}}"
+                size="small"
+              >{{item.statusLabel}}</w-tag>
+            </view>
+            <view class="activity-card__body">
+              <w-ellipsis class="activity-card__title" lineClamp="{{1}}">{{item.title}}</w-ellipsis>
+              <view class="activity-card__desc">
+                <w-ellipsis lineClamp="{{2}}">{{item.description}}</w-ellipsis>
+              </view>
+              <view class="activity-card__meta">
+                <view class="meta-item">
+                  <view class="iconfont icon-time meta-item__icon"></view>
+                  <text class="meta-item__text">{{item.startTime}}</text>
                 </view>
-                <view class="activity-card__desc">
-                  <w-ellipsis lineClamp="{{2}}">{{item.description}}</w-ellipsis>
+                <view class="meta-item">
+                  <view class="iconfont icon-user meta-item__icon"></view>
+                  <text class="meta-item__text">{{item.actualCount}}/{{item.targetCount}}人</text>
                 </view>
-                <view class="activity-card__meta">
-                  <view class="meta-item">
-                    <view class="iconfont icon-time meta-item__icon"></view>
-                    <text class="meta-item__text">{{item.startTime}}</text>
-                  </view>
-                  <view class="meta-item">
-                    <view class="iconfont icon-user meta-item__icon"></view>
-                    <text class="meta-item__text">{{item.actualCount}}/{{item.targetCount}}人</text>
-                  </view>
+              </view>
+              <view class="activity-card__tags" wx:if="{{item.tags.length > 0}}">
+                <w-tag
+                  wx:for="{{item.tags}}"
+                  wx:key="*this"
+                  wx:for-item="tag"
+                  size="small"
+                  type="info"
+                >{{tag}}</w-tag>
+              </view>
+              <view class="progress-row">
+                <view class="progress-track">
+                  <view class="progress-fill" style="width: {{item.progressRate}}%"></view>
                 </view>
-                <view class="activity-card__tags" wx:if="{{item.tags.length > 0}}">
-                  <w-tag
-                    wx:for="{{item.tags}}"
-                    wx:key="*this"
-                    wx:for-item="tag"
-                    size="small"
-                    type="info"
-                    >{{tag}}</w-tag
-                  >
-                </view>
-                <view class="progress-bar">
-                  <view class="progress-bar__track">
-                    <view class="progress-bar__fill" style="width: {{item.progressRate}}%"></view>
-                  </view>
-                  <text class="progress-bar__label">{{item.progressRate}}%</text>
-                </view>
+                <text class="progress-label">{{item.progressRate}}%</text>
               </view>
             </view>
           </view>
-
-          <!-- 空状态 -->
-          <view wx:else class="empty-wrap">
-            <w-empty description="暂无活动数据" />
-            <w-button type="primary" bind:tap="onNewActivity" style="margin-top: 32rpx"
-              >创建第一个活动</w-button
-            >
-          </view>
-
-          <!-- 加载更多 -->
-          <w-infinite-scroll
-            wx:if="{{list.length > 0}}"
-            loading="{{loading}}"
-            finished="{{!hasMore}}"
-            finished-text="没有更多活动了"
-          />
         </view>
+
+        <!-- 空状态 -->
+        <view wx:else class="empty-wrap">
+          <w-empty description="{{keyword ? '未找到匹配的活动' : '暂无活动数据'}}" />
+          <w-button
+            wx:if="{{!keyword}}"
+            type="primary"
+            bind:tap="onNewActivity"
+            style="margin-top: 32rpx"
+          >创建第一个活动</w-button>
+        </view>
+
+        <w-infinite-scroll
+          wx:if="{{list.length > 0}}"
+          loading="{{loading}}"
+          finished="{{!hasMore}}"
+          finished-text="没有更多活动了"
+        />
       </w-layout-content>
 
-      <!-- 回到顶部 -->
-      <view wx:if="{{showBackTop}}" class="back-top" bind:tap="onBackTop">
-        <view class="iconfont icon-up"></view>
-      </view>
+      <w-back-top show="{{showBackTop}}" bind:tap="onBackTop" />
     </w-layout>
+
+    <!-- 新建浮动按钮 -->
+    <w-float-button type="primary" bind:tap="onNewActivity">
+      <view class="iconfont icon-plus"></view>
+    </w-float-button>
 
     <!-- 排序抽屉 -->
     <w-drawer
