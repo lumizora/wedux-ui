@@ -156,3 +156,60 @@ export function getActivitiesByStatus(status) {
   if (!status || status === 'all') return activities;
   return activities.filter((a) => a.status === status);
 }
+
+export const storeTree = [
+  {
+    key: 'north',
+    label: '华北区',
+    children: [
+      { key: 'bj', label: '北京' },
+      { key: 'tj', label: '天津' },
+      { key: 'sjz', label: '石家庄' },
+    ],
+  },
+  {
+    key: 'east',
+    label: '华东区',
+    children: [
+      { key: 'sh', label: '上海' },
+      { key: 'hz', label: '杭州' },
+      { key: 'nj', label: '南京' },
+    ],
+  },
+  {
+    key: 'south',
+    label: '华南区',
+    children: [
+      { key: 'gz', label: '广州' },
+      { key: 'sz', label: '深圳' },
+    ],
+  },
+];
+
+export const analyticsData = {
+  monthRevenue: 128600,
+  revenueGrowth: 12.5,
+  conversionRate: 73.2,
+  conversionDelta: -2.1,
+  completionRate: 83.0,
+  avgParticipants: 248,
+  typeDistribution: [
+    { label: '折扣促销', value: 50, color: '#07c160' },
+    { label: '会员专享', value: 33, color: '#10aeff' },
+    { label: '线下活动', value: 17, color: '#fa9d3b' },
+  ],
+  monthlyTrend: [
+    { month: '1月', revenue: 98000, max: 130000 },
+    { month: '2月', revenue: 112000, max: 130000 },
+    { month: '3月', revenue: 105000, max: 130000 },
+    { month: '4月', revenue: 128600, max: 130000 },
+  ],
+  ranking: [
+    { title: '清明假期满减活动', count: 723 },
+    { title: '春节特惠活动', count: 342 },
+    { title: '新品上市发布会', count: 198 },
+    { title: '会员日专属福利', count: 167 },
+    { title: '老客户回馈专场', count: 62 },
+  ],
+  announcements: '五一大促预算已超 80%，建议及时调整 · 会员日活动明日开始报名 · 华南区新门店本月开业',
+};
