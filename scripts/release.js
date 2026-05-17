@@ -59,7 +59,7 @@ async function isInSyncWithRemote() {
   try {
     const branch = await getBranch();
     const res = await fetch(
-      `https://api.github.com/repos/BitterBar/wedux-ui/commits/${branch}?per_page=1`,
+      `https://api.github.com/repos/lumizora/wedux-ui/commits/${branch}?per_page=1`,
     );
     const data = await res.json();
     if (data.sha === (await getSha())) {

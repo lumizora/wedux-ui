@@ -16,7 +16,7 @@
     "type": "git",
     "url": "git+https://github.com/lumizora/wedux-ui.git"
   },
-  "author": "L",
+  "author": "lumizora",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/lumizora/wedux-ui/issues"
@@ -27,7 +27,6 @@
     "build": "node scripts/build.js",
     "release": "node scripts/release.js",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
-    "prepublishOnly": "node scripts/build.js",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
