@@ -17,7 +17,6 @@ App({
   buildTheme() {
     const { themeMode, primaryColor } = this.globalData;
     const base = themeMode === 'dark' ? { ...darkTheme } : { ...lightTheme };
-    // shadcn/ui neutral zinc palette for light mode
     const lightOverrides =
       themeMode === 'light'
         ? {
@@ -36,6 +35,16 @@ App({
       '--w-input-border-focus': primaryColor,
       '--w-switch-checked-bg': primaryColor,
     };
+    this._syncTabBarColor(primaryColor, themeMode);
+  },
+
+  _syncTabBarColor(primaryColor, themeMode) {
+    wx.setTabBarStyle({
+      color: '#999999',
+      selectedColor: primaryColor,
+      backgroundColor: themeMode === 'dark' ? '#1c1c1e' : '#ffffff',
+      borderStyle: themeMode === 'dark' ? 'white' : 'black',
+    });
   },
 
   setThemeMode(mode) {

@@ -2,6 +2,7 @@
   "pages": [
     "pages/dashboard/dashboard",
     "pages/list/list",
+    "pages/analytics/analytics",
     "pages/settings/settings",
     "pages/form/form",
     "pages/detail/detail",
@@ -27,8 +28,14 @@
         "selectedIconPath": "icons/function.png"
       },
       {
+        "pagePath": "pages/analytics/analytics",
+        "text": "数据",
+        "iconPath": "icons/function.png",
+        "selectedIconPath": "icons/function.png"
+      },
+      {
         "pagePath": "pages/settings/settings",
-        "text": "设置",
+        "text": "我的",
         "iconPath": "icons/setting.png",
         "selectedIconPath": "icons/setting.png"
       }
