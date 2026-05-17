@@ -2,33 +2,39 @@
   <w-theme-provider theme="{{theme}}" style="height: 100%">
     <w-layout>
       <w-layout-header position="static">
-        <w-navigation-bar title="运营助手" back="{{false}}" />
-      </w-layout-header>
-      <w-layout-content>
-        <!-- 顶部欢迎区 -->
-        <view class="hero">
-          <view class="hero__greeting">
-            <view class="hero__title">早上好，运营君</view>
-            <view class="hero__subtitle">今日共有 {{stats.activeActivities}} 个活动进行中</view>
+        <w-navigation-bar back="{{false}}" use-content-slot>
+          <view slot="content" class="nav-content">
+            <view class="nav-content__title">运营助手</view>
+            <w-badge value="{{noticeCount}}" max="{{99}}">
+              <view class="iconfont icon-notice nav-notice"></view>
+            </w-badge>
           </view>
-          <w-button type="primary" size="small" bind:tap="onNewActivity">+ 新建活动</w-button>
+        </w-navigation-bar>
+      </w-layout-header>
+
+      <w-layout-content>
+        <!-- Hero 卡片 -->
+        <view class="hero-card">
+          <view class="hero-card__left">
+            <view class="hero-greeting">早上好，运营君 👋</view>
+            <view class="hero-date">{{today}} · {{activeCount}} 个活动进行中</view>
+            <view class="hero-revenue">
+              <view class="hero-revenue__label">本月营收</view>
+              <view class="hero-revenue__value">
+                <w-price price="{{stats.monthRevenue}}" size="lg" />
+              </view>
+              <view class="hero-revenue__trend trend--up">↑ {{stats.monthGrowth}}%</view>
+            </view>
+          </view>
+          <w-avatar
+            src="https://picsum.photos/seed/admin/200/200"
+            size="large"
+          />
         </view>
 
-        <!-- 数据统计卡片 -->
-        <view class="stats-grid">
-          <w-card class="stat-card">
-            <view class="stat-card__label">总活动数</view>
-            <view class="stat-card__value">
-              <w-number-animation
-                to="{{stats.totalActivities}}"
-                duration="{{800}}"
-                active="{{animateStats}}"
-              />
-            </view>
-            <view class="stat-card__trend">累计创建</view>
-          </w-card>
-          <w-card class="stat-card">
-            <view class="stat-card__label">进行中</view>
+        <!-- 统计卡片（3列） -->
+        <view class="stats-row">
+          <view class="stat-card">
             <view class="stat-card__value stat-card__value--brand">
               <w-number-animation
                 to="{{stats.activeActivities}}"
@@ -36,10 +42,9 @@
                 active="{{animateStats}}"
               />
             </view>
-            <view class="stat-card__trend">当前活跃</view>
-          </w-card>
-          <w-card class="stat-card">
-            <view class="stat-card__label">累计参与</view>
+            <view class="stat-card__label">进行中</view>
+          </view>
+          <view class="stat-card stat-card--divider">
             <view class="stat-card__value">
               <w-number-animation
                 to="{{stats.totalParticipants}}"
@@ -48,21 +53,18 @@
                 show-separator
               />
             </view>
-            <view class="stat-card__trend">人次</view>
-          </w-card>
-          <w-card class="stat-card">
-            <view class="stat-card__label">本月营收</view>
-            <view class="stat-card__value stat-card__value--success">
-              <text class="stat-currency">¥</text
-              ><w-number-animation
-                to="{{stats.monthRevenue}}"
-                duration="{{1200}}"
+            <view class="stat-card__label">参与人次</view>
+          </view>
+          <view class="stat-card stat-card--divider">
+            <view class="stat-card__value">
+              <w-number-animation
+                to="{{stats.totalActivities}}"
+                duration="{{800}}"
                 active="{{animateStats}}"
-                show-separator
               />
             </view>
-            <view class="stat-card__trend trend--up">↑ {{stats.monthGrowth}}%</view>
-          </w-card>
+            <view class="stat-card__label">总活动</view>
+          </view>
         </view>
 
         <!-- 快捷操作 -->
@@ -82,64 +84,61 @@
             </view>
             <view class="quick-action__label">活动列表</view>
           </view>
-          <view class="quick-action">
+          <view class="quick-action" bind:tap="onGoAnalytics">
             <view class="quick-action__icon quick-action__icon--warning">
               <view class="iconfont icon-data"></view>
             </view>
             <view class="quick-action__label">数据报表</view>
           </view>
-          <view class="quick-action">
+          <view class="quick-action" bind:tap="onGoSettings">
             <view class="quick-action__icon quick-action__icon--success">
               <view class="iconfont icon-setting"></view>
             </view>
-            <view class="quick-action__label">门店设置</view>
+            <view class="quick-action__label">主题设置</view>
           </view>
         </view>
 
-        <!-- 最近活动 -->
+        <!-- 最近活动（横向滚动） -->
         <view class="section-header">
           <view class="section-header__title">最近活动</view>
-          <view class="section-header__action" bind:tap="onViewAll">查看全部</view>
+          <view class="section-header__action" bind:tap="onViewAll">查看全部 ›</view>
         </view>
-
-        <view class="activity-list">
-          <view
-            wx:for="{{recentActivities}}"
-            wx:key="id"
-            class="activity-item"
-            data-id="{{item.id}}"
-            bind:tap="onActivityTap"
-          >
-            <w-image
-              class="activity-item__cover"
-              src="{{item.coverImage}}"
-              mode="aspectFill"
-              radius="8rpx"
-            />
-            <view class="activity-item__body">
-              <view class="activity-item__top">
-                <w-ellipsis class="activity-item__title" lineClamp="{{1}}"
-                  >{{item.title}}</w-ellipsis
-                >
-                <w-tag type="{{item.statusType}}" size="small">{{item.statusLabel}}</w-tag>
+        <scroll-view class="activity-scroll" scroll-x show-scrollbar="{{false}}">
+          <view class="activity-scroll__inner">
+            <view
+              wx:for="{{recentActivities}}"
+              wx:key="id"
+              class="activity-scroll-card"
+              data-id="{{item.id}}"
+              bind:tap="onActivityTap"
+            >
+              <view class="activity-scroll-card__cover">
+                <w-image
+                  src="{{item.coverImage}}"
+                  mode="aspectFill"
+                  width="220rpx"
+                  height="130rpx"
+                />
+                <w-tag
+                  class="activity-scroll-card__status"
+                  type="{{item.statusType}}"
+                  size="small"
+                >{{item.statusLabel}}</w-tag>
               </view>
-              <view class="activity-item__meta">
-                <view class="iconfont icon-time activity-item__icon"></view>
-                <text class="activity-item__time">{{item.startTime}}</text>
-              </view>
-              <view class="activity-item__footer">
-                <view class="progress-bar">
-                  <view class="progress-bar__track">
-                    <view class="progress-bar__fill" style="width: {{item.progressRate}}%"></view>
+              <view class="activity-scroll-card__body">
+                <w-ellipsis class="activity-scroll-card__title" lineClamp="{{1}}">{{item.title}}</w-ellipsis>
+                <view class="activity-scroll-card__progress">
+                  <view class="progress-track">
+                    <view class="progress-fill" style="width: {{item.progressRate}}%"></view>
                   </view>
-                  <text class="progress-bar__text"
-                    >{{item.actualCount}}/{{item.targetCount}}人</text
-                  >
+                  <text class="progress-text">{{item.actualCount}}/{{item.targetCount}}人</text>
                 </view>
               </view>
             </view>
           </view>
-        </view>
+        </scroll-view>
+
+        <view class="bottom-spacer"></view>
       </w-layout-content>
     </w-layout>
   </w-theme-provider>
