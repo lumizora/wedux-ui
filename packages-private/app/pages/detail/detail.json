@@ -13,8 +13,9 @@
     "w-avatar": "wedux-ui/components/avatar/avatar",
     "w-avatar-group": "wedux-ui/components/avatar-group/avatar-group",
     "w-image": "wedux-ui/components/image/image",
-    "w-drawer": "wedux-ui/components/drawer/drawer",
-    "w-empty": "wedux-ui/components/empty/empty"
+    "w-popover": "wedux-ui/components/popover/popover",
+    "w-empty": "wedux-ui/components/empty/empty",
+    "w-ellipsis": "wedux-ui/components/ellipsis/ellipsis"
   },
   "navigationStyle": "custom",
   "disableScroll": true

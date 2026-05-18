@@ -4,13 +4,16 @@
       <w-layout-header position="static">
         <w-navigation-bar use-content-slot>
           <view slot="content" class="nav-content">
-            <view class="nav-back" bind:tap="onBack">
-              <view class="iconfont icon-left"></view>
-            </view>
+            <view class="nav-back iconfont icon-left" bind:tap="onBack"></view>
             <view class="nav-content__title">活动详情</view>
-            <view class="nav-more" bind:tap="onMoreTap">
-              <view class="iconfont icon-more"></view>
-            </view>
+            <w-popover placement="bottom-end" bind:select="onPopoverSelect">
+              <view class="nav-more iconfont icon-more"></view>
+              <view slot="content" class="popover-menu">
+                <view class="popover-item" data-key="edit" bind:tap="onEdit">编辑活动</view>
+                <view class="popover-item" data-key="copy">复制活动</view>
+                <view class="popover-item popover-item--danger" data-key="delete">删除活动</view>
+              </view>
+            </w-popover>
           </view>
         </w-navigation-bar>
       </w-layout-header>
@@ -18,20 +21,25 @@
       <w-layout-content>
         <block wx:if="{{activity}}">
           <!-- 封面图 -->
-          <w-image src="{{activity.coverImage}}" mode="aspectFill" width="750rpx" height="360rpx" />
+          <view class="cover-wrap">
+            <w-image
+              src="{{activity.coverImage}}"
+              mode="aspectFill"
+              width="750rpx"
+              height="360rpx"
+            />
+            <w-tag class="cover-tag" type="{{activity.statusType}}">{{activity.statusLabel}}</w-tag>
+          </view>
 
           <!-- 标题区 -->
           <view class="title-section">
-            <view class="title-row">
-              <view class="title-text">{{activity.title}}</view>
-              <w-tag type="{{activity.statusType}}">{{activity.statusLabel}}</w-tag>
-            </view>
-            <view class="type-row">
-              <view class="iconfont icon-tag type-icon"></view>
-              <text class="type-text">{{activity.typeName}}</text>
-              <view class="dot"></view>
-              <view class="iconfont icon-location type-icon"></view>
-              <text class="type-text">{{activity.location}}</text>
+            <view class="title-text">{{activity.title}}</view>
+            <view class="meta-row">
+              <view class="iconfont icon-tag meta-icon"></view>
+              <text class="meta-text">{{activity.typeName}}</text>
+              <view class="meta-dot"></view>
+              <view class="iconfont icon-location meta-icon"></view>
+              <text class="meta-text">{{activity.location}}</text>
             </view>
             <view class="tags-row" wx:if="{{activity.tags.length > 0}}">
               <w-tag
@@ -40,78 +48,34 @@
                 wx:for-item="tag"
                 size="small"
                 type="info"
-                >{{tag}}</w-tag
-              >
+              >{{tag}}</w-tag>
             </view>
           </view>
 
           <w-divider />
 
-          <!-- 数据统计 -->
-          <view class="stats-section">
-            <view class="stat-item">
-              <view class="stat-item__value">{{activity.actualCount}}</view>
-              <view class="stat-item__label">已参与</view>
+          <!-- 3列数据统计 -->
+          <view class="stats-grid">
+            <view class="stats-grid__item">
+              <view class="stats-grid__value stats-grid__value--brand">{{activity.progressRate}}%</view>
+              <view class="stats-grid__label">参与率</view>
             </view>
-            <view class="stat-divider"></view>
-            <view class="stat-item">
-              <view class="stat-item__value">{{activity.targetCount}}</view>
-              <view class="stat-item__label">目标人数</view>
+            <view class="stats-grid__item stats-grid__item--divider">
+              <view class="stats-grid__value">{{activity.actualCount}}</view>
+              <view class="stats-grid__label">已参与</view>
             </view>
-            <view class="stat-divider"></view>
-            <view class="stat-item">
-              <view class="stat-item__value">{{activity.progressRate}}%</view>
-              <view class="stat-item__label">完成进度</view>
-            </view>
-            <view class="stat-divider"></view>
-            <view class="stat-item">
-              <view class="stat-item__value">¥{{activity.budget}}</view>
-              <view class="stat-item__label">活动预算</view>
+            <view class="stats-grid__item stats-grid__item--divider">
+              <view class="stats-grid__value">¥{{activity.budget}}</view>
+              <view class="stats-grid__label">活动预算</view>
             </view>
           </view>
 
           <!-- 进度条 -->
           <view class="progress-section">
-            <view class="progress-bar">
-              <view class="progress-bar__fill" style="width: {{activity.progressRate}}%"></view>
+            <view class="progress-track">
+              <view class="progress-fill" style="width: {{activity.progressRate}}%"></view>
             </view>
-          </view>
-
-          <w-divider />
-
-          <!-- 活动信息 -->
-          <view class="info-section">
-            <view class="info-section__title">活动信息</view>
-            <w-list>
-              <w-list-item>
-                <text>开始时间</text>
-                <view slot="suffix" class="list-extra">{{activity.startTime}}</view>
-              </w-list-item>
-              <w-list-item>
-                <text>结束时间</text>
-                <view slot="suffix" class="list-extra">{{activity.endTime}}</view>
-              </w-list-item>
-              <w-list-item>
-                <text>活动类型</text>
-                <view slot="suffix" class="list-extra">{{activity.typeName}}</view>
-              </w-list-item>
-              <w-list-item>
-                <text>活动地点</text>
-                <view slot="suffix" class="list-extra">{{activity.location || '未设置'}}</view>
-              </w-list-item>
-              <w-list-item>
-                <text>创建时间</text>
-                <view slot="suffix" class="list-extra">{{activity.createdAt}}</view>
-              </w-list-item>
-            </w-list>
-          </view>
-
-          <w-divider />
-
-          <!-- 活动描述 -->
-          <view class="desc-section">
-            <view class="desc-section__title">活动描述</view>
-            <view class="desc-section__content">{{activity.description}}</view>
+            <text class="progress-hint">{{activity.actualCount}}/{{activity.targetCount}} 人参与目标</text>
           </view>
 
           <w-divider />
@@ -122,25 +86,50 @@
               <view class="participants-title">参与者</view>
               <view class="participants-count">{{activity.actualCount}} 人已参与</view>
             </view>
-            <view class="participants-avatars">
-              <w-avatar-group>
-                <w-avatar
-                  wx:for="{{participants}}"
-                  wx:key="id"
-                  src="{{item.avatar}}"
-                  size="medium"
-                />
-              </w-avatar-group>
-              <view class="participants-more" wx:if="{{activity.actualCount > 5}}">
-                <text>+{{activity.actualCount - 5}}人</text>
-              </view>
-            </view>
+            <w-avatar-group>
+              <w-avatar
+                wx:for="{{participants}}"
+                wx:key="id"
+                src="{{item.avatar}}"
+                size="medium"
+              />
+            </w-avatar-group>
+          </view>
+
+          <w-divider />
+
+          <!-- 活动信息 -->
+          <view class="section-title">活动信息</view>
+          <w-list>
+            <w-list-item>
+              <text>开始时间</text>
+              <view slot="suffix" class="list-extra">{{activity.startTime}}</view>
+            </w-list-item>
+            <w-list-item>
+              <text>结束时间</text>
+              <view slot="suffix" class="list-extra">{{activity.endTime}}</view>
+            </w-list-item>
+            <w-list-item>
+              <text>活动地点</text>
+              <view slot="suffix" class="list-extra">{{activity.location || '未设置'}}</view>
+            </w-list-item>
+            <w-list-item>
+              <text>创建时间</text>
+              <view slot="suffix" class="list-extra">{{activity.createdAt}}</view>
+            </w-list-item>
+          </w-list>
+
+          <w-divider />
+
+          <!-- 活动描述 -->
+          <view class="section-title">活动描述</view>
+          <view class="desc-content">
+            <w-ellipsis expandable lineClamp="{{4}}">{{activity.description}}</w-ellipsis>
           </view>
 
           <view class="bottom-spacer"></view>
         </block>
 
-        <!-- 空状态 -->
         <view wx:else class="empty-wrap">
           <w-empty description="活动不存在或已被删除" />
         </view>
@@ -149,50 +138,26 @@
 
     <!-- 底部操作栏 -->
     <view class="action-bar" wx:if="{{activity}}">
-      <w-button bind:tap="onShare" type="default" class="action-btn">分享</w-button>
-      <w-button
-        wx:if="{{activity.canPublish}}"
-        bind:tap="onPublish"
-        type="primary"
-        class="action-btn action-btn--main"
-        >发布活动</w-button
-      >
-      <w-button wx:elif="{{activity.canEdit}}" bind:tap="onEdit" type="default" class="action-btn"
-        >编辑</w-button
-      >
+      <w-button bind:tap="onShare" class="action-btn">分享</w-button>
+      <w-button wx:if="{{activity.canEdit}}" bind:tap="onEdit" class="action-btn">编辑</w-button>
       <w-button
         wx:if="{{activity.canPause}}"
         bind:tap="onToggleStatus"
         type="warning"
         class="action-btn action-btn--main"
-        >暂停活动</w-button
-      >
+      >暂停活动</w-button>
       <w-button
         wx:elif="{{activity.canResume}}"
         bind:tap="onToggleStatus"
         type="primary"
         class="action-btn action-btn--main"
-        >恢复活动</w-button
-      >
+      >恢复活动</w-button>
+      <w-button
+        wx:elif="{{activity.canPublish}}"
+        bind:tap="onPublish"
+        type="primary"
+        class="action-btn action-btn--main"
+      >发布活动</w-button>
     </view>
-
-    <!-- 更多操作抽屉 -->
-    <w-drawer
-      placement="bottom"
-      show="{{showMoreDrawer}}"
-      bind:update:show="onMoreDrawerChange"
-      round
-    >
-      <view class="more-actions">
-        <view
-          wx:for="{{moreActions}}"
-          wx:key="key"
-          class="more-action-item {{item.key === 'delete' ? 'more-action-item--danger' : ''}}"
-          data-key="{{item.key}}"
-          bind:tap="onMoreAction"
-          ><text>{{item.label}}</text></view
-        >
-      </view>
-    </w-drawer>
   </w-theme-provider>
 </view>
