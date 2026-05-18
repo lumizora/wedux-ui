@@ -1,0 +1,137 @@
+<view class="page">
+  <w-theme-provider theme="{{theme}}" style="height: 100%">
+    <w-watermark content="内部数据" style="height: 100%">
+      <w-layout>
+        <w-layout-header position="static">
+          <w-navigation-bar title="数据报表" />
+          <!-- 公告跑马灯 -->
+          <view class="notice-bar">
+            <view class="notice-bar__icon iconfont icon-notice"></view>
+            <w-marquee class="notice-bar__text" text="{{announcement}}" />
+          </view>
+          <!-- 页内 Tab -->
+          <w-tab-bar
+            items="{{tabs}}"
+            active="{{activeTab}}"
+            bind:change="onTabChange"
+          />
+        </w-layout-header>
+
+        <w-layout-content>
+          <!-- 概览 Tab -->
+          <block wx:if="{{activeTab === 'overview'}}">
+            <!-- KPI 卡片轮播 -->
+            <view class="section-label">核心指标</view>
+            <w-carousel class="kpi-carousel" indicator-dots autoplay interval="{{3000}}" circular>
+              <w-carousel-item>
+                <view class="kpi-card kpi-card--revenue">
+                  <view class="kpi-card__label">本月营收（元）</view>
+                  <w-price
+                    class="kpi-card__value"
+                    value="{{kpi.monthRevenue}}"
+                    integer-size="{{44}}"
+                    decimal-size="{{28}}"
+                    color="#fff"
+                  />
+                  <view class="kpi-card__trend">
+                    <view class="iconfont icon-up kpi-card__arrow"></view>
+                    <text class="kpi-card__growth">{{kpi.revenueGrowth}}% 较上月</text>
+                  </view>
+                </view>
+              </w-carousel-item>
+              <w-carousel-item>
+                <view class="kpi-card kpi-card--conversion">
+                  <view class="kpi-card__label">活动转化率</view>
+                  <view class="kpi-card__big">
+                    <w-number-animation value="{{kpi.conversionRate}}" decimals="{{1}}" />
+                    <text class="kpi-card__unit">%</text>
+                  </view>
+                  <view class="kpi-card__trend">
+                    <text class="kpi-card__growth">目标 80%</text>
+                  </view>
+                </view>
+              </w-carousel-item>
+              <w-carousel-item>
+                <view class="kpi-card kpi-card--participants">
+                  <view class="kpi-card__label">总参与人次</view>
+                  <view class="kpi-card__big">
+                    <w-number-animation value="{{kpi.totalParticipants}}" />
+                  </view>
+                  <view class="kpi-card__trend">
+                    <text class="kpi-card__growth">本月新增 {{kpi.newParticipants}} 人</text>
+                  </view>
+                </view>
+              </w-carousel-item>
+            </w-carousel>
+
+            <w-divider />
+
+            <!-- 活动类型分布 -->
+            <view class="section-label">活动类型分布</view>
+            <view class="dist-list">
+              <view
+                class="dist-item"
+                wx:for="{{typeDistribution}}"
+                wx:key="type"
+              >
+                <view class="dist-item__header">
+                  <text class="dist-item__name">{{item.typeName}}</text>
+                  <text class="dist-item__pct">{{item.pct}}%</text>
+                </view>
+                <view class="dist-track">
+                  <view class="dist-fill" style="width: {{item.pct}}%; background: {{item.color}}"></view>
+                </view>
+              </view>
+            </view>
+          </block>
+
+          <!-- 趋势 Tab -->
+          <block wx:if="{{activeTab === 'trend'}}">
+            <view class="section-label">月度活动趋势</view>
+            <view class="chart-wrap">
+              <view class="chart-bars">
+                <view
+                  class="chart-col"
+                  wx:for="{{monthlyTrend}}"
+                  wx:key="month"
+                >
+                  <view class="chart-col__bar-wrap">
+                    <view
+                      class="chart-col__bar"
+                      style="height: {{item.heightPct}}%"
+                    ></view>
+                  </view>
+                  <text class="chart-col__label">{{item.month}}</text>
+                </view>
+              </view>
+            </view>
+          </block>
+
+          <!-- 排行 Tab -->
+          <block wx:if="{{activeTab === 'ranking'}}">
+            <view class="section-label">活动参与排行</view>
+            <view class="ranking-list">
+              <view
+                class="ranking-item"
+                wx:for="{{ranking}}"
+                wx:key="rank"
+              >
+                <view class="ranking-item__rank ranking-item__rank--{{item.rank <= 3 ? 'top' : 'normal'}}">{{item.rank}}</view>
+                <view class="ranking-item__info">
+                  <text class="ranking-item__title">{{item.title}}</text>
+                  <text class="ranking-item__sub">{{item.typeName}}</text>
+                </view>
+                <view class="ranking-item__right">
+                  <view class="ranking-item__count">{{item.actualCount}} 人</view>
+                  <view class="rank-track">
+                    <view class="rank-fill" style="width: {{item.pct}}%"></view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </block>
+        </w-layout-content>
+      </w-layout>
+    </w-watermark>
+  </w-theme-provider>
+</view>

@@ -1,0 +1,22 @@
+{
+  "usingComponents": {
+    "w-theme-provider": "wedux-ui/components/theme-provider/theme-provider",
+    "w-layout": "wedux-ui/components/layout/layout",
+    "w-layout-header": "wedux-ui/components/layout-header/layout-header",
+    "w-layout-content": "wedux-ui/components/layout-content/layout-content",
+    "w-navigation-bar": "wedux-ui/components/navigation-bar/navigation-bar",
+    "w-tab-bar": "wedux-ui/components/tab-bar/tab-bar",
+    "w-marquee": "wedux-ui/components/marquee/marquee",
+    "w-carousel": "wedux-ui/components/carousel/carousel",
+    "w-carousel-item": "wedux-ui/components/carousel-item/carousel-item",
+    "w-number-animation": "wedux-ui/components/number-animation/number-animation",
+    "w-price": "wedux-ui/components/price/price",
+    "w-tag": "wedux-ui/components/tag/tag",
+    "w-divider": "wedux-ui/components/divider/divider",
+    "w-watermark": "wedux-ui/components/watermark/watermark",
+    "w-card": "wedux-ui/components/card/card",
+    "w-empty": "wedux-ui/components/empty/empty"
+  },
+  "navigationStyle": "custom",
+  "disableScroll": true
+}

@@ -1,0 +1,269 @@
+@import '../../miniprogram_npm/wedux-ui/styles/iconfont.scss';
+
+.page {
+  height: 100%;
+}
+
+.notice-bar {
+  display: flex;
+  align-items: center;
+  padding: 12rpx 32rpx;
+  background: var(--color-bg-elevated);
+  border-bottom: 1rpx solid var(--color-separator);
+  gap: 12rpx;
+
+  &__icon {
+    font-size: 28rpx;
+    color: var(--color-brand);
+    flex-shrink: 0;
+  }
+
+  &__text {
+    flex: 1;
+    min-width: 0;
+    font-size: 24rpx;
+    color: var(--color-text-secondary);
+  }
+}
+
+.section-label {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  padding: 32rpx 32rpx 16rpx;
+}
+
+/* KPI Carousel */
+.kpi-carousel {
+  height: 240rpx;
+  margin: 0 24rpx 8rpx;
+  border-radius: 20rpx;
+  overflow: hidden;
+}
+
+.kpi-card {
+  height: 240rpx;
+  border-radius: 20rpx;
+  padding: 32rpx 40rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &--revenue {
+    background: linear-gradient(135deg, #07c160 0%, #0ab554 100%);
+  }
+
+  &--conversion {
+    background: linear-gradient(135deg, #1677ff 0%, #0e5fd8 100%);
+  }
+
+  &--participants {
+    background: linear-gradient(135deg, #ff9500 0%, #e68700 100%);
+  }
+
+  &__label {
+    font-size: 26rpx;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  &__value {
+    display: block;
+  }
+
+  &__big {
+    display: flex;
+    align-items: baseline;
+    gap: 4rpx;
+    font-size: 48rpx;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  &__unit {
+    font-size: 28rpx;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  &__trend {
+    display: flex;
+    align-items: center;
+    gap: 8rpx;
+  }
+
+  &__arrow {
+    font-size: 22rpx;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  &__growth {
+    font-size: 22rpx;
+    color: rgba(255, 255, 255, 0.85);
+  }
+}
+
+/* Type Distribution */
+.dist-list {
+  padding: 0 32rpx 32rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.dist-item {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10rpx;
+  }
+
+  &__name {
+    font-size: 26rpx;
+    color: var(--color-text-primary);
+  }
+
+  &__pct {
+    font-size: 26rpx;
+    color: var(--color-text-secondary);
+  }
+}
+
+.dist-track {
+  height: 8rpx;
+  background: var(--color-separator);
+  border-radius: 4rpx;
+  overflow: hidden;
+}
+
+.dist-fill {
+  height: 100%;
+  border-radius: 4rpx;
+  transition: width 0.4s ease;
+}
+
+/* Trend Chart */
+.chart-wrap {
+  padding: 0 32rpx 40rpx;
+}
+
+.chart-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 12rpx;
+  height: 300rpx;
+}
+
+.chart-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+
+  &__bar-wrap {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  &__bar {
+    width: 100%;
+    background: var(--color-brand);
+    border-radius: 6rpx 6rpx 0 0;
+    min-height: 8rpx;
+    opacity: 0.85;
+  }
+
+  &__label {
+    font-size: 20rpx;
+    color: var(--color-text-secondary);
+    margin-top: 8rpx;
+    text-align: center;
+  }
+}
+
+/* Ranking */
+.ranking-list {
+  padding: 0 24rpx 40rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.ranking-item {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  background: var(--color-bg-elevated);
+  border-radius: 16rpx;
+  padding: 24rpx;
+
+  &__rank {
+    width: 48rpx;
+    height: 48rpx;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26rpx;
+    font-weight: 700;
+    flex-shrink: 0;
+
+    &--top {
+      background: var(--color-brand);
+      color: #fff;
+    }
+
+    &--normal {
+      background: var(--color-bg-base);
+      color: var(--color-text-secondary);
+    }
+  }
+
+  &__info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__title {
+    font-size: 28rpx;
+    color: var(--color-text-primary);
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__sub {
+    font-size: 22rpx;
+    color: var(--color-text-secondary);
+    display: block;
+    margin-top: 4rpx;
+  }
+
+  &__right {
+    flex-shrink: 0;
+    text-align: right;
+  }
+
+  &__count {
+    font-size: 26rpx;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 8rpx;
+  }
+}
+
+.rank-track {
+  width: 120rpx;
+  height: 6rpx;
+  background: var(--color-separator);
+  border-radius: 3rpx;
+  overflow: hidden;
+}
+
+.rank-fill {
+  height: 100%;
+  background: var(--color-brand);
+  border-radius: 3rpx;
+}
