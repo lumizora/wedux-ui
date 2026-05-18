@@ -1,13 +1,19 @@
+@import '../../miniprogram_npm/wedux-ui/styles/iconfont.scss';
+
 .page {
-  height: 100vh;
+  height: 100%;
 }
 
 .profile-card {
+  padding: 32rpx;
+  background: var(--color-bg-elevated);
+}
+
+.profile-top {
   display: flex;
   align-items: center;
   gap: 24rpx;
-  padding: 32rpx;
-  background: var(--color-bg-elevated);
+  margin-bottom: 32rpx;
 }
 
 .profile-info {
@@ -15,25 +21,49 @@
 }
 
 .profile-name {
-  font-size: var(--font-size-lg);
+  font-size: 34rpx;
   font-weight: 600;
   color: var(--color-text-primary);
   margin-bottom: 8rpx;
 }
 
 .profile-role {
-  font-size: var(--font-size-sm);
+  font-size: 24rpx;
   color: var(--color-text-secondary);
 }
 
-.profile-notice {
-  font-size: 40rpx;
-  color: var(--color-text-secondary);
+.profile-stats {
+  display: flex;
+  background: var(--color-bg-base);
+  border-radius: 16rpx;
+  padding: 24rpx 0;
+}
+
+.profile-stat {
+  flex: 1;
+  text-align: center;
+
+  &--divider {
+    border-left: 1rpx solid var(--color-separator);
+  }
+
+  &__value {
+    font-size: 36rpx;
+    font-weight: 700;
+    color: var(--color-brand);
+    display: block;
+  }
+
+  &__label {
+    font-size: 22rpx;
+    color: var(--color-text-secondary);
+    margin-top: 6rpx;
+  }
 }
 
 .section-title {
   padding: 24rpx 32rpx 12rpx;
-  font-size: var(--font-size-sm);
+  font-size: 22rpx;
   font-weight: 600;
   color: var(--color-text-secondary);
   text-transform: uppercase;
@@ -54,12 +84,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
 
   &--active {
     box-shadow:
       0 0 0 4rpx var(--color-bg-elevated),
-      0 0 0 6rpx currentColor;
+      0 0 0 7rpx currentColor;
   }
 
   &__check {
@@ -76,7 +105,7 @@
 }
 
 .color-picker-label {
-  font-size: var(--font-size-md);
+  font-size: 28rpx;
   color: var(--color-text-primary);
 }
 
@@ -89,7 +118,7 @@
   margin: 0 32rpx;
   padding: 24rpx;
   background: var(--color-bg-elevated);
-  border-radius: var(--radius-lg);
+  border-radius: 16rpx;
   display: flex;
   flex-direction: column;
   gap: 20rpx;
@@ -101,15 +130,24 @@
   gap: 16rpx;
   flex-wrap: wrap;
 
-  &--switch {
+  &--between {
     justify-content: space-between;
   }
 }
 
 .preview-label {
-  font-size: var(--font-size-sm);
+  font-size: 26rpx;
   color: var(--color-text-secondary);
-  min-width: 120rpx;
+}
+
+.list-arrow {
+  font-size: 28rpx;
+  color: var(--color-text-secondary);
+}
+
+.list-extra {
+  font-size: 26rpx;
+  color: var(--color-text-secondary);
 }
 
 .bottom-spacer {

@@ -1,7 +1,4 @@
-import {
-  lightTheme,
-  darkTheme,
-} from '../../miniprogram_npm/wedux-ui/components/theme-provider/presets';
+import { activities } from '../../utils/mock';
 
 const presetColors = [
   { name: '微信绿', value: '#07c160' },
@@ -20,6 +17,8 @@ Page({
     presetColors,
     previewRating: 4,
     previewSwitchChecked: true,
+    noticeCount: 3,
+    profileStats: { totalActivities: 0, activeCount: 0, storeCount: 12 },
   },
 
   onLoad() {
@@ -28,6 +27,11 @@ Page({
       themeMode: app.globalData.themeMode,
       primaryColor: app.globalData.primaryColor,
       theme: app.globalData.theme,
+      profileStats: {
+        totalActivities: activities.length,
+        activeCount: activities.filter((a) => a.status === 'active').length,
+        storeCount: 12,
+      },
     });
   },
 

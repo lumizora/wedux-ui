@@ -17,7 +17,8 @@
     "w-avatar": "wedux-ui/components/avatar/avatar",
     "w-input": "wedux-ui/components/input/input",
     "w-badge": "wedux-ui/components/badge/badge",
-    "w-rate": "wedux-ui/components/rate/rate"
+    "w-rate": "wedux-ui/components/rate/rate",
+    "w-number-animation": "wedux-ui/components/number-animation/number-animation"
   },
   "navigationStyle": "custom",
   "disableScroll": true

@@ -2,24 +2,39 @@
   <w-theme-provider theme="{{theme}}" style="height: 100%">
     <w-layout>
       <w-layout-header position="static">
-        <w-navigation-bar title="设置" back="{{false}}" />
+        <w-navigation-bar title="我的" back="{{false}}" />
       </w-layout-header>
       <w-layout-content>
-        <!-- 个人信息 -->
+        <!-- 个人信息卡片 -->
         <view class="profile-card">
-          <w-avatar src="https://picsum.photos/seed/admin/200/200" size="large" />
-          <view class="profile-info">
-            <view class="profile-name">运营管理员</view>
-            <view class="profile-role">超级管理员 · 全国门店</view>
+          <view class="profile-top">
+            <w-badge value="{{noticeCount}}" dot>
+              <w-avatar src="https://picsum.photos/seed/admin/200/200" size="large" />
+            </w-badge>
+            <view class="profile-info">
+              <view class="profile-name">运营管理员</view>
+              <view class="profile-role">超级管理员 · 全国门店</view>
+            </view>
           </view>
-          <w-badge value="{{3}}">
-            <view class="iconfont icon-notice profile-notice"></view>
-          </w-badge>
+          <view class="profile-stats">
+            <view class="profile-stat">
+              <w-number-animation class="profile-stat__value" value="{{profileStats.totalActivities}}" />
+              <view class="profile-stat__label">活动总数</view>
+            </view>
+            <view class="profile-stat profile-stat--divider">
+              <w-number-animation class="profile-stat__value" value="{{profileStats.activeCount}}" />
+              <view class="profile-stat__label">进行中</view>
+            </view>
+            <view class="profile-stat profile-stat--divider">
+              <w-number-animation class="profile-stat__value" value="{{profileStats.storeCount}}" />
+              <view class="profile-stat__label">管理门店</view>
+            </view>
+          </view>
         </view>
 
         <w-divider />
 
-        <!-- 主题模式 -->
+        <!-- 外观设置 -->
         <view class="section-title">外观</view>
         <w-list>
           <w-list-item>
@@ -61,55 +76,54 @@
 
         <w-divider />
 
-        <!-- 实时预览 -->
+        <!-- 主题预览 -->
         <view class="section-title">主题预览</view>
         <view class="preview-area">
           <view class="preview-row">
-            <w-button type="primary" size="small">主要按钮</w-button>
-            <w-button type="default" size="small">默认按钮</w-button>
-            <w-button type="warning" size="small">警告按钮</w-button>
+            <w-button type="primary" size="small">主要</w-button>
+            <w-button type="default" size="small">默认</w-button>
+            <w-button type="warning" size="small">警告</w-button>
+            <w-button type="danger" size="small">危险</w-button>
           </view>
           <view class="preview-row">
             <w-tag type="success">进行中</w-tag>
             <w-tag type="warning">草稿</w-tag>
             <w-tag type="error">已暂停</w-tag>
             <w-tag type="default">已结束</w-tag>
-            <w-tag type="info">标签</w-tag>
           </view>
-          <view class="preview-row">
-            <view class="preview-label">评分组件</view>
+          <view class="preview-row preview-row--between">
+            <view class="preview-label">评分</view>
             <w-rate value="{{previewRating}}" bind:update:value="onPreviewRatingChange" />
           </view>
-          <view class="preview-row preview-row--switch">
-            <view class="preview-label">开关组件</view>
+          <view class="preview-row preview-row--between">
+            <view class="preview-label">开关</view>
             <w-switch
               checked="{{previewSwitchChecked}}"
               bind:update:checked="onPreviewSwitchChange"
             />
           </view>
-          <w-input value="{{previewInput}}" placeholder="预览输入框" />
         </view>
 
         <w-divider />
 
-        <!-- 功能设置 -->
+        <!-- 功能 -->
         <view class="section-title">功能</view>
         <w-list>
           <w-list-item>
             <text>消息通知</text>
-            <view slot="suffix" class="list-arrow">›</view>
+            <view slot="suffix" class="list-arrow iconfont icon-right"></view>
           </w-list-item>
           <w-list-item>
             <text>数据同步</text>
-            <view slot="suffix" class="list-arrow">›</view>
+            <view slot="suffix" class="list-arrow iconfont icon-right"></view>
           </w-list-item>
           <w-list-item>
             <text>导出报表</text>
-            <view slot="suffix" class="list-arrow">›</view>
+            <view slot="suffix" class="list-arrow iconfont icon-right"></view>
           </w-list-item>
           <w-list-item>
             <text>帮助与反馈</text>
-            <view slot="suffix" class="list-arrow">›</view>
+            <view slot="suffix" class="list-arrow iconfont icon-right"></view>
           </w-list-item>
         </w-list>
 
@@ -124,7 +138,7 @@
           </w-list-item>
           <w-list-item>
             <text>组件库</text>
-            <view slot="suffix" class="list-extra">wedux-ui v0.6.1</view>
+            <view slot="suffix" class="list-extra">wedux-ui</view>
           </w-list-item>
         </w-list>
 
