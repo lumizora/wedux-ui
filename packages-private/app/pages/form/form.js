@@ -1,4 +1,4 @@
-import { getActivityById, activityTypes, tagOptions, activities } from '../../utils/mock';
+import { getActivityById, activityTypes, tagOptions, activities, storeTree } from '../../utils/mock';
 
 Page({
   data: {
@@ -9,6 +9,7 @@ Page({
     submitSuccess: false,
     typeOptions: activityTypes.map((t) => ({ label: t.label, value: t.value })),
     tagOptions: tagOptions.map((t) => ({ label: t, value: t })),
+    storeTree,
     formData: {
       title: '',
       type: '',
@@ -19,7 +20,7 @@ Page({
       endTime: '',
       targetCount: 100,
       budget: 10000,
-      location: '',
+      location: [],
       tags: [],
       coverFiles: [],
       enableNotify: false,
@@ -90,7 +91,7 @@ Page({
         endTime: endTime || '',
         targetCount: activity.targetCount,
         budget: activity.budget,
-        location: activity.location || '',
+        location: activity.location ? [activity.location] : [],
         tags: activity.tags || [],
         coverFiles: activity.coverImage ? [{ url: activity.coverImage, name: 'cover' }] : [],
         enableNotify: false,
@@ -165,11 +166,19 @@ Page({
     });
   },
 
+  _locationLabel(value) {
+    const flat = (nodes) =>
+      nodes.reduce((acc, n) => acc.concat(n, flat(n.children || [])), []);
+    const all = flat(storeTree);
+    return value.map((k) => all.find((n) => n.key === k)?.label || k).join(' / ');
+  },
+
   doSubmit() {
     this.setData({ submitting: true });
     // Simulate API call
     setTimeout(() => {
       const { formData, isEdit, editId } = this.data;
+      const locationStr = this._locationLabel(formData.location);
       const now = new Date().toISOString().slice(0, 10);
       if (isEdit) {
         const idx = activities.findIndex((a) => a.id === editId);
@@ -184,7 +193,7 @@ Page({
             endTime: `${formData.endDate} ${formData.endTime}`,
             targetCount: formData.targetCount,
             budget: formData.budget,
-            location: formData.location,
+            location: locationStr,
             tags: formData.tags,
           };
         }
@@ -201,7 +210,7 @@ Page({
           targetCount: formData.targetCount,
           actualCount: 0,
           budget: formData.budget,
-          location: formData.location,
+          location: locationStr,
           tags: formData.tags,
           coverImage: formData.coverFiles[0]?.url || 'https://picsum.photos/seed/new/600/300',
           createdAt: now,
@@ -230,7 +239,7 @@ Page({
               endTime: '',
               targetCount: 100,
               budget: 10000,
-              location: '',
+              location: [],
               tags: [],
               coverFiles: [],
               enableNotify: false,

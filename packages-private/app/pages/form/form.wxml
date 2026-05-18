@@ -40,9 +40,10 @@
             </w-form-item>
 
             <w-form-item label="活动地点" path="location">
-              <w-input
+              <w-tree-select
                 value="{{formData.location}}"
-                placeholder="请输入活动地点（可选）"
+                data="{{storeTree}}"
+                placeholder="请选择门店地点（可选）"
                 bind:change="onLocationChange"
               />
             </w-form-item>
